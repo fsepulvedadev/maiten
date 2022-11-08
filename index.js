@@ -269,7 +269,6 @@ const agregarIndice = (tipo) => {
 const cerrarSidebar = () => {
   let targetSidebar = document.getElementById("sidebar");
   let tabTarget = document.querySelector("li.active");
-  console.log(tabTarget);
   tabTarget.classList.remove("active");
   targetSidebar.classList.add("collapsed");
 };
