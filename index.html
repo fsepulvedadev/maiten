@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin=""
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/leaflet-sidebar-v2/css/leaflet-sidebar.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Mapa copade</title>
+  </head>
+  <body class="font-sans">
+    <div class="navbar bg-green-700 text-neutral-content md:h-[10vh] h-auto">
+      <div
+        class="normal-case m-2 grid md:grid-cols-3 grid-cols-3 w-full place-items-center text-white text-2xl"
+      >
+        <img
+          src="/assets/copade-logo.png"
+          alt="logo copade"
+          class="md:w-16 w-12 place-self-start my-auto ml-4"
+        />
+        <div class="text-lg md:text-2xl md:col-span-1 col-span-2">
+          <i class="fa-solid fa-tree-city mr-2"></i>Espacios Verdes
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <a
+          href="https://www.copade.gob.ar/"
+          class="place-self-end my-auto hidden md:flex"
+        >
+          <button
+            class="text-lg p-1 border rounded mr-4 flex hover:shadow hover:shadow-white duration-200"
+          >
+            Regresar a
+            <img
+              src="/assets/copade-logo.png"
+              alt="logo copade"
+              class="w-8 place-self-start my-auto ml-2"
+            />
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <main class="w-full h-[85vh] flex justify-end items-center">
+      <div id="map" class="w-full md:w-11/12 mx-auto"></div>
+      <div id="sidebar" class="leaflet-sidebar collapsed md:mt-0 my-2">
+        <!-- Nav tabs -->
+        <div class="leaflet-sidebar-tabs">
+          <ul role="tablist">
+            <!-- top aligned tabs -->
+            <li>
+              <a href="#home" role="tab"
+                ><i class="fa fa-bars text-green-700"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#layers" role="tab"
+                ><i class="fa-solid fa-layer-group text-green-700"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#ciudades" role="tab"
+                ><i class="fa-solid fa-map-location-dot text-green-700"></i
+              ></a>
+            </li>
+          </ul>
+
+          <ul role="tablist">
+            <!-- bottom aligned tabs -->
+
+            <li class="">
+              <a href="#info" role="tab"
+                ><i class="fa-solid fa-circle-info text-green-700"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="leaflet-sidebar-content">
+          <div class="leaflet-sidebar-pane m-0" id="home">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Inicio
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+            ´
+            <div class="text-black h-full w-full p-0 m-0">
+              <h2
+                class="text-lg text-center border-l-4 border-r-4 border-green-700"
+              >
+                Bienvenidos al mapa <br />
+                de espacios verdes del
+                <b class="text-green-700"> COPADE</b>
+              </h2>
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+                La capa que se muestra en este momento representa a los espacios
+                verdes de la provincia de Neuquen y esta coloreada mostrando la
+                capacidad de
+                <span class="text-blue-500 font-bold">absorcion</span> de cada
+                espacio.<br />
+              </p>
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+                Para colorear las capas segun su capacidad de
+                <span class="text-blue-500 font-bold">absorcion</span> ,
+                porcentaje de
+                <span class="text-green-600 font-bold">arbolado</span> o su
+                <span class="text-orange-400 font-bold">superficie</span> en
+                m<sup>2</sup>, utilice el menu lateral en la seccion
+                clasificacion
+                <img
+                  class="inline w-6 p-[1px] rounded bg-slate-100"
+                  src="./assets/layers-icon.png"
+                  alt=""
+                />
+                <br />
+              </p>
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+                Para mover el mapa a una <b>localidad</b> especifica, puede
+                elegir cualquiera de la lista en la pestaña de localidades
+                <i
+                  class="fa-solid fa-map-location-dot p-1 rounded bg-slate-100"
+                ></i>
+                <!--   <img
+                  class="inline w-6 p-[1px] rounded bg-slate-100"
+                  src="./assets/layers-icon.png"
+                  alt=""
+                /> -->
+                <br />
+              </p>
+            </div>
+          </div>
+
+          <div class="leaflet-sidebar-pane" id="layers">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Clasificaciones
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+            <h2
+              class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+            >
+              <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+              <p>
+                Selecione una clasificacion para colorear las capas segun la
+                escala que se muestra en el mapa.
+              </p>
+            </h2>
+            <ul id="lista-capas" class="grid grid-rows-3 gap-4 w-full m-0 p-0">
+              <div
+                class="w-full cursor-pointer ring-2 p-1 rounded ring-blue-400"
+                id="absorcion"
+              >
+                <h3 id="absorcion" class="text-center text-blue-400 font-bold">
+                  Absorcion
+                </h3>
+
+                <div
+                  id="absorcion"
+                  class="flex rounded border-2 border-blue-400 h-12"
+                >
+                  <label
+                    id="absorcion"
+                    class="bg-blue-400 w-1/4 h-full flex items-center justify-center"
+                  >
+                    <i
+                      id="absorcion"
+                      class="fa-solid fa-droplet text-white text-sm rounded"
+                    ></i>
+                  </label>
+
+                  <div
+                    id="absorcion"
+                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                  >
+                    <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                    <p id="absorcion" class="col-span-3 text-[0.7rem]">
+                      Porcentaje de Absorcion de Agua en funcion de los m<sup
+                        >2</sup
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full cursor-pointer p-1 rounded ring-green-600"
+                id="arbolado"
+              >
+                <h3 id="arbolado" class="text-center text-green-600 font-bold">
+                  Arbolado
+                </h3>
+
+                <div
+                  id="arbolado"
+                  class="flex rounded border-2 border-green-600 h-12"
+                >
+                  <label
+                    id="arbolado"
+                    class="bg-green-600 w-1/4 h-full flex items-center justify-center"
+                  >
+                    <i
+                      id="arbolado"
+                      class="fa-solid fa-tree text-white text-sm rounded"
+                    ></i>
+                  </label>
+
+                  <div
+                    id="arbolado"
+                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                  >
+                    <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                    <p id="arbolado" class="col-span-3 text-[0.7rem]">
+                      Porcentaje de Arbolado en funcion de los m<sup>2</sup>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full cursor-pointer p-1 rounded ring-orange-400"
+                id="superficie"
+              >
+                <h3
+                  id="superficie"
+                  class="text-center text-orange-400 font-bold"
+                >
+                  Superficie
+                </h3>
+
+                <div
+                  id="superficie"
+                  class="flex rounded border-2 border-orange-400 h-12"
+                >
+                  <label
+                    id="superficie"
+                    class="bg-orange-400 w-1/4 h-full flex items-center justify-center"
+                  >
+                    <i
+                      id="superficie"
+                      class="fa-solid fa-ruler-combined text-white text-sm rounded"
+                    ></i>
+                  </label>
+
+                  <div
+                    id="superficie"
+                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                  >
+                    <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                    <p id="superficie" class="col-span-3 text-[0.7rem]">
+                      Porcentaje de Absorcion de Agua en funcion de los m<sup
+                        >2</sup
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+          <div class="leaflet-sidebar-pane active" id="info">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Acerca de
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+            <div class="text-black h-full w-full p-0 m-0">
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+                Este visor ha sido desarrollado por el equipo de la Direccion
+                general de Informacion Territorial, dependiente de la Direccion
+                Provincial de Planificacion Territorial que forma parte de
+                COPADE.
+              </p>
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+                El objetivo de este desarollo es poder brindar a la comunidad
+                una herramienta para la visualizacion de datos de relevancia y
+                aportar una fuente de datos confiable y actualizada con respecto
+                los espcios verdes con los que cuentan las localidades de
+                nuestra provincia.
+              </p>
+              <div class="grid grid-cols-2 place-items-center gap-2 mt-8">
+                <img
+                  src="./assets/neuquen-provincia-blanco.png"
+                  alt="neuquen provincia"
+                  srcset=""
+                  class="w-52"
+                />
+                <img
+                  src="./assets/copade-logo-fondo-blanco.jpg"
+                  alt=""
+                  class="w-16"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="leaflet-sidebar-pane" id="ciudades">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Localidades
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+            <div>
+              <h2
+                class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+              >
+                <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+
+                <p>
+                  Clickee la localidad que desee localizar. El mapa se movera a
+                  donde haya selecionado.
+                </p>
+              </h2>
+              <ul
+                id="lista-localidades"
+                class="grid grid-cols-2 gap-2 w-full"
+              ></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="w-full bg-green-700 h-[5vh] flex items-center justify-end">
+      <h2 class="text-right pr-4 text-white">
+        COPADE - Gobierno de la provincia del Neuquen - 2022
+      </h2>
+    </footer>
+    <script
+      src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+      integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+      crossorigin=""
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/be1b3aa772.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="./node_modules/leaflet-sidebar-v2/js/leaflet-sidebar.js"></script>
+    <script src="L.Path.DashFlow.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
