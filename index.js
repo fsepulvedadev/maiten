@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------------------------
 
 
-//   Desarrollado por Francisco Sepulveda para COPADE - 2022    \\
+                //   Desarrollado por Francisco Sepulveda para COPADE - 2022    \\
 // Pueden contactarme en https://fsepulveda.vercel.app/ o por mail fsepulvedadev@gmail.com \\
 
 
@@ -13,7 +13,7 @@
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
-import verdeData from "./capas/infra_prov_nqn_geo.geojson" assert { type: "json" };
+import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
 const listaLocalidades = document.getElementById("lista-localidades");
 const localidades = [
   {
@@ -502,7 +502,13 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
   this._div.innerHTML =
-    `<h4>${props ? props.tipo : "Datos de la capa"}</h4>` +
+    `<h4>${
+      props
+        ? props.tipo === "X"
+          ? "Plazoleta pequeña"
+          : props.tipo
+        : "Datos de la capa"
+    }</h4>` +
     (props
       ? `<i class="fa-solid fa-droplet"></i></i> Absorcion: <br/> ${calcularPorcentajes(
           props.suel_absor
