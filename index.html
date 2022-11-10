@@ -133,10 +133,8 @@
               </h2>
               <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
                 La capa que se muestra en este momento representa a los espacios
-                verdes de la provincia de Neuquen y esta coloreada mostrando la
-                capacidad de
-                <span class="text-blue-500 font-bold">absorcion</span> de cada
-                espacio.<br />
+                verdes de la provincia de Neuquen y esta coloreada segun la
+                clasificacion de cada uno.
               </p>
               <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
                 Para colorear las capas segun su capacidad de
@@ -194,7 +192,7 @@
             </h2>
             <ul id="lista-capas" class="grid grid-rows-3 gap-4 w-full m-0 p-0">
               <div
-                class="w-full cursor-pointer ring-2 p-1 rounded ring-blue-400"
+                class="w-full cursor-pointer p-1 rounded ring-blue-400"
                 id="absorcion"
               >
                 <h3 id="absorcion" class="text-center text-blue-400 font-bold">
@@ -295,6 +293,38 @@
                       Porcentaje de Absorcion de Agua en funcion de los m<sup
                         >2</sup
                       >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full cursor-pointer ring-2 p-1 rounded ring-emerald-600"
+                id="tipo"
+              >
+                <h3 id="tipo" class="text-center text-emerald-600 font-bold">
+                  Tipo de Espacios
+                </h3>
+
+                <div
+                  id="tipo"
+                  class="flex rounded border-2 border-emerald-600 h-12"
+                >
+                  <label
+                    id="tipo"
+                    class="bg-emerald-600 w-1/4 h-full flex items-center justify-center"
+                  >
+                    <i
+                      id="tipo"
+                      class="fa-solid fa-leaf text-white text-sm rounded"
+                    ></i>
+                  </label>
+
+                  <div
+                    id="tipo"
+                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                  >
+                    <p id="tipo" class="col-span-3 text-[0.7rem]">
+                      Clasificacion segun el tipo de espacio verde
                     </p>
                   </div>
                 </div>

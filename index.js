@@ -13,6 +13,7 @@
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
+const tiposTag = document.getElementById("tipo");
 import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
 const listaLocalidades = document.getElementById("lista-localidades");
 const localidades = [
@@ -120,13 +121,14 @@ const localidades = [
     zoom: 12,
   },
 ];
+let tiposDeEspacios = [
+  ...new Set(verdeData.features.map((e) => e.properties.tipo)),
+];
 
 const handleClickLocalidades = (e) => {
   let targetId = e.target.id;
   let target = localidades.find((e) => e.id === targetId);
   cerrarSidebar();
-
-  console.log(target);
 
   map.flyTo(target.loc, target.zoom);
 };
@@ -156,7 +158,7 @@ const map = L.map("map", {
   zoom: "12",
 });
 
-let capaSelecionada = "abs";
+let capaSelecionada = "tipos";
 
 const negro =
   "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG:3857@png/{z}/{x}/{-y}.png";
@@ -169,13 +171,14 @@ const argenmap = L.tileLayer(gris, {
 }).addTo(map);
 const colors = {
   selecionado: [
-    "#d0d1e6",
-    "#a6bddb",
-    "#74a9cf",
-    "#3690c0",
-    "#0570b0",
-    "#034e7b",
+    "#8dd3c7",
+    "#ffffb3",
+    "#bebada",
+    "#fb8072",
+    "#059669",
+    "#006d2c",
   ],
+  tipos: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#059669", "#006d2c"],
   arbolado: ["#edf8e9", "#c7e9c0", "#a1d99b", "#74c476", "#31a354", "#006d2c"],
   absorcion: ["#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
   superficie: [
@@ -191,9 +194,11 @@ const agregarIndice = (tipo) => {
   let otrosIndices = document.querySelectorAll(
     "div.info.legend.leaflet-control"
   );
+  console.log(otrosIndices);
   if (otrosIndices.length === 0) {
     const leyenda = L.control({ position: "bottomright" });
     let grados;
+
     if (tipo === "sup") {
       grados = [0, 1000, 8000, 30000];
       leyenda.onAdd = function (map) {
@@ -201,9 +206,11 @@ const agregarIndice = (tipo) => {
           grades = grados,
           labels = [];
 
+        let listaIndices = "";
+
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML +=
+          listaIndices +=
             '<i style="background:' +
             getColor(grades[i] + 1, "sup") +
             ";" +
@@ -215,6 +222,10 @@ const agregarIndice = (tipo) => {
             "<br>";
         }
 
+        div.innerHTML =
+          `<h2 class='text-orange-400 font-bold my-2'>Superficie</h2>` +
+          listaIndices;
+
         return div;
       };
       leyenda.addTo(map);
@@ -225,9 +236,11 @@ const agregarIndice = (tipo) => {
           grades = grados,
           labels = [];
 
+        let listaIndices = "";
+
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML +=
+          listaIndices +=
             '<i style="background:' +
             getColor(grades[i] + 1, "arb") +
             ";" +
@@ -236,19 +249,55 @@ const agregarIndice = (tipo) => {
             "<br>";
         }
 
+        div.innerHTML =
+          `<h2 class='text-green-700 font-bold my-2'>Arbolado</h2>` +
+          listaIndices;
+
         return div;
       };
       leyenda.addTo(map);
-    } else {
-      grados = [1, 2, 3, 4];
+    } else if (tipo === "tipos") {
+      grados = tiposDeEspacios;
+
+      leyenda.onAdd = function (map) {
+        var div = L.DomUtil.create("div", "info legend"),
+          grades = grados,
+          labels = [];
+
+        let listaGrados = "";
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+          listaGrados +=
+            '<i style="background:' +
+            getColor(grades[i], "tipos") +
+            ";" +
+            'margin-right: 5px;"></i> ' +
+            (tiposDeEspacios[i] === "X"
+              ? "Plazoleta Pequeña"
+              : tiposDeEspacios[i]) +
+            "<br>";
+        }
+        div.innerHTML =
+          `<h2 class= 'text-emerald-600 font-bold my-2'>Tipos de Espacios</h2>` +
+          listaGrados;
+
+        return div;
+      };
+
+      leyenda.addTo(map);
+    } else if (tipo === "abs") {
+      let grados = [1, 2, 3, 4];
       leyenda.onAdd = function (map) {
         let div = L.DomUtil.create("div", "info legend"),
           grades = grados,
           labels = [];
 
+        let listaIndices = "";
+
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML +=
+          listaIndices +=
             '<i style="background:' +
             getColor(grades[i] + 1, "abs") +
             ";" +
@@ -256,6 +305,9 @@ const agregarIndice = (tipo) => {
             calcularPorcentajes(grades[i]) +
             "<br>";
         }
+        div.innerHTML =
+          `<h2 class='text-blue-500 font-bold my-2'>Absorcion</h2>` +
+          listaIndices;
 
         return div;
       };
@@ -280,6 +332,7 @@ const cambiarCapa = (e) => {
   let abs = document.querySelectorAll("#absorcion");
   let arb = document.querySelectorAll("#arbolado");
   let sup = document.querySelectorAll("#superficie");
+  let tip = document.querySelectorAll("#tipo");
 
   abs.forEach((e) => {
     e.classList.remove("ring-2");
@@ -288,6 +341,9 @@ const cambiarCapa = (e) => {
     e.classList.remove("ring-2");
   });
   sup.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  tip.forEach((e) => {
     e.classList.remove("ring-2");
   });
 
@@ -309,6 +365,12 @@ const cambiarCapa = (e) => {
         "div#superficie.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
       );
       targetEle3.classList.add("ring-2");
+      break;
+    case "tipo":
+      let targetEle4 = document.querySelector(
+        "div#tipo.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
+      );
+      targetEle4.classList.add("ring-2");
       break;
 
     default:
@@ -348,6 +410,19 @@ const cambiarCapa = (e) => {
       agregarIndice("sup");
 
       colors.selecionado = colors.superficie;
+
+      geojson = L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      });
+      geojson.addTo(map);
+
+      break;
+    case "tipo":
+      capaSelecionada = "tipos";
+      agregarIndice("tipos");
+
+      colors.selecionado = colors.tipos;
 
       geojson = L.geoJSON(verdeData, {
         style: style,
@@ -405,6 +480,20 @@ function getColor(d, tipo) {
         ? `${colors.selecionado[1]}`
         : `${colors.selecionado[0]}`;
       break;
+    case "tipos":
+      colors.selecionado = colors.tipos;
+      return d === "Plaza"
+        ? `${colors.selecionado[5]}`
+        : d === "Plazoleta"
+        ? `${colors.selecionado[4]}`
+        : d === "Corredor"
+        ? `${colors.selecionado[3]}`
+        : d === "X"
+        ? `${colors.selecionado[2]}`
+        : d === "Parque"
+        ? `${colors.selecionado[1]}`
+        : `${colors.selecionado[0]}`;
+      break;
 
     default:
       break;
@@ -414,6 +503,7 @@ function getColor(d, tipo) {
 absorcionTag.addEventListener("click", cambiarCapa);
 arboladoTag.addEventListener("click", cambiarCapa);
 superficieTag.addEventListener("click", cambiarCapa);
+tiposTag.addEventListener("click", cambiarCapa);
 
 function highlightFeature(e) {
   var layer = e.target;
@@ -459,6 +549,14 @@ function style(features) {
       dashArray: "3",
       fillOpacity: 1,
     };
+  else if (capaSelecionada === "tipos")
+    return {
+      weight: 2,
+      opacity: 1,
+      color: getColor(features.properties.tipo, "tipos"),
+      dashArray: "3",
+      fillOpacity: 1,
+    };
   else
     return {
       weight: 2,
@@ -474,20 +572,40 @@ function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
 }
 
-function calcularPorcentajes(valor) {
-  switch (+valor) {
-    case 1:
-      return "0 a 25%";
-      break;
-    case 2:
-      return "25 a 50%";
-      break;
-    case 3:
-      return "50 a 75%";
-      break;
-    case 4:
-      return "75 a 100%";
-      break;
+function calcularPorcentajes(valor, tipo) {
+  if (tipo === "tipos") {
+    switch (+valor) {
+      case 1:
+        return "Plaza";
+        break;
+      case 2:
+        return "Plazoleta";
+        break;
+      case 3:
+        return "Corredor";
+        break;
+      case 4:
+        return "Plazoleta Pequeña";
+        break;
+      case 5:
+        return "Parque";
+        break;
+    }
+  } else {
+    switch (+valor) {
+      case 1:
+        return "0 a 25%";
+        break;
+      case 2:
+        return "25 a 50%";
+        break;
+      case 3:
+        return "50 a 75%";
+        break;
+      case 4:
+        return "75 a 100%";
+        break;
+    }
   }
 }
 
@@ -531,26 +649,31 @@ var leyenda = L.control({ position: "bottomright" });
 
 leyenda.onAdd = function (map) {
   let grados;
-  if (capaSelecionada === "sup") {
-    grados = [500, 5000, 25000, 45000];
+  if (capaSelecionada === "tipos") {
+    grados = tiposDeEspacios;
   } else {
-    grados = [1, 2, 3, 4];
+    grados = [1, 2, 3, 4, 5];
   }
 
   var div = L.DomUtil.create("div", "info legend"),
     grades = grados,
     labels = [];
 
+  let listaGrados = "";
+
   // loop through our density intervals and generate a label with a colored square for each interval
   for (var i = 0; i < grades.length; i++) {
-    div.innerHTML +=
+    listaGrados +=
       '<i style="background:' +
-      getColor(grades[i] + 1, "abs") +
+      getColor(grades[i], "tipos") +
       ";" +
       'margin-right: 5px;"></i> ' +
-      calcularPorcentajes(grades[i]) +
+      (tiposDeEspacios[i] === "X" ? "Plazoleta Pequeña" : tiposDeEspacios[i]) +
       "<br>";
   }
+  div.innerHTML =
+    `<h2 class= 'text-[#1b9e77] font-bold my-2'>Tipos de Espacios</h2>` +
+    listaGrados;
 
   return div;
 };
