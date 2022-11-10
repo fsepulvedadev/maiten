@@ -133,6 +133,10 @@ let tiposDeEspacios = [
 const handleSeleccionarMapaBase = (e) => {
   let selecionado = e.target;
 
+  mapaComun.classList.remove("border-2");
+  mapaTopografico.classList.remove("border-2");
+  mapaNegro.classList.remove("border-2");
+  mapaGris.classList.remove("border-2");
   selecionado.classList.add("border-2");
   argenmap.remove();
   switch (e.target.id) {
