@@ -13,6 +13,11 @@
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
+const mapaComun = document.getElementById("comun");
+const mapaTopografico = document.getElementById("topografico");
+const mapaNegro = document.getElementById("negro");
+const mapaGris = document.getElementById("gris");
+
 const tiposTag = document.getElementById("tipo");
 import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
 const listaLocalidades = document.getElementById("lista-localidades");
@@ -125,6 +130,51 @@ let tiposDeEspacios = [
   ...new Set(verdeData.features.map((e) => e.properties.tipo)),
 ];
 
+const handleSeleccionarMapaBase = (e) => {
+  let selecionado = e.target;
+
+  selecionado.classList.add("border-2");
+  argenmap.remove();
+  switch (e.target.id) {
+    case "comun":
+      argenmap = L.tileLayer(comun, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+    case "negro":
+      argenmap = L.tileLayer(negro, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+    case "gris":
+      argenmap = L.tileLayer(gris, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+    case "topografico":
+      argenmap = L.tileLayer(topografico, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+
+    default:
+      break;
+  }
+};
+
+const controlarMapasBase = () => {
+  mapaComun.addEventListener("click", handleSeleccionarMapaBase);
+  mapaTopografico.addEventListener("click", handleSeleccionarMapaBase);
+  mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
+  mapaGris.addEventListener("click", handleSeleccionarMapaBase);
+};
+
+controlarMapasBase();
+
 const handleClickLocalidades = (e) => {
   let targetId = e.target.id;
   let target = localidades.find((e) => e.id === targetId);
@@ -164,8 +214,12 @@ const negro =
   "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG:3857@png/{z}/{x}/{-y}.png";
 const gris =
   "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG:3857@png/{z}/{x}/{-y}.png";
+const comun =
+  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png";
+const topografico =
+  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png";
 
-const argenmap = L.tileLayer(gris, {
+const argenmap = L.tileLayer(topografico, {
   attribution:
     '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
 }).addTo(map);

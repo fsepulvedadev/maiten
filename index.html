@@ -93,6 +93,11 @@
                 ><i class="fa-solid fa-map-location-dot text-green-700"></i
               ></a>
             </li>
+            <li>
+              <a href="#fondos" role="tab"
+                ><i class="fa-solid fa-gears text-green-700"></i
+              ></a>
+            </li>
           </ul>
 
           <ul role="tablist">
@@ -108,7 +113,7 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0 active" id="home">
+          <div class="leaflet-sidebar-pane m-0" id="home">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -157,11 +162,7 @@
                 <i
                   class="fa-solid fa-map-location-dot p-1 rounded bg-slate-100"
                 ></i>
-                <!--   <img
-                  class="inline w-6 p-[1px] rounded bg-slate-100"
-                  src="./assets/layers-icon.png"
-                  alt=""
-                /> -->
+
                 <br />
               </p>
             </div>
@@ -403,6 +404,91 @@
                 id="lista-localidades"
                 class="grid grid-cols-2 gap-2 w-full"
               ></ul>
+            </div>
+          </div>
+          <div class="leaflet-sidebar-pane m-0 active" id="fondos">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Cambiar mapa base
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+
+            <div class="text-black h-full w-full p-0 m-0">
+              <h2
+                class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+              >
+                <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+                <p>
+                  Selecione una mapa base para mostrar en el visor, los mapas
+                  mas oscuros pueden mejorar el contraste pero dar menos
+                  visibilidad a los detalles. <br />
+                  Todos los mapas de esta web usan los mapas del IGN
+                  <a href="https://ign-argentina.github.io/argenmap-web/#"
+                    >Argenmap</a
+                  >.
+                </p>
+              </h2>
+              <ul id="lista-mapas-base" class="grid grid-rows-4 gap-2">
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="comun"
+                >
+                  <h2 class="text-base">Mapa comun</h2>
+                  <img
+                    class="w-10 rounded drop-shadow-lg"
+                    src="./assets/argenmap_chico.png"
+                    alt="mapa comun argenmap"
+                    srcset=""
+                  />
+                </li>
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="topografico"
+                >
+                  <h2 class="text-base">Mapa topografico</h2>
+
+                  <img
+                    class="w-10 rounded drop-shadow-lg"
+                    src="./assets/argenmap-topo.png"
+                    alt="mapa topografico argenmap"
+                    srcset=""
+                  />
+                </li>
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="negro"
+                >
+                  <h2 class="text-base">Mapa oscuro</h2>
+
+                  <img
+                    class="w-10 rounded drop-shadow-lg"
+                    src="./assets/argenmap_oscuro.png"
+                    alt="mapa color negro"
+                    srcset=""
+                  />
+                </li>
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="gris"
+                >
+                  <h2 class="text-base">Mapa gris</h2>
+
+                  <img
+                    class="w-10 rounded drop-shadow-lg"
+                    src="./assets/argenmap_gris_chico.png"
+                    alt="mapa color gris"
+                    srcset=""
+                  />
+                </li>
+              </ul>
             </div>
           </div>
         </div>
