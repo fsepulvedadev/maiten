@@ -17,6 +17,7 @@ const mapaComun = document.getElementById("comun");
 const mapaTopografico = document.getElementById("topografico");
 const mapaNegro = document.getElementById("negro");
 const mapaGris = document.getElementById("gris");
+const modalAdvertencia = document.getElementById("modal");
 
 const tiposTag = document.getElementById("tipo");
 import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
@@ -129,6 +130,11 @@ const localidades = [
 let tiposDeEspacios = [
   ...new Set(verdeData.features.map((e) => e.properties.tipo)),
 ];
+
+const handleCerrarModal = () => {
+  modalAdvertencia.classList.add("hidden");
+};
+modalAdvertencia.addEventListener("click", handleCerrarModal);
 
 const handleSeleccionarMapaBase = (e) => {
   let selecionado = e.target;

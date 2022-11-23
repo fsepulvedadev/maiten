@@ -40,6 +40,22 @@
     <title>Mapa COPADE - Espacios Verdes</title>
   </head>
   <body class="font-sans">
+    <div
+      id="modal"
+      class="absolute z-[90000000] w-11/12 h-[90vh] top-5 left-16 p-6 flex flex-col items-center rounded bg-amber-500"
+    >
+      <i
+        class="fa-solid fa-xmark absolute top-4 right-6 text-white text-3xl"
+      ></i>
+      <p class="w-2/3 flex flex-col items-center p-2 text-white rounded">
+        <i class="fa-solid fa-triangle-exclamation text-9xl mb-20"></i>
+        Este visor se encuentra en fase de desarrollo y por lo tanto pueden
+        encontrarse errores de funcionamiento y/o mostrar informacion
+        desactualizada o inexacta. Ante cualquier inconveniente o sugerencia, se
+        puede contactar al siguiente mail:
+        <b class="inline-flex">infoterritorialcopade@gmail.com</b>
+      </p>
+    </div>
     <div class="navbar bg-green-700 text-neutral-content md:h-[10vh] h-auto">
       <div
         class="normal-case m-2 grid md:grid-cols-3 grid-cols-3 w-full place-items-center text-white text-2xl"
@@ -138,17 +154,17 @@
               </h2>
               <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
                 La capa que se muestra en este momento representa a los espacios
-                verdes de la provincia de Neuquen y esta coloreada segun la
+                verdes de la provincia del Neuquén y esta coloreada segun la
                 clasificacion de cada uno.
               </p>
               <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
-                Para colorear las capas segun su capacidad de
-                <span class="text-blue-500 font-bold">absorcion</span> ,
+                Para colorear las capas según su capacidad de
+                <span class="text-blue-500 font-bold">absorción</span> ,
                 porcentaje de
                 <span class="text-green-600 font-bold">arbolado</span> o su
                 <span class="text-orange-400 font-bold">superficie</span> en
-                m<sup>2</sup>, utilice el menu lateral en la seccion
-                clasificacion
+                m<sup>2</sup>, utilice el menú lateral en la seccion
+                clasificación
                 <img
                   class="inline w-6 p-[1px] rounded bg-slate-100"
                   src="./assets/layers-icon.png"
@@ -157,7 +173,7 @@
                 <br />
               </p>
               <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
-                Para mover el mapa a una <b>localidad</b> especifica, puede
+                Para mover el mapa a una <b>localidad</b> específica, puede
                 elegir cualquiera de la lista en la pestaña de localidades
                 <i
                   class="fa-solid fa-map-location-dot p-1 rounded bg-slate-100"
@@ -332,7 +348,7 @@
               </div>
             </ul>
           </div>
-          <div class="leaflet-sidebar-pane" id="info">
+          <div class="leaflet-sidebar-pane overflow-y-auto" id="info">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -347,20 +363,28 @@
               </div>
             </h1>
             <div class="text-black h-full w-full p-0 m-0">
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
-                Este visor ha sido desarrollado por el equipo de la Direccion
-                general de Informacion Territorial, dependiente de la Direccion
-                Provincial de Planificacion Territorial que forma parte de
-                COPADE.
+              <p class="mt-1 bg-slate-200 p-2 rounded text-xs leading-6">
+                En el marco de la Agenda 2030 y con la finalidad de dar
+                cumplimento a los Objetivos de Desarrollo Sostenible, queremos
+                fortalecer la gobernanza urbana desde una dimensión ambiental,
+                mejorando la resiliencia y las acciones para hacer más
+                ecológicas las ciudades. Aspiramos a una ciudad sostenible, que
+                propicia el derecho al ambiente sano, para un desarrollo humano
+                armonioso y respetuoso con la naturaleza.
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
-                El objetivo de este desarollo es poder brindar a la comunidad
-                una herramienta para la visualizacion de datos de relevancia y
-                aportar una fuente de datos confiable y actualizada con respecto
-                los espacios verdes con los que cuentan las localidades de
-                nuestra provincia.
+              <p class="mt-1 bg-slate-200 p-2 rounded text-xs leading-6">
+                Por lo tanto, el objetivo de este mapa, es poder brindar a la
+                comunidad una herramienta para la visualización de datos de
+                relevancia y aportar una fuente de datos confiable y actualizada
+                con respecto a los espacios verdes con los que cuentan las
+                localidades de nuestra provincia.
               </p>
-              <div class="grid grid-cols-2 place-items-center gap-2 mt-8">
+              <p class="mt-1 bg-slate-200 p-1 rounded text-xs leading-6">
+                Este visor ha sido desarrollado por el equipo de la Dirección
+                general de Información Territorial, de COPADE.
+              </p>
+
+              <div class="grid grid-cols-2 place-items-center gap-2 mt-4">
                 <img
                   src="./assets/neuquen-provincia-blanco.png"
                   alt="neuquen provincia"
