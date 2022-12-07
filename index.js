@@ -10,18 +10,45 @@
 
 */
 
+// IMPORTACIONES
+import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
+import areasNaturalesData from "./capas/areas_naturales.json" assert { type: "json" };
+import azulData from "./capas/espacios_azules_nqncap.json" assert { type: "json" };
+import radio300 from "./capas/radio_300m_espacios_verdes.json" assert { type: "json" };
+// END IMPORTACIONES
+
+// DEFINICIONES
+const map = L.map("map", {
+  center: [-38.9410802, -68.1854411],
+  zoom: "12",
+});
+
+let capaSelecionada = "tipos";
+
+const capasEspaciosVerdes = document.getElementById(
+  "lista-capas-espacios-verdes"
+);
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
-const mapaComun = document.getElementById("comun");
-const mapaTopografico = document.getElementById("topografico");
+const infraVerdeBtn = document.getElementById("infra-verde");
+const infraAzulBtn = document.getElementById("infra-azul");
+const areasNatBtn = document.getElementById("areas-nat");
 const mapaNegro = document.getElementById("negro");
 const mapaGris = document.getElementById("gris");
-/* const modalAdvertencia = document.getElementById("modal"); */
+const mapaSatelite = document.getElementById("satelite");
+const negro =
+  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG:3857@png/{z}/{x}/{-y}.png";
+const gris =
+  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG:3857@png/{z}/{x}/{-y}.png";
 
+/* const modalAdvertencia = document.getElementById("modal"); */
 const tiposTag = document.getElementById("tipo");
-import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
+var sidebar = L.control.sidebar("sidebar").addTo(map);
 const listaLocalidades = document.getElementById("lista-localidades");
+var info = L.control();
+const BING_KEY =
+  "Av3IJWsQuEeoFjlg5eoVctOE9QvC_EXejm8IlG7m80D0KDWV8bK3cDhjpF4k-mfv";
 const localidades = [
   {
     nombre: "Zapala",
@@ -130,106 +157,8 @@ const localidades = [
 let tiposDeEspacios = [
   ...new Set(verdeData.features.map((e) => e.properties.tipo)),
 ];
-
-/* const handleCerrarModal = () => {
-  modalAdvertencia.classList.add("hidden");
-};
-modalAdvertencia.addEventListener("click", handleCerrarModal);
- */
-const handleSeleccionarMapaBase = (e) => {
-  let selecionado = e.target;
-
-  mapaComun.classList.remove("border-2");
-  mapaTopografico.classList.remove("border-2");
-  mapaNegro.classList.remove("border-2");
-  mapaGris.classList.remove("border-2");
-  selecionado.classList.add("border-2");
-  argenmap.remove();
-  switch (e.target.id) {
-    case "comun":
-      argenmap = L.tileLayer(comun, {
-        attribution:
-          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
-      }).addTo(map);
-      break;
-    case "negro":
-      argenmap = L.tileLayer(negro, {
-        attribution:
-          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
-      }).addTo(map);
-      break;
-    case "gris":
-      argenmap = L.tileLayer(gris, {
-        attribution:
-          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
-      }).addTo(map);
-      break;
-    case "topografico":
-      argenmap = L.tileLayer(topografico, {
-        attribution:
-          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
-      }).addTo(map);
-      break;
-
-    default:
-      break;
-  }
-};
-
-const controlarMapasBase = () => {
-  mapaComun.addEventListener("click", handleSeleccionarMapaBase);
-  mapaTopografico.addEventListener("click", handleSeleccionarMapaBase);
-  mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
-  mapaGris.addEventListener("click", handleSeleccionarMapaBase);
-};
-
-controlarMapasBase();
-
-const handleClickLocalidades = (e) => {
-  let targetId = e.target.id;
-  let target = localidades.find((e) => e.id === targetId);
-  cerrarSidebar();
-
-  map.flyTo(target.loc, target.zoom);
-};
-
-const agregarLocalidadesAlista = () => {
-  let listaLi = localidades.map(
-    (e) =>
-      `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`
-  );
-  let concatenado = [];
-  for (let i = 0; i < listaLi.length; i++) {
-    concatenado += listaLi[i];
-  }
-
-  listaLocalidades.innerHTML = concatenado;
-  let botones = document.getElementsByClassName("localidad");
-  let listaBotones = [].slice.call(botones);
-  listaBotones.forEach((e) => {
-    e.addEventListener("click", handleClickLocalidades);
-  });
-};
-
-agregarLocalidadesAlista();
-
-const map = L.map("map", {
-  center: [-38.9410802, -68.1854411],
-  zoom: "12",
-});
-
-let capaSelecionada = "tipos";
-
-const negro =
-  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG:3857@png/{z}/{x}/{-y}.png";
-const gris =
-  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG:3857@png/{z}/{x}/{-y}.png";
-const comun =
-  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png";
-const topografico =
-  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png";
-
-const argenmap = L.tileLayer(topografico, {
+let base = "gris";
+let mapaBase = L.tileLayer(gris, {
   attribution:
     '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
 }).addTo(map);
@@ -254,6 +183,338 @@ const colors = {
     "#993404",
   ],
 };
+
+// END DEFINICIONES
+
+// EVENT HANDLERS
+
+const toggleCapasVerdes = (funcion) => {
+  if (funcion === "abrir") {
+    capasEspaciosVerdes.classList.add("grid");
+    capasEspaciosVerdes.classList.remove("hidden");
+  } else if (funcion === "cerrar") {
+    capasEspaciosVerdes.classList.add("hidden");
+    capasEspaciosVerdes.classList.remove("grid");
+  } else {
+    capasEspaciosVerdes.classList.add("grid");
+    capasEspaciosVerdes.classList.remove("hidden");
+  }
+};
+
+const handleSeleccionarMapaBase = (e) => {
+  let selecionado = e.target;
+
+  mapaNegro.classList.remove("border-2");
+  mapaGris.classList.remove("border-2");
+  mapaSatelite.classList.remove("border-2");
+  selecionado.classList.add("border-2");
+  /*  argenmap.remove(); */
+  mapaBase.remove();
+  switch (e.target.id) {
+    case "negro":
+      base = "negro";
+      mapaBase = L.tileLayer(negro, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+    case "gris":
+      base = "gris";
+      mapaBase = L.tileLayer(gris, {
+        attribution:
+          '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+      }).addTo(map);
+      break;
+    case "satelite":
+      base = "satelite";
+      mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      break;
+
+    default:
+      break;
+  }
+};
+
+const handleClickLocalidades = (e) => {
+  let targetId = e.target.id;
+  let target = localidades.find((e) => e.id === targetId);
+  cerrarSidebar();
+
+  map.flyTo(target.loc, target.zoom);
+};
+const cerrarSidebar = () => {
+  let targetSidebar = document.getElementById("sidebar");
+  let tabTarget = document.querySelector("li.active");
+  console.log(tabTarget);
+  tabTarget.classList.remove("active");
+  targetSidebar.classList.add("collapsed");
+};
+const cambiarCapaEspaciosVerdes = (e) => {
+  let target = e.target;
+  /* cerrarSidebar(); */
+
+  let abs = document.querySelectorAll("#absorcion");
+  let arb = document.querySelectorAll("#arbolado");
+  let sup = document.querySelectorAll("#superficie");
+  let tip = document.querySelectorAll("#tipo");
+
+  abs.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  arb.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  sup.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  tip.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+
+  switch (target.id) {
+    case "arbolado":
+      let targetEle = document.querySelector(
+        "div#arbolado.w-full.cursor-pointer.p-1.rounded.ring-green-600"
+      );
+      targetEle.classList.add("ring-2");
+      break;
+    case "absorcion":
+      let targetEle2 = document.querySelector(
+        "div#absorcion.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
+      );
+      targetEle2.classList.add("ring-2");
+      break;
+    case "superficie":
+      let targetEle3 = document.querySelector(
+        "div#superficie.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
+      );
+      targetEle3.classList.add("ring-2");
+      break;
+    case "tipo":
+      let targetEle4 = document.querySelector(
+        "div#tipo.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
+      );
+      targetEle4.classList.add("ring-2");
+      break;
+
+    default:
+      break;
+  }
+  console.log(target.id);
+  geojson.remove();
+  leyenda.remove();
+  switch (target.id) {
+    case "absorcion":
+      capaSelecionada = "abs";
+      agregarIndice("abs");
+      map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+      });
+
+      if (base === "gris") {
+        mapaBase = L.tileLayer(gris, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "negro") {
+        mapaBase = L.tileLayer(negro, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "satelite") {
+        mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      }
+      colors.selecionado = colors.absorcion;
+      L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+
+      break;
+
+    case "arbolado":
+      capaSelecionada = "arb";
+      agregarIndice("arb");
+      map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+      });
+      if (base === "gris") {
+        mapaBase = L.tileLayer(gris, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "negro") {
+        mapaBase = L.tileLayer(negro, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "satelite") {
+        mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      }
+
+      colors.selecionado = colors.arbolado;
+      L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+
+      break;
+
+    case "superficie":
+      capaSelecionada = "sup";
+      agregarIndice("sup");
+      map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+      });
+
+      if (base === "gris") {
+        mapaBase = L.tileLayer(gris, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "negro") {
+        mapaBase = L.tileLayer(negro, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "satelite") {
+        mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      }
+
+      colors.selecionado = colors.superficie;
+
+      L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+
+      break;
+    case "tipo":
+      capaSelecionada = "tipos";
+      agregarIndice("tipos");
+      map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+      });
+
+      if (base === "gris") {
+        mapaBase = L.tileLayer(gris, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "negro") {
+        mapaBase = L.tileLayer(negro, {
+          attribution:
+            '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
+        }).addTo(map);
+      } else if (base === "satelite") {
+        mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      }
+      colors.selecionado = colors.tipos;
+
+      L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+
+      break;
+
+    default:
+      break;
+  }
+};
+const cambiarCapaGeneral = (e) => {
+  let target = e.target.id;
+
+  geojson.remove();
+  switch (target) {
+    case "infra-verde":
+      geojson = L.geoJSON(verdeData, {
+        style: style,
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+      infraVerdeBtn.removeEventListener("click", toggleCapasVerdes("abrir"));
+      break;
+
+    case "infra-azul":
+      geojson = L.geoJSON(azulData, {
+        style: {
+          weight: 2,
+          opacity: 1,
+          color: "#0570b0",
+          dashArray: "3",
+          fillOpacity: 0.25,
+        },
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+      infraVerdeBtn.removeEventListener("click", toggleCapasVerdes);
+      toggleCapasVerdes("cerrar");
+
+      break;
+
+    case "areas-nat":
+      geojson = L.geoJSON(areasNaturalesData, {
+        style: {
+          weight: 2,
+          opacity: 1,
+          color: "#006d2c",
+          dashArray: "3",
+          fillOpacity: 0.25,
+        },
+        onEachFeature: onEachFeature,
+      }).addTo(map);
+      infraVerdeBtn.removeEventListener("click", toggleCapasVerdes);
+      toggleCapasVerdes("cerrar");
+
+      break;
+
+    default:
+      break;
+  }
+};
+
+// END EVENT HANDLERS
+
+// EVENT LISTENERS
+infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
+mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
+mapaGris.addEventListener("click", handleSeleccionarMapaBase);
+mapaSatelite.addEventListener("click", handleSeleccionarMapaBase);
+absorcionTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+arboladoTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+superficieTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+tiposTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+infraVerdeBtn.addEventListener("click", cambiarCapaGeneral);
+infraAzulBtn.addEventListener("click", cambiarCapaGeneral);
+areasNatBtn.addEventListener("click", cambiarCapaGeneral);
+
+//END EVENT LISTENERS
+
+/* const handleCerrarModal = () => {
+  modalAdvertencia.classList.add("hidden");
+};
+modalAdvertencia.addEventListener("click", handleCerrarModal);
+ */
+
+const agregarLocalidadesAlista = () => {
+  let listaLi = localidades.map(
+    (e) =>
+      `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`
+  );
+  let concatenado = [];
+  for (let i = 0; i < listaLi.length; i++) {
+    concatenado += listaLi[i];
+  }
+
+  listaLocalidades.innerHTML = concatenado;
+  let botones = document.getElementsByClassName("localidad");
+  let listaBotones = [].slice.call(botones);
+  listaBotones.forEach((e) => {
+    e.addEventListener("click", handleClickLocalidades);
+  });
+};
+
+agregarLocalidadesAlista();
+
 const agregarIndice = (tipo) => {
   let otrosIndices = document.querySelectorAll(
     "div.info.legend.leaflet-control"
@@ -382,124 +643,6 @@ const agregarIndice = (tipo) => {
     agregarIndice(tipo);
   }
 };
-const cerrarSidebar = () => {
-  let targetSidebar = document.getElementById("sidebar");
-  let tabTarget = document.querySelector("li.active");
-  tabTarget.classList.remove("active");
-  targetSidebar.classList.add("collapsed");
-};
-
-const cambiarCapa = (e) => {
-  let target = e.target;
-  cerrarSidebar();
-
-  let abs = document.querySelectorAll("#absorcion");
-  let arb = document.querySelectorAll("#arbolado");
-  let sup = document.querySelectorAll("#superficie");
-  let tip = document.querySelectorAll("#tipo");
-
-  abs.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  arb.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  sup.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  tip.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-
-  switch (target.id) {
-    case "arbolado":
-      let targetEle = document.querySelector(
-        "div#arbolado.w-full.cursor-pointer.p-1.rounded.ring-green-600"
-      );
-      targetEle.classList.add("ring-2");
-      break;
-    case "absorcion":
-      let targetEle2 = document.querySelector(
-        "div#absorcion.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
-      );
-      targetEle2.classList.add("ring-2");
-      break;
-    case "superficie":
-      let targetEle3 = document.querySelector(
-        "div#superficie.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
-      );
-      targetEle3.classList.add("ring-2");
-      break;
-    case "tipo":
-      let targetEle4 = document.querySelector(
-        "div#tipo.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
-      );
-      targetEle4.classList.add("ring-2");
-      break;
-
-    default:
-      break;
-  }
-
-  geojson.remove();
-  leyenda.remove();
-  switch (target.id) {
-    case "absorcion":
-      capaSelecionada = "abs";
-      agregarIndice("abs");
-      colors.selecionado = colors.absorcion;
-      geojson = L.geoJSON(verdeData, {
-        style: style,
-        onEachFeature: onEachFeature,
-      });
-      geojson.addTo(map);
-
-      break;
-
-    case "arbolado":
-      capaSelecionada = "arb";
-      agregarIndice("arb");
-
-      colors.selecionado = colors.arbolado;
-      geojson = L.geoJSON(verdeData, {
-        style: style,
-        onEachFeature: onEachFeature,
-      });
-      geojson.addTo(map);
-
-      break;
-
-    case "superficie":
-      capaSelecionada = "sup";
-      agregarIndice("sup");
-
-      colors.selecionado = colors.superficie;
-
-      geojson = L.geoJSON(verdeData, {
-        style: style,
-        onEachFeature: onEachFeature,
-      });
-      geojson.addTo(map);
-
-      break;
-    case "tipo":
-      capaSelecionada = "tipos";
-      agregarIndice("tipos");
-
-      colors.selecionado = colors.tipos;
-
-      geojson = L.geoJSON(verdeData, {
-        style: style,
-        onEachFeature: onEachFeature,
-      });
-      geojson.addTo(map);
-
-      break;
-
-    default:
-      break;
-  }
-};
 
 function getColor(d, tipo) {
   switch (tipo) {
@@ -564,11 +707,6 @@ function getColor(d, tipo) {
   }
 }
 
-absorcionTag.addEventListener("click", cambiarCapa);
-arboladoTag.addEventListener("click", cambiarCapa);
-superficieTag.addEventListener("click", cambiarCapa);
-tiposTag.addEventListener("click", cambiarCapa);
-
 function highlightFeature(e) {
   var layer = e.target;
 
@@ -632,7 +770,6 @@ function style(features) {
 }
 
 function zoomToFeature(e) {
-  console.log(e);
   map.fitBounds(e.target.getBounds());
 }
 
@@ -673,15 +810,12 @@ function calcularPorcentajes(valor, tipo) {
   }
 }
 
-var info = L.control();
-
 info.onAdd = function (map) {
   this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
   this.update();
   return this._div;
 };
 
-// method that we will use to update the control based on feature properties passed
 info.update = function (props) {
   this._div.innerHTML =
     `<h4>${
@@ -741,16 +875,21 @@ leyenda.onAdd = function (map) {
 
   return div;
 };
-
-leyenda.addTo(map);
-
-var sidebar = L.control.sidebar("sidebar").addTo(map);
-
 let geojson = L.geoJSON(verdeData, {
   style: style,
   onEachFeature: onEachFeature,
 });
-
+/* L.geoJSON(radio300, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#006d2c",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeature,
+}).addTo(map); */
+leyenda.addTo(map);
 geojson.addTo(map);
 
 /* 

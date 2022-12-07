@@ -34,6 +34,7 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
     />
+
     <link rel="stylesheet" href="./leaflet-sidebar.min.css" />
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="./assets/copade-logo.png" />
@@ -94,7 +95,7 @@
         <div class="leaflet-sidebar-tabs">
           <ul role="tablist">
             <!-- top aligned tabs -->
-            <li class="active">
+            <li class="">
               <a href="#home" role="tab"
                 ><i class="fa fa-bars text-green-700"></i
               ></a>
@@ -129,7 +130,7 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0 active" id="home">
+          <div class="leaflet-sidebar-pane m-0" id="home">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -184,7 +185,7 @@
             </div>
           </div>
 
-          <div class="leaflet-sidebar-pane" id="layers">
+          <div class="leaflet-sidebar-pane active" id="layers">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -207,143 +208,174 @@
                 escala que se muestra en el mapa.
               </p>
             </h2>
-            <ul id="lista-capas" class="grid grid-rows-3 gap-4 w-full m-0 p-0">
+            <ul id="lista-capas" class="grid grid-rows-10 gap-4 w-full m-0 p-0">
               <div
-                class="w-full cursor-pointer p-1 rounded ring-blue-400"
-                id="absorcion"
+                id="infra-verde"
+                class="p-2 bg-slate-300 text-center text-black row-span-8"
               >
-                <h3 id="absorcion" class="text-center text-blue-400 font-bold">
-                  Absorcion
-                </h3>
-
-                <div
-                  id="absorcion"
-                  class="flex rounded border-2 border-blue-400 h-12"
+                Infraestructura Verde
+                <ul
+                  id="lista-capas-espacios-verdes"
+                  class="grid-rows-3 gap-4 w-full m-0 p-0 hidden duration-700"
                 >
-                  <label
+                  <div
+                    class="w-full cursor-pointer p-1 rounded ring-blue-400"
                     id="absorcion"
-                    class="bg-blue-400 w-1/4 h-full flex items-center justify-center"
                   >
-                    <i
+                    <h3
                       id="absorcion"
-                      class="fa-solid fa-droplet text-white text-sm rounded"
-                    ></i>
-                  </label>
+                      class="text-center text-blue-400 font-bold"
+                    >
+                      Absorcion
+                    </h3>
 
-                  <div
-                    id="absorcion"
-                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
-                  >
-                    <p id="absorcion" class="col-span-3 text-[0.7rem]">
-                      Porcentaje de Absorcion de Agua en funcion de los m<sup
-                        >2</sup
+                    <div
+                      id="absorcion"
+                      class="flex rounded border-2 border-blue-400 h-12"
+                    >
+                      <label
+                        id="absorcion"
+                        class="bg-blue-400 w-1/4 h-full flex items-center justify-center"
                       >
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="w-full cursor-pointer p-1 rounded ring-green-600"
-                id="arbolado"
-              >
-                <h3 id="arbolado" class="text-center text-green-600 font-bold">
-                  Arbolado
-                </h3>
+                        <i
+                          id="absorcion"
+                          class="fa-solid fa-droplet text-white text-sm rounded"
+                        ></i>
+                      </label>
 
-                <div
-                  id="arbolado"
-                  class="flex rounded border-2 border-green-600 h-12"
-                >
-                  <label
+                      <div
+                        id="absorcion"
+                        class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      >
+                        <p id="absorcion" class="col-span-3 text-[0.7rem]">
+                          Porcentaje de Absorcion de Agua en funcion de los
+                          m<sup>2</sup>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="w-full cursor-pointer p-1 rounded ring-green-600"
                     id="arbolado"
-                    class="bg-green-600 w-1/4 h-full flex items-center justify-center"
                   >
-                    <i
+                    <h3
                       id="arbolado"
-                      class="fa-solid fa-tree text-white text-sm rounded"
-                    ></i>
-                  </label>
+                      class="text-center text-green-600 font-bold"
+                    >
+                      Arbolado
+                    </h3>
 
-                  <div
-                    id="arbolado"
-                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
-                  >
-                    <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
-                    <p id="arbolado" class="col-span-3 text-[0.7rem]">
-                      Porcentaje de Arbolado en funcion de los m<sup>2</sup>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="w-full cursor-pointer p-1 rounded ring-orange-400"
-                id="superficie"
-              >
-                <h3
-                  id="superficie"
-                  class="text-center text-orange-400 font-bold"
-                >
-                  Superficie
-                </h3>
-
-                <div
-                  id="superficie"
-                  class="flex rounded border-2 border-orange-400 h-12"
-                >
-                  <label
-                    id="superficie"
-                    class="bg-orange-400 w-1/4 h-full flex items-center justify-center"
-                  >
-                    <i
-                      id="superficie"
-                      class="fa-solid fa-ruler-combined text-white text-sm rounded"
-                    ></i>
-                  </label>
-
-                  <div
-                    id="superficie"
-                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
-                  >
-                    <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
-                    <p id="superficie" class="col-span-3 text-[0.7rem]">
-                      Porcentaje de Absorcion de Agua en funcion de los m<sup
-                        >2</sup
+                    <div
+                      id="arbolado"
+                      class="flex rounded border-2 border-green-600 h-12"
+                    >
+                      <label
+                        id="arbolado"
+                        class="bg-green-600 w-1/4 h-full flex items-center justify-center"
                       >
-                    </p>
+                        <i
+                          id="arbolado"
+                          class="fa-solid fa-tree text-white text-sm rounded"
+                        ></i>
+                      </label>
+
+                      <div
+                        id="arbolado"
+                        class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      >
+                        <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                        <p id="arbolado" class="col-span-3 text-[0.7rem]">
+                          Porcentaje de Arbolado en funcion de los m<sup>2</sup>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                  <div
+                    class="w-full cursor-pointer p-1 rounded ring-orange-400"
+                    id="superficie"
+                  >
+                    <h3
+                      id="superficie"
+                      class="text-center text-orange-400 font-bold"
+                    >
+                      Superficie
+                    </h3>
+
+                    <div
+                      id="superficie"
+                      class="flex rounded border-2 border-orange-400 h-12"
+                    >
+                      <label
+                        id="superficie"
+                        class="bg-orange-400 w-1/4 h-full flex items-center justify-center"
+                      >
+                        <i
+                          id="superficie"
+                          class="fa-solid fa-ruler-combined text-white text-sm rounded"
+                        ></i>
+                      </label>
+
+                      <div
+                        id="superficie"
+                        class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      >
+                        <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                        <p id="superficie" class="col-span-3 text-[0.7rem]">
+                          Porcentaje de Absorcion de Agua en funcion de los
+                          m<sup>2</sup>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="w-full cursor-pointer ring-2 p-1 rounded ring-emerald-600"
+                    id="tipo"
+                  >
+                    <h3
+                      id="tipo"
+                      class="text-center text-emerald-600 font-bold"
+                    >
+                      Tipo de Espacios
+                    </h3>
+
+                    <div
+                      id="tipo"
+                      class="flex rounded border-2 border-emerald-600 h-12"
+                    >
+                      <label
+                        id="tipo"
+                        class="bg-emerald-600 w-1/4 h-full flex items-center justify-center"
+                      >
+                        <i
+                          id="tipo"
+                          class="fa-solid fa-leaf text-white text-sm rounded"
+                        ></i>
+                      </label>
+
+                      <div
+                        id="tipo"
+                        class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      >
+                        <p id="tipo" class="col-span-3 text-[0.7rem]">
+                          Clasificacion segun el tipo de espacio verde
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+              </div>
+
+              <div
+                id="infra-azul"
+                class="p-2 bg-slate-300 text-center text-black"
+              >
+                Infraestructura Azul
               </div>
               <div
-                class="w-full cursor-pointer ring-2 p-1 rounded ring-emerald-600"
-                id="tipo"
+                id="areas-nat"
+                class="p-2 bg-slate-300 text-center text-black"
               >
-                <h3 id="tipo" class="text-center text-emerald-600 font-bold">
-                  Tipo de Espacios
-                </h3>
-
-                <div
-                  id="tipo"
-                  class="flex rounded border-2 border-emerald-600 h-12"
-                >
-                  <label
-                    id="tipo"
-                    class="bg-emerald-600 w-1/4 h-full flex items-center justify-center"
-                  >
-                    <i
-                      id="tipo"
-                      class="fa-solid fa-leaf text-white text-sm rounded"
-                    ></i>
-                  </label>
-
-                  <div
-                    id="tipo"
-                    class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
-                  >
-                    <p id="tipo" class="col-span-3 text-[0.7rem]">
-                      Clasificacion segun el tipo de espacio verde
-                    </p>
-                  </div>
-                </div>
+                Areas Naturales
               </div>
             </ul>
           </div>
@@ -462,31 +494,6 @@
               <ul id="lista-mapas-base" class="grid grid-rows-4 gap-2">
                 <li
                   class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
-                  id="comun"
-                >
-                  <h2 class="text-base">Mapa comun</h2>
-                  <img
-                    class="w-10 rounded drop-shadow-lg"
-                    src="./assets/argenmap_chico.png"
-                    alt="mapa comun argenmap"
-                    srcset=""
-                  />
-                </li>
-                <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
-                  id="topografico"
-                >
-                  <h2 class="text-base">Mapa topografico</h2>
-
-                  <img
-                    class="w-10 rounded drop-shadow-lg"
-                    src="./assets/argenmap-topo.png"
-                    alt="mapa topografico argenmap"
-                    srcset=""
-                  />
-                </li>
-                <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
                   id="negro"
                 >
                   <h2 class="text-base">Mapa oscuro</h2>
@@ -508,6 +515,19 @@
                     class="w-10 rounded drop-shadow-lg"
                     src="./assets/argenmap_gris_chico.png"
                     alt="mapa color gris"
+                    srcset=""
+                  />
+                </li>
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="satelite"
+                >
+                  <h2 class="text-base">Mapa Satelital</h2>
+
+                  <img
+                    class="w-10 h-10 rounded drop-shadow-lg"
+                    src="./assets/satelite.png"
+                    alt="mapa Satelital"
                     srcset=""
                   />
                 </li>
@@ -549,6 +569,11 @@
     ></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="./leaflet-sidebar.min.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+    <script src="leaflet-bing-layer.min.js"></script>
+
+    <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+
     <script type="module" src="./index.js"></script>
   </body>
 </html>
