@@ -33,7 +33,7 @@ const infAzulLayers = L.geoJSON(azulData, {
     dashArray: "3",
     fillOpacity: 0.25,
   },
-  onEachFeature: onEachFeature,
+  onEachFeature: onEachFeatureNotInfVerde,
 });
 
 const areasNatLayers = L.geoJSON(areasNaturalesData, {
@@ -44,7 +44,7 @@ const areasNatLayers = L.geoJSON(areasNaturalesData, {
     dashArray: "3",
     fillOpacity: 0.25,
   },
-  onEachFeature: onEachFeature,
+  onEachFeature: onEachFeatureNotInfVerde,
 });
 
 const capasEspaciosVerdes = document.getElementById(
@@ -329,7 +329,8 @@ const cambiarCapaEspaciosVerdes = (e) => {
   switch (target.id) {
     case "absorcion":
       capaSelecionada = "abs";
-      agregarIndice("abs");
+      agregarIndice(capaSelecionada);
+
       infVerdeLayers.setStyle(style);
 
       colors.selecionado = colors.absorcion;
@@ -337,7 +338,8 @@ const cambiarCapaEspaciosVerdes = (e) => {
 
     case "arbolado":
       capaSelecionada = "arb";
-      agregarIndice("arb");
+      agregarIndice(capaSelecionada);
+
       infVerdeLayers.setStyle(style);
 
       colors.selecionado = colors.arbolado;
@@ -346,7 +348,8 @@ const cambiarCapaEspaciosVerdes = (e) => {
 
     case "superficie":
       capaSelecionada = "sup";
-      agregarIndice("sup");
+      agregarIndice(capaSelecionada);
+
       infVerdeLayers.setStyle(style);
 
       colors.selecionado = colors.superficie;
@@ -354,7 +357,7 @@ const cambiarCapaEspaciosVerdes = (e) => {
       break;
     case "tipo":
       capaSelecionada = "tipos";
-      agregarIndice("tipos");
+      agregarIndice(capaSelecionada);
       infVerdeLayers.setStyle(style);
 
       colors.selecionado = colors.tipos;
@@ -372,9 +375,11 @@ const cambiarCapaGeneral = (e) => {
     case "infra-verde":
       if (activas.infVerde) {
         infVerdeLayers.remove();
+        leyenda.remove();
         activas.infVerde = false;
         return;
       } else {
+        agregarIndice(capaSelecionada);
         infVerdeLayers.addTo(map);
         activas.infVerde = true;
       }
@@ -382,6 +387,7 @@ const cambiarCapaGeneral = (e) => {
       break;
 
     case "infra-azul":
+      if (!activas.infVerde) leyenda.remove();
       if (activas.infAzul) {
         infAzulLayers.remove();
         activas.infAzul = false;
@@ -394,6 +400,8 @@ const cambiarCapaGeneral = (e) => {
       break;
 
     case "areas-nat":
+      if (!activas.infVerde) leyenda.remove();
+
       if (activas.areasNat) {
         areasNatLayers.remove();
         activas.areasNat = false;
@@ -460,7 +468,6 @@ const agregarIndice = (tipo) => {
   );
   console.log(otrosIndices);
   if (otrosIndices.length === 0) {
-    const leyenda = L.control({ position: "bottomright" });
     let grados;
 
     if (tipo === "sup") {
@@ -672,6 +679,11 @@ function onEachFeature(feature, layer) {
     click: zoomToFeature,
   });
 }
+function onEachFeatureNotInfVerde(feature, layer) {
+  layer.on({
+    click: zoomToFeature,
+  });
+}
 
 function style(features) {
   if (capaSelecionada === "sup")
@@ -782,7 +794,7 @@ info.update = function (props) {
 info.addTo(map);
 
 // INDICE DE RANGOS
-var leyenda = L.control({ position: "bottomright" });
+const leyenda = L.control({ position: "bottomright" });
 
 leyenda.onAdd = function (map) {
   let grados;
@@ -818,18 +830,8 @@ let infVerdeLayers = L.geoJSON(verdeData, {
   style: style,
   onEachFeature: onEachFeature,
 });
-/* L.geoJSON(radio300, {
-  style: {
-    weight: 2,
-    opacity: 1,
-    color: "#006d2c",
-    dashArray: "3",
-    fillOpacity: 0.25,
-  },
-  onEachFeature: onEachFeature,
-}).addTo(map); */
+
 leyenda.addTo(map);
-/* infVerdeLayers.addTo(map); */
 
 /* 
 const circle = L.circleMarker([-38.941, -67.115], {
