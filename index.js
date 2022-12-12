@@ -11,10 +11,13 @@
 */
 
 // IMPORTACIONES
-import verdeData from "./capas/infra_prov_nqn_geo.json" assert { type: "json" };
+import verdeData from "./capas/espacios-verdes.json" assert { type: "json" };
 import areasNaturalesData from "./capas/areas_naturales.json" assert { type: "json" };
 import azulData from "./capas/espacios_azules_nqncap.json" assert { type: "json" };
-import radio300 from "./capas/radio_300m_espacios_verdes.json" assert { type: "json" };
+import radiosEspVerdes from "./capas/radio_cobertura_espacios_verdes.json" assert { type: "json" };
+import radiosEspAzules from "./capas/radios-esp-azules.json" assert { type: "json" };
+import radiosAreasNat from "./capas/radios-areas-nat.json" assert { type: "json" };
+import radiosCombinados from "./capas/radios_combinados.json" assert { type: "json" };
 // END IMPORTACIONES
 
 // DEFINICIONES
@@ -24,6 +27,7 @@ const map = L.map("map", {
 });
 
 let capaSelecionada = "tipos";
+let idCapaSeleccionada = 999999999;
 
 const infAzulLayers = L.geoJSON(azulData, {
   style: {
@@ -47,6 +51,12 @@ const areasNatLayers = L.geoJSON(areasNaturalesData, {
   onEachFeature: onEachFeatureNotInfVerde,
 });
 
+const filtrarRadios = (feature) => {
+  if (feature.properties.id === idCapaSeleccionada) {
+    return true;
+  }
+};
+let radiosInfVerde = "";
 const capasEspaciosVerdes = document.getElementById(
   "lista-capas-espacios-verdes"
 );
@@ -377,6 +387,9 @@ const cambiarCapaGeneral = (e) => {
         infVerdeLayers.remove();
         leyenda.remove();
         activas.infVerde = false;
+        if (map.hasLayer(radiosInfVerde)) {
+          radiosInfVerde.remove();
+        }
         return;
       } else {
         agregarIndice(capaSelecionada);
@@ -442,6 +455,20 @@ areasNatBtn.addEventListener("click", cambiarCapaGeneral);
 modalAdvertencia.addEventListener("click", handleCerrarModal);
  */
 
+const agregarRadios = () => {
+  radiosInfVerde = L.geoJSON(radiosCombinados, {
+    style: {
+      weight: 2,
+      opacity: 1,
+      color: "#07BEB8",
+      dashArray: "6",
+      fillOpacity: 0.45,
+    },
+    filter: filtrarRadios,
+  }).addTo(map);
+  map.fitBounds(radiosInfVerde.getBounds());
+};
+
 const agregarLocalidadesAlista = () => {
   let listaLi = localidades.map(
     (e) =>
@@ -466,7 +493,6 @@ const agregarIndice = (tipo) => {
   let otrosIndices = document.querySelectorAll(
     "div.info.legend.leaflet-control"
   );
-  console.log(otrosIndices);
   if (otrosIndices.length === 0) {
     let grados;
 
@@ -721,7 +747,14 @@ function style(features) {
 }
 
 function zoomToFeature(e) {
-  map.fitBounds(e.target.getBounds());
+  if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
+    radiosInfVerde.remove();
+  }
+
+  idCapaSeleccionada = e.target.feature.properties.id;
+  console.log("idcapaselect", idCapaSeleccionada);
+
+  agregarRadios();
 }
 
 function calcularPorcentajes(valor, tipo) {
