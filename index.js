@@ -11,6 +11,7 @@
 */
 
 // IMPORTACIONES
+import datosNeuquen from "./capas/datos_neuquen.json" assert { type: "json" };
 import verdeData from "./capas/espacios-verdes.json" assert { type: "json" };
 import areasNaturalesData from "./capas/areas_naturales.json" assert { type: "json" };
 import azulData from "./capas/espacios_azules_nqncap.json" assert { type: "json" };
@@ -453,6 +454,7 @@ areasNatBtn.addEventListener("click", cambiarCapaGeneral);
   modalAdvertencia.classList.add("hidden");
 };
 modalAdvertencia.addEventListener("click", handleCerrarModal);
+#07BEB8
  */
 
 const agregarRadios = () => {
@@ -460,7 +462,8 @@ const agregarRadios = () => {
     style: {
       weight: 2,
       opacity: 1,
-      color: "#07BEB8",
+
+      color: "#B7990D",
       dashArray: "6",
       fillOpacity: 0.45,
     },
@@ -874,3 +877,102 @@ const circle = L.circleMarker([-38.941, -67.115], {
   radius: radius,
   interactive: false,
 }).addTo(map); */
+
+// ELEMENTOS DE UI //
+
+// create an array of objects with the id, trigger element (eg. button), and the content element
+const tabElements = [
+  {
+    id: "profile",
+    triggerEl: document.querySelector("#profile-tab-example"),
+    targetEl: document.querySelector("#profile-example"),
+  },
+  {
+    id: "dashboard",
+    triggerEl: document.querySelector("#dashboard-tab-example"),
+    targetEl: document.querySelector("#dashboard-example"),
+  },
+  {
+    id: "settings",
+    triggerEl: document.querySelector("#settings-tab-example"),
+    targetEl: document.querySelector("#settings-example"),
+  },
+  {
+    id: "contacts",
+    triggerEl: document.querySelector("#contacts-tab-example"),
+    targetEl: document.querySelector("#contacts-example"),
+  },
+];
+
+// options with default values
+const options = {
+  defaultTabId: "settings",
+  activeClasses:
+    "text-green-600 hover:text-green-600 dark:text-green-600 dark:hover:text-green-600 border-green-600 dark:border-green-500",
+  inactiveClasses:
+    "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
+  onShow: () => {
+    console.log("tab is shown");
+  },
+};
+
+const tabs = new Tabs(tabElements, options);
+
+//    Graficos    //
+
+let valoresMobBasico = [];
+let valoresMobSup = [];
+let valoresSinMob = [];
+
+datosNeuquen.map((dato) => {
+  if (
+    dato.tipo === "Corredor" ||
+    dato.tipo === "Plaza" ||
+    dato.tipo === "Parque" ||
+    dato.tipo === "Plazoleta"
+  )
+    valoresMobBasico.push(dato.mobiliarioBasico);
+  valoresMobSup.push(dato.mobiliarioSuperior);
+  valoresSinMob.push(dato.mobiliarioNoPosee);
+});
+
+let sumatoriaMobBasico = valoresMobBasico.reduce(
+  (acc, current) => acc + current,
+  0
+);
+let sumatoriaMobSup = valoresMobSup.reduce((acc, current) => acc + current, 0);
+let sumatoriaSinMob = valoresSinMob.reduce((acc, current) => acc + current, 0);
+
+console.log(datosNeuquen);
+console.log("basico", sumatoriaMobBasico);
+console.log("superior", sumatoriaMobSup);
+console.log("no posee", sumatoriaSinMob);
+
+const ctx = document.getElementById("myChart");
+
+const chart = new Chart(ctx, {
+  type: "doughnut",
+  data: {
+    labels: ["No posee", "Basico", "Superior"],
+    datasets: [
+      {
+        label: "Cantidad",
+        data: [sumatoriaSinMob, sumatoriaMobBasico, sumatoriaMobSup],
+        borderWidth: 1,
+        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A"],
+      },
+    ],
+  },
+
+  options: {
+    scales: {
+      y: {
+        display: false,
+      },
+    },
+  },
+});
+
+// END Graficos //
+
+//END ELEMENTOS DE UI //

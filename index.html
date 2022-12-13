@@ -118,6 +118,11 @@
                 ><i class="fa-solid fa-gears text-green-700"></i
               ></a>
             </li>
+            <li>
+              <a href="#detalle" role="tab"
+                ><i class="fa-solid fa-chart-pie text-green-700"></i
+              ></a>
+            </li>
           </ul>
 
           <ul role="tablist">
@@ -188,7 +193,7 @@
             </div>
           </div>
 
-          <div class="leaflet-sidebar-pane active" id="layers">
+          <div class="leaflet-sidebar-pane" id="layers">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -576,6 +581,141 @@
               </ul>
             </div>
           </div>
+          <div class="leaflet-sidebar-pane m-0 active" id="detalle">
+            <h1
+              class="leaflet-sidebar-header flex justify-between items-center"
+            >
+              Detalle de localidad
+              <img
+                src="./assets/copade-logo.png"
+                alt="copade-logo"
+                class="w-8 inline mr-5"
+              />
+              <div class="leaflet-sidebar-close">
+                <i class="fa fa-caret-left"></i>
+              </div>
+            </h1>
+            <h2
+              id="detalle-titulo"
+              class="text-center text-2xl mt-4 text-black border-x-4 border-green-600"
+            >
+              Neuquen Capital
+            </h2>
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+              <ul
+                class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400"
+                id="tabExample"
+                role="tablist"
+              >
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="profile-tab-example"
+                    type="button"
+                    role="tab"
+                    aria-controls="profile-example"
+                    aria-selected="false"
+                  >
+                    General
+                  </button>
+                </li>
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="dashboard-tab-example"
+                    type="button"
+                    role="tab"
+                    aria-controls="dashboard-example"
+                    aria-selected="false"
+                  >
+                    Arbolado
+                  </button>
+                </li>
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="settings-tab-example"
+                    type="button"
+                    role="tab"
+                    aria-controls="settings-example"
+                    aria-selected="false"
+                  >
+                    Mobiliario
+                  </button>
+                </li>
+                <li role="presentation">
+                  <button
+                    class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="contacts-tab-example"
+                    type="button"
+                    role="tab"
+                    aria-controls="contacts-example"
+                    aria-selected="false"
+                  >
+                    Absorcion
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div id="tabContentExample">
+              <div
+                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+                id="profile-example"
+                role="tabpanel"
+                aria-labelledby="profile-tab-example"
+              >
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Profile tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
+              <div
+                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+                id="dashboard-example"
+                role="tabpanel"
+                aria-labelledby="dashboard-tab-example"
+              >
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Dashboard tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
+              <div
+                class="hidden p-4 bg-gray-50 rounded-lg"
+                id="settings-example"
+                role="tabpanel"
+                aria-labelledby="settings-tab-example"
+              >
+                <p class="text-xl text-center text-black">
+                  Mobiliario de espacios verdes
+                </p>
+                <canvas width="400" height="400" id="myChart"></canvas>
+              </div>
+              <div
+                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+                id="contacts-example"
+                role="tabpanel"
+                aria-labelledby="contacts-tab-example"
+              >
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  This is some placeholder content the
+                  <strong class="font-medium text-gray-800 dark:text-white"
+                    >Contacts tab's associated content</strong
+                  >. Clicking another tab will toggle the visibility of this one
+                  for the next. The tab JavaScript swaps classes to control the
+                  content visibility and styling.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -595,6 +735,8 @@
         - Gobierno de la provincia del Neuquen - 2022
       </h2>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     <script
       src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
