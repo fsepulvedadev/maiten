@@ -92,33 +92,46 @@
     </div>
 
     <main class="w-full h-[85vh] flex justify-end items-center">
+      <div
+        id="detalle-modal"
+        class="hidden absolute w-6/12 z-[999999] h-80 bg-slate-400 left-0 right-0 mx-auto rounded-xl shadow-2xl"
+      >
+        <i
+          id="detalle-modal-btn-cerrar"
+          class="fa-solid fa-square-xmark absolute cursor-pointer text-white right-5 top-2 text-2xl"
+        ></i>
+        <h1 class="text-4xl text-center text-white">
+          ACA VA LA INFO DEL GRAFICO
+        </h1>
+      </div>
+
       <div id="map" class="w-full mx-auto"></div>
       <div id="sidebar" class="leaflet-sidebar md:mt-0 my-2">
         <!-- Nav tabs -->
         <div class="leaflet-sidebar-tabs">
           <ul role="tablist">
             <!-- top aligned tabs -->
-            <li class="">
+            <li id="inicio-tab" class="active">
               <a href="#home" role="tab"
                 ><i class="fa fa-bars text-green-700"></i
               ></a>
             </li>
-            <li>
+            <li id="capas-tab">
               <a href="#layers" role="tab"
                 ><i class="fa-solid fa-layer-group text-green-700"></i
               ></a>
             </li>
-            <li>
+            <li id="ciudades-tab">
               <a href="#ciudades" role="tab"
                 ><i class="fa-solid fa-map-location-dot text-green-700"></i
               ></a>
             </li>
-            <li>
+            <li id="fondos-tab">
               <a href="#fondos" role="tab"
                 ><i class="fa-solid fa-gears text-green-700"></i
               ></a>
             </li>
-            <li>
+            <li id="detalle-tab">
               <a href="#detalle" role="tab"
                 ><i class="fa-solid fa-chart-pie text-green-700"></i
               ></a>
@@ -128,7 +141,7 @@
           <ul role="tablist">
             <!-- bottom aligned tabs -->
 
-            <li class="">
+            <li id="acerca-tab" class="">
               <a href="#info" role="tab"
                 ><i class="fa-solid fa-circle-info text-green-700"></i
               ></a>
@@ -138,7 +151,7 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0" id="home">
+          <div class="leaflet-sidebar-pane m-0 active" id="home">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -581,7 +594,7 @@
               </ul>
             </div>
           </div>
-          <div class="leaflet-sidebar-pane m-0 active" id="detalle">
+          <div class="leaflet-sidebar-pane m-0" id="detalle">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -597,10 +610,15 @@
             </h1>
             <h2
               id="detalle-titulo"
-              class="text-center text-2xl mt-4 text-black border-x-4 border-green-600"
+              class="text-center text-2xl mt-4 text-black border-green-600"
             >
               Neuquen Capital
             </h2>
+            <h3
+              class="text-xl my-4 border-2 bg-green-600 text-white text-center"
+            >
+              Espacios Verdes
+            </h3>
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
               <ul
                 class="flex flex-wrap -mb-px justify-evenly text-sm font-medium text-center text-gray-500 dark:text-gray-400"
@@ -610,10 +628,10 @@
                 <li class="md:w-1/4" role="presentation">
                   <button
                     class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="profile-tab-example"
+                    id="detalle-general-tab"
                     type="button"
                     role="tab"
-                    aria-controls="profile-example"
+                    aria-controls="detalle-general"
                     aria-selected="false"
                   >
                     General
@@ -622,10 +640,10 @@
                 <li class="md:w-1/4" role="presentation">
                   <button
                     class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="dashboard-tab-example"
+                    id="detalle-arbolado-tab"
                     type="button"
                     role="tab"
-                    aria-controls="dashboard-example"
+                    aria-controls="detalle-arbolado"
                     aria-selected="false"
                   >
                     Arbolado
@@ -634,10 +652,10 @@
                 <li class="md:w-1/4" role="presentation">
                   <button
                     class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="settings-tab-example"
+                    id="detalle-mobiliario-tab"
                     type="button"
                     role="tab"
-                    aria-controls="settings-example"
+                    aria-controls="detalle-mobiliario"
                     aria-selected="false"
                   >
                     Mobiliario
@@ -646,10 +664,10 @@
                 <li class="md:w-1/4" role="presentation">
                   <button
                     class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="contacts-tab-example"
+                    id="detalle-absorcion-tab"
                     type="button"
                     role="tab"
-                    aria-controls="contacts-example"
+                    aria-controls="detalle-absorcion"
                     aria-selected="false"
                   >
                     Absorcion
@@ -659,60 +677,43 @@
             </div>
             <div id="tabContentExample">
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                id="profile-example"
+                class="hidden p-4 bg-gray-50 rounded-lg"
+                id="detalle-general"
                 role="tabpanel"
-                aria-labelledby="profile-tab-example"
-              >
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  This is some placeholder content the
-                  <strong class="font-medium text-gray-800 dark:text-white"
-                    >Profile tab's associated content</strong
-                  >. Clicking another tab will toggle the visibility of this one
-                  for the next. The tab JavaScript swaps classes to control the
-                  content visibility and styling.
-                </p>
-              </div>
+                aria-labelledby="detalle-general-tab"
+              ></div>
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                id="dashboard-example"
+                class="hidden p-4 bg-gray-50 rounded-lg"
+                id="detalle-arbolado"
                 role="tabpanel"
-                aria-labelledby="dashboard-tab-example"
+                aria-labelledby="detalle-arbolado-tab"
               >
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  This is some placeholder content the
-                  <strong class="font-medium text-gray-800 dark:text-white"
-                    >Dashboard tab's associated content</strong
-                  >. Clicking another tab will toggle the visibility of this one
-                  for the next. The tab JavaScript swaps classes to control the
-                  content visibility and styling.
-                </p>
+                <p class="text-xl text-center text-black">Cobertura Arbórea</p>
+                <canvas width="350" height="350" id="graficoArbolado"></canvas>
               </div>
               <div
                 class="hidden p-4 bg-gray-50 rounded-lg"
-                id="settings-example"
+                id="detalle-mobiliario"
                 role="tabpanel"
-                aria-labelledby="settings-tab-example"
+                aria-labelledby="detalle-mobiliario-tab"
               >
-                <p class="text-xl text-center text-black">
-                  Mobiliario de espacios verdes
-                </p>
-                <canvas width="350" height="350" id="myChart"></canvas>
+                <p class="text-xl text-center text-black">Tipo de Mobiliario</p>
+                <canvas
+                  width="350"
+                  height="350"
+                  id="graficoMobiliario"
+                ></canvas>
               </div>
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-                id="contacts-example"
+                class="hidden p-4 bg-gray-50 rounded-lg"
+                id="detalle-absorcion"
                 role="tabpanel"
-                aria-labelledby="contacts-tab-example"
+                aria-labelledby="detalle-absorcion-tab"
               >
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  This is some placeholder content the
-                  <strong class="font-medium text-gray-800 dark:text-white"
-                    >Contacts tab's associated content</strong
-                  >. Clicking another tab will toggle the visibility of this one
-                  for the next. The tab JavaScript swaps classes to control the
-                  content visibility and styling.
+                <p class="text-xl text-center text-black">
+                  Terreno absorbente en relacion al area
                 </p>
+                <canvas width="350" height="350" id="graficoAbsorcion"></canvas>
               </div>
             </div>
           </div>
@@ -735,7 +736,8 @@
         - Gobierno de la provincia del Neuquen - 2022
       </h2>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     <script

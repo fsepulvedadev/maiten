@@ -61,6 +61,10 @@ let radiosInfVerde = "";
 const capasEspaciosVerdes = document.getElementById(
   "lista-capas-espacios-verdes"
 );
+const ModalDetalle = document.getElementById("detalle-modal");
+const btnCerrarModalDetalle = document.getElementById(
+  "detalle-modal-btn-cerrar"
+);
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
@@ -236,6 +240,10 @@ const toggleCapasVerdes = () => {
   }
 };
 
+const handleCerrarModalDetalle = () => {
+  ModalDetalle.classList.add("hidden");
+};
+
 const handleSeleccionarMapaBase = (e) => {
   let selecionado = e.target;
 
@@ -273,14 +281,33 @@ const handleSeleccionarMapaBase = (e) => {
 const handleClickLocalidades = (e) => {
   let targetId = e.target.id;
   let target = localidades.find((e) => e.id === targetId);
-  cerrarSidebar();
-
   map.flyTo(target.loc, target.zoom);
+  cambiarATabDetalle();
+  cargarDetalle(target.nombre);
 };
+
+const cambiarATabDetalle = () => {
+  let tabActual = document.querySelector("li.active");
+  let tabTarget = document.getElementById("detalle-tab");
+  let paneActual = document.getElementById("ciudades");
+  let paneTarget = document.getElementById("detalle");
+
+  tabActual.classList.remove("active");
+  tabTarget.classList.add("active");
+
+  paneActual.classList.remove("active");
+  paneTarget.classList.add("active");
+};
+
+const cargarDetalle = (targetId) => {
+  let detalleTitulo = document.getElementById("detalle-titulo");
+
+  detalleTitulo.innerText = targetId;
+};
+
 const cerrarSidebar = () => {
   let targetSidebar = document.getElementById("sidebar");
   let tabTarget = document.querySelector("li.active");
-  console.log(tabTarget);
   tabTarget.classList.remove("active");
   targetSidebar.classList.add("collapsed");
 };
@@ -436,6 +463,7 @@ const cambiarCapaGeneral = (e) => {
 // END EVENT HANDLERS
 
 // EVENT LISTENERS
+/* btnCerrarModalDetalle.addEventListener("click", handleCerrarModalDetalle); */
 infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
 mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
@@ -883,36 +911,36 @@ const circle = L.circleMarker([-38.941, -67.115], {
 // create an array of objects with the id, trigger element (eg. button), and the content element
 const tabElements = [
   {
-    id: "profile",
-    triggerEl: document.querySelector("#profile-tab-example"),
-    targetEl: document.querySelector("#profile-example"),
+    id: "general",
+    triggerEl: document.querySelector("#detalle-general-tab"),
+    targetEl: document.querySelector("#detalle-general"),
   },
   {
-    id: "dashboard",
-    triggerEl: document.querySelector("#dashboard-tab-example"),
-    targetEl: document.querySelector("#dashboard-example"),
+    id: "arbolado",
+    triggerEl: document.querySelector("#detalle-arbolado-tab"),
+    targetEl: document.querySelector("#detalle-arbolado"),
   },
   {
-    id: "settings",
-    triggerEl: document.querySelector("#settings-tab-example"),
-    targetEl: document.querySelector("#settings-example"),
+    id: "mobiliario",
+    triggerEl: document.querySelector("#detalle-mobiliario-tab"),
+    targetEl: document.querySelector("#detalle-mobiliario"),
   },
   {
-    id: "contacts",
-    triggerEl: document.querySelector("#contacts-tab-example"),
-    targetEl: document.querySelector("#contacts-example"),
+    id: "absorcion",
+    triggerEl: document.querySelector("#detalle-absorcion-tab"),
+    targetEl: document.querySelector("#detalle-absorcion"),
   },
 ];
 
 // options with default values
 const options = {
-  defaultTabId: "settings",
+  defaultTabId: "arbolado",
   activeClasses:
     "text-green-600 hover:text-green-600 dark:text-green-600 dark:hover:text-green-600 border-green-600 dark:border-green-500",
   inactiveClasses:
     "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
   onShow: () => {
-    console.log("tab is shown");
+    /* ModalDetalle.classList.remove("hidden"); */
   },
 };
 
@@ -920,6 +948,7 @@ const tabs = new Tabs(tabElements, options);
 
 //    Graficos    //
 
+// MOBILIARIO //
 let valoresMobBasico = [];
 let valoresMobSup = [];
 let valoresSinMob = [];
@@ -944,14 +973,14 @@ let sumatoriaMobSup = valoresMobSup.reduce((acc, current) => acc + current, 0);
 let sumatoriaSinMob = valoresSinMob.reduce((acc, current) => acc + current, 0);
 
 console.log(datosNeuquen);
-console.log("basico", sumatoriaMobBasico);
-console.log("superior", sumatoriaMobSup);
-console.log("no posee", sumatoriaSinMob);
 
-const ctx = document.getElementById("myChart");
+Chart.register(ChartDataLabels);
 
-const chart = new Chart(ctx, {
+const ctxChartMobiliario = document.getElementById("graficoMobiliario");
+
+const chartMobiliario = new Chart(ctxChartMobiliario, {
   type: "doughnut",
+  plugins: [ChartDataLabels],
   data: {
     labels: ["No posee", "Basico", "Superior"],
     datasets: [
@@ -965,6 +994,21 @@ const chart = new Chart(ctx, {
   },
 
   options: {
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map((data) => {
+            sum += data;
+          });
+          let percentage = ((value * 100) / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: ["#392F5A", "#FF8811", "#9DD9D2"],
+        font: { size: "14rem" },
+      },
+    },
     scales: {
       y: {
         display: false,
@@ -972,6 +1016,116 @@ const chart = new Chart(ctx, {
     },
   },
 });
+// END MOBILIARIO //
+
+// GRAFICO ABSORCION //
+
+const ctxChartAbsorcion = document.getElementById("graficoAbsorcion");
+
+const chartAbsorcion = new Chart(ctxChartAbsorcion, {
+  type: "doughnut",
+  plugins: [ChartDataLabels],
+  data: {
+    labels: [
+      "Absorcion de 0 a 25%",
+      "Absorcion de 25 a 50%",
+      "Absorcion de 50 a 75%",
+      "Absorcion de 75 a 100%",
+    ],
+    datasets: [
+      {
+        label: "Cantidad",
+        data: [
+          datosNeuquen[5].sueloAbsorbente0A25,
+          datosNeuquen[5].sueloAbsorbente25A50,
+          datosNeuquen[5].sueloAbsorbente50A75,
+          datosNeuquen[5].sueloAbsorbente75a100,
+        ],
+        borderWidth: 1,
+        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A", "#0072BB"],
+      },
+    ],
+  },
+
+  options: {
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map((data) => {
+            sum += data;
+          });
+          let percentage = ((value * 100) / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: ["#392F5A", "#0072BB", "#9DD9D2", "#FF8811"],
+        font: { size: "14rem" },
+      },
+    },
+    scales: {
+      y: {
+        display: false,
+      },
+    },
+  },
+});
+
+// END GRAFICO ABSORCION //
+// GRAFICO ARBOLADO //
+
+const ctxChartArbolado = document.getElementById("graficoArbolado");
+
+const chartArbolado = new Chart(ctxChartArbolado, {
+  type: "doughnut",
+  plugins: [ChartDataLabels],
+  data: {
+    labels: [
+      "Arbolado de 0 a 25%",
+      "Arbolado de 25 a 50%",
+      "Arbolado de 50 a 75%",
+      "Arbolado de 75 a 100%",
+    ],
+    datasets: [
+      {
+        label: "Cantidad",
+        data: [
+          datosNeuquen[5].arbolado0A25,
+          datosNeuquen[5].arbolado25A50,
+          datosNeuquen[5].arbolado50A75,
+          datosNeuquen[5].arbolado75A100,
+        ],
+        borderWidth: 1,
+        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A", "#0072BB"],
+      },
+    ],
+  },
+
+  options: {
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map((data) => {
+            sum += data;
+          });
+          let percentage = ((value * 100) / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: ["#392F5A", "#0072BB", "#9DD9D2", "#FF8811"],
+        font: { size: "14rem" },
+      },
+    },
+    scales: {
+      y: {
+        display: false,
+      },
+    },
+  },
+});
+
+// END GRAFICO ARBOLADO //
 
 // END Graficos //
 
