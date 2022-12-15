@@ -13,6 +13,8 @@
 // IMPORTACIONES
 import datosNeuquen from "./capas/datos_neuquen.json" assert { type: "json" };
 import verdeData from "./capas/espacios-verdes.json" assert { type: "json" };
+import manchaUrbNqn from "./capas/mancha_urbana_nqncap.json" assert { type: "json" };
+import radiosVerdeDisueltos from "./capas/radio_combinado_espacios_verdes_disuelto.json" assert { type: "json" };
 import areasNaturalesData from "./capas/areas_naturales.json" assert { type: "json" };
 import azulData from "./capas/espacios_azules_nqncap.json" assert { type: "json" };
 import radiosEspVerdes from "./capas/radio_cobertura_espacios_verdes.json" assert { type: "json" };
@@ -51,6 +53,24 @@ const areasNatLayers = L.geoJSON(areasNaturalesData, {
   },
   onEachFeature: onEachFeatureNotInfVerde,
 });
+const manchaUrbNqnLayers = L.geoJSON(manchaUrbNqn, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+});
+const radiosCoberturaVerdeNqnLayers = L.geoJSON(radiosVerdeDisueltos, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#4D8B31",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+});
 
 const filtrarRadios = (feature) => {
   if (feature.properties.id === idCapaSeleccionada) {
@@ -71,6 +91,8 @@ const superficieTag = document.getElementById("superficie");
 const infraVerdeBtn = document.getElementById("infra-verde");
 const infraAzulBtn = document.getElementById("infra-azul");
 const areasNatBtn = document.getElementById("areas-nat");
+const radiosCoberturaVerdeNqnBtn = document.getElementById("radios-cobertura");
+const manchaUrbanaBtn = document.getElementById("mancha-urbana");
 const mapaNegro = document.getElementById("negro");
 const mapaGris = document.getElementById("gris");
 const mapaSatelite = document.getElementById("satelite");
@@ -224,6 +246,8 @@ let activas = {
   infVerde: false,
   infAzul: false,
   areasNat: false,
+  radiosCober: false,
+  manchaUrb: false,
 };
 
 // END DEFINICIONES
@@ -284,6 +308,10 @@ const handleClickLocalidades = (e) => {
   map.flyTo(target.loc, target.zoom);
   cambiarATabDetalle();
   cargarDetalle(target.nombre);
+  cerrarSidebar();
+  setTimeout(() => {
+    abrirSidebar();
+  }, 500);
 };
 
 const cambiarATabDetalle = () => {
@@ -304,7 +332,13 @@ const cargarDetalle = (targetId) => {
 
   detalleTitulo.innerText = targetId;
 };
+const abrirSidebar = () => {
+  let targetSidebar = document.getElementById("sidebar");
+  let paneTarget = document.getElementById("detalle");
+  paneTarget.classList.add("active");
 
+  targetSidebar.classList.remove("collapsed");
+};
 const cerrarSidebar = () => {
   let targetSidebar = document.getElementById("sidebar");
   let tabTarget = document.querySelector("li.active");
@@ -429,13 +463,37 @@ const cambiarCapaGeneral = (e) => {
 
     case "infra-azul":
       if (!activas.infVerde) leyenda.remove();
-      if (activas.infAzul) {
+      if (activas.radiosCober) {
         infAzulLayers.remove();
-        activas.infAzul = false;
+        activas.radiosCober = false;
         return;
       } else {
         infAzulLayers.addTo(map);
-        activas.infAzul = true;
+        activas.radiosCober = true;
+      }
+
+      break;
+    case "mancha-urbana":
+      if (!activas.infVerde) leyenda.remove();
+      if (activas.manchaUrb) {
+        manchaUrbNqnLayers.remove();
+        activas.manchaUrb = false;
+        return;
+      } else {
+        manchaUrbNqnLayers.addTo(map);
+        activas.manchaUrb = true;
+      }
+
+      break;
+    case "radios-cobertura":
+      if (!activas.infVerde) leyenda.remove();
+      if (activas.radiosCober) {
+        radiosCoberturaVerdeNqnLayers.remove();
+        activas.radiosCober = false;
+        return;
+      } else {
+        radiosCoberturaVerdeNqnLayers.addTo(map);
+        activas.radiosCober = true;
       }
 
       break;
@@ -463,7 +521,7 @@ const cambiarCapaGeneral = (e) => {
 // END EVENT HANDLERS
 
 // EVENT LISTENERS
-/* btnCerrarModalDetalle.addEventListener("click", handleCerrarModalDetalle); */
+btnCerrarModalDetalle.addEventListener("click", handleCerrarModalDetalle);
 infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
 mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
@@ -475,6 +533,8 @@ tiposTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 infraVerdeBtn.addEventListener("click", cambiarCapaGeneral);
 infraAzulBtn.addEventListener("click", cambiarCapaGeneral);
 areasNatBtn.addEventListener("click", cambiarCapaGeneral);
+manchaUrbanaBtn.addEventListener("click", cambiarCapaGeneral);
+radiosCoberturaVerdeNqnBtn.addEventListener("click", cambiarCapaGeneral);
 
 //END EVENT LISTENERS
 

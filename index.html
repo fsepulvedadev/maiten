@@ -94,13 +94,24 @@
     <main class="w-full h-[85vh] flex justify-end items-center">
       <div
         id="detalle-modal"
-        class="hidden absolute w-6/12 z-[999999] h-80 bg-slate-400 left-0 right-0 mx-auto rounded-xl shadow-2xl"
+        class="hidden flex flex-col border-t-[2.5rem] border-green-600 justify-center items-center absolute w-11/12 md:w-4/12 z-[999999] h-80 bg-white left-0 right-0 mx-auto rounded-xl shadow-2xl"
       >
         <i
           id="detalle-modal-btn-cerrar"
-          class="fa-solid fa-square-xmark absolute cursor-pointer text-white right-5 top-2 text-2xl"
+          class="fa-solid fa-square-xmark absolute cursor-pointer text-white right-5 -top-[1.9rem] text-2xl"
         ></i>
-        <h1 class="text-4xl text-center text-white">
+        <p
+          id="detalle-modal-titulo"
+          class="absolute text-white -top-[1.9rem] left-5"
+        >
+          Sobre Absorcion
+        </p>
+
+        <i
+          class="fa-solid fa-circle-info text-green-600 text-4xl justify-self-start"
+        ></i>
+
+        <h1 class="text-4xl text-center text-green-600">
           ACA VA LA INFO DEL GRAFICO
         </h1>
       </div>
@@ -151,7 +162,7 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0 active" id="home">
+          <div class="leaflet-sidebar-pane m-0" id="home">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -437,6 +448,46 @@
                   <div></div>
                 </label>
               </div>
+              <div
+                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+              >
+                <label
+                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                >
+                  <input
+                    id="radios-cobertura"
+                    type="checkbox"
+                    value=""
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                  ></div>
+
+                  <p class="pr-5 text-center">Radios de cobertura</p>
+                  <div></div>
+                </label>
+              </div>
+              <div
+                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+              >
+                <label
+                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                >
+                  <input
+                    id="mancha-urbana"
+                    type="checkbox"
+                    value=""
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                  ></div>
+
+                  <p class="pr-5 text-center">Marcha Urbana</p>
+                  <div></div>
+                </label>
+              </div>
             </ul>
           </div>
           <div class="leaflet-sidebar-pane overflow-y-auto" id="info">
@@ -594,7 +645,7 @@
               </ul>
             </div>
           </div>
-          <div class="leaflet-sidebar-pane m-0" id="detalle">
+          <div class="leaflet-sidebar-pane m-0 active" id="detalle">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
@@ -688,7 +739,34 @@
                 role="tabpanel"
                 aria-labelledby="detalle-arbolado-tab"
               >
-                <p class="text-xl text-center text-black">Cobertura Arbórea</p>
+                <div class="flex items-center justify-center w-full">
+                  <div
+                    id="tooltip-top-arbolado"
+                    role="tooltip"
+                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                  >
+                    <ul class="text-left ml-2">
+                      <li class="mb-2">
+                        <span class="font-bold underline">
+                          Cobertura Forestal:
+                        </span>
+                        Proporción de cobertura forestal en relación al área
+                        total del espacio verde.
+                      </li>
+                    </ul>
+
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  <p class="text-xl text-center text-black">
+                    Cobertura Arbórea
+                  </p>
+                  <i
+                    data-tooltip-target="tooltip-top-arbolado"
+                    data-tooltip-placement="top"
+                    type="button"
+                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                  ></i>
+                </div>
                 <canvas width="350" height="350" id="graficoArbolado"></canvas>
               </div>
               <div
@@ -697,7 +775,64 @@
                 role="tabpanel"
                 aria-labelledby="detalle-mobiliario-tab"
               >
-                <p class="text-xl text-center text-black">Tipo de Mobiliario</p>
+                <div class="flex items-center justify-center w-full">
+                  <div
+                    id="tooltip-top"
+                    role="tooltip"
+                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                  >
+                    <ul class="text-left ml-2">
+                      <li class="mb-2">
+                        <span class="font-bold underline">
+                          Mobiliario No Posee:
+                        </span>
+                        Posee menos del básico predeterminado
+                      </li>
+                      <li class="mb-2">
+                        <span class="font-bold underline">
+                          Mobiliario Básico:
+                        </span>
+                        Espacio que contiene el mobiliario predeterminado:
+                        <ul class="ml-4">
+                          <li>
+                            <span class="font-bold">Parque:</span> luminaria,
+                            bancos, cestos
+                          </li>
+                          <li>
+                            <span class="font-bold">Plaza:</span> luminaria,
+                            bancos, cestos, juegos para niños.
+                          </li>
+                          <li>
+                            <span class="font-bold">Plazoleta:</span> luminaria,
+                            bancos, cestos.
+                          </li>
+                          <li>
+                            <span class="font-bold">Corredor:</span> luminaria,
+                            cestos.
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="">
+                        <span class="font-bold underline">
+                          Mobiliario Superior:
+                        </span>
+                        Contiene el mobiliario adicional al predeterminado para
+                        el tipo
+                      </li>
+                    </ul>
+
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  <p class="text-xl text-center text-black">
+                    Tipo de Mobiliario
+                  </p>
+                  <i
+                    data-tooltip-target="tooltip-top"
+                    data-tooltip-placement="top"
+                    type="button"
+                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                  ></i>
+                </div>
                 <canvas
                   width="350"
                   height="350"
@@ -710,9 +845,34 @@
                 role="tabpanel"
                 aria-labelledby="detalle-absorcion-tab"
               >
-                <p class="text-xl text-center text-black">
-                  Terreno absorbente en relacion al area
-                </p>
+                <div class="flex items-center justify-center w-full">
+                  <div
+                    id="tooltip-top-absorcion"
+                    role="tooltip"
+                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                  >
+                    <ul class="text-left ml-2">
+                      <li class="mb-2">
+                        <span class="font-bold underline">
+                          Suelo Absorbente:
+                        </span>
+                        Proporción de terreno absorbente en relación al área
+                        total de un espacio verde de uso público.
+                      </li>
+                    </ul>
+
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  <p class="text-xl text-center text-black">
+                    Terreno absorbente
+                  </p>
+                  <i
+                    data-tooltip-target="tooltip-top-absorcion"
+                    data-tooltip-placement="top"
+                    type="button"
+                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                  ></i>
+                </div>
                 <canvas width="350" height="350" id="graficoAbsorcion"></canvas>
               </div>
             </div>
