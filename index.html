@@ -236,13 +236,14 @@
             >
               <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
               <p>
-                Selecione una clasificacion para colorear las capas segun la
-                escala que se muestra en el mapa.
+                Al hacer <b>click</b> en las capas de <b>Espacios Verdes</b>,
+                <b>Espacios Azules</b> y <b>Areas Naturales Protegidas</b> se
+                mostrará el radio de cobertura del espacio seleccionado.
               </p>
             </h2>
             <ul id="lista-capas" class="grid grid-rows-10 gap-4 w-full m-0 p-0">
               <div
-                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
               >
                 <label
                   class="inline-flex relative items-center justify-between cursor-pointer w-full"
@@ -254,9 +255,11 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
-                  <p class="text-center pr-5">Infraestructura Verde</p>
+                  <p class="text-center pr-5 text-white font-bold">
+                    Espacios Verdes
+                  </p>
                   <div></div>
                 </label>
               </div>
@@ -409,7 +412,7 @@
                 </div>
               </ul>
               <div
-                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
               >
                 <label
                   class="inline-flex relative items-center cursor-pointer w-full justify-between"
@@ -421,15 +424,17 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center">Infraestructura Azul</p>
+                  <p class="pr-5 text-center text-white font-bold">
+                    Espacios Azules
+                  </p>
                   <div></div>
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
               >
                 <label
                   class="inline-flex relative items-center cursor-pointer w-full justify-between"
@@ -441,15 +446,17 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center">Areas Naturales</p>
+                  <p class="pr-5 text-center text-white font-bold">
+                    Areas Naturales Protegidas
+                  </p>
                   <div></div>
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
               >
                 <label
                   class="inline-flex relative items-center cursor-pointer w-full justify-between"
@@ -461,15 +468,17 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center">Radios de cobertura</p>
+                  <p class="pr-5 text-center text-white font-bold">
+                    Radios de cobertura
+                  </p>
                   <div></div>
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl bg-slate-300 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="p-2 rounded-xl shadow-2xl text-white bg-green-600 text-center row-span-8 flex items-center justify-between w-full"
               >
                 <label
                   class="inline-flex relative items-center cursor-pointer w-full justify-between"
@@ -481,10 +490,10 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center">Marcha Urbana</p>
+                  <p class="pr-5 text-center font-bold">Mancha Urbana</p>
                   <div></div>
                 </label>
               </div>

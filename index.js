@@ -556,7 +556,18 @@ const agregarRadios = () => {
       fillOpacity: 0.45,
     },
     filter: filtrarRadios,
-  }).addTo(map);
+  })
+    .bindTooltip(
+      () => {
+        return "Radio de cobertura de 900m";
+      },
+      {
+        sticky: false,
+        opacity: 1,
+        offset: L.point(50, 14),
+      }
+    )
+    .addTo(map);
   map.fitBounds(radiosInfVerde.getBounds());
 };
 
@@ -769,11 +780,16 @@ function getColor(d, tipo) {
       break;
   }
 }
+function onHoverNotEspaciosVerdes(e) {
+  let layer = e.target;
+
+  info.update(layer.feature.properties, false);
+}
 
 function highlightFeature(e) {
   var layer = e.target;
 
-  info.update(layer.feature.properties);
+  info.update(layer.feature.properties, true);
 
   layer.setStyle({
     weight: 5,
@@ -798,7 +814,10 @@ function onEachFeature(feature, layer) {
 }
 function onEachFeatureNotInfVerde(feature, layer) {
   layer.on({
-    click: zoomToFeature,
+    mouseover: onHoverNotEspaciosVerdes,
+    click: (e) => {
+      zoomToFeature(e);
+    },
   });
 }
 
@@ -891,28 +910,34 @@ info.onAdd = function (map) {
   return this._div;
 };
 
-info.update = function (props) {
-  this._div.innerHTML =
-    `<h4>${
-      props
-        ? props.tipo === "X"
-          ? "Plazoleta pequeña"
-          : props.tipo
-        : "Datos de la capa"
-    }</h4>` +
-    (props
-      ? `<i class="fa-solid fa-droplet"></i></i> Absorcion: <br/> ${calcularPorcentajes(
-          props.suel_absor
-        )} en relacion a m<sup>2</sup>` +
-        "<br />" +
-        `<i class="fa-solid fa-tree"></i> Arbolado: <br/> ${calcularPorcentajes(
-          props.arbolado
-        )} en relacion a m<sup>2</sup>` +
-        "<br />" +
-        `<i class="fa-solid fa-ruler-combined"></i> Superficie: <br/> ${props.supm2.toFixed(
-          2
-        )} m<sup>2</sup>`
-      : "Seleccione una capa");
+info.update = function (props, espaciosVerdes) {
+  if (espaciosVerdes) {
+    this._div.innerHTML =
+      `<h4>${
+        props
+          ? props.tipo === "X"
+            ? "Plazoleta pequeña"
+            : props.tipo
+          : "Datos de la capa"
+      }</h4>` +
+      (props
+        ? `<i class="fa-solid fa-droplet"></i></i> Absorcion: <br/> ${calcularPorcentajes(
+            props.suel_absor
+          )} en relacion a m<sup>2</sup>` +
+          "<br />" +
+          `<i class="fa-solid fa-tree"></i> Arbolado: <br/> ${calcularPorcentajes(
+            props.arbolado
+          )} en relacion a m<sup>2</sup>` +
+          "<br />" +
+          `<i class="fa-solid fa-ruler-combined"></i> Superficie: <br/> ${props.supm2.toFixed(
+            2
+          )} m<sup>2</sup>`
+        : "Seleccione una capa");
+  } else {
+    this._div.innerHTML =
+      `<h4>${props ? props.name : "Datos de la capa"}</h4>` +
+      "Aca va la info de la capa.";
+  }
 };
 
 info.addTo(map);
