@@ -60,19 +60,38 @@
         <b class="inline-flex">infoterritorialcopade@gmail.com</b>
       </p>
     </div> -->
-    <div class="navbar bg-green-700 text-neutral-content md:h-[10vh] h-auto">
+    <div class="navbar bg-green-700 text-neutral-content md:h-[12vh] h-auto">
       <div
         class="normal-case m-2 border-green-400 grid md:grid-cols-3 grid-cols-3 w-full place-items-center text-white text-2xl"
       >
-        <img
-          src="./assets/copade-logo.png"
-          alt="logo copade"
-          class="md:w-16 w-12 place-self-start my-auto ml-4"
-        />
-        <div class="text-lg md:text-2xl md:col-span-1 col-span-2">
-          <i class="fa-solid fa-tree-city mr-2"></i>Espacios Verdes
-          <i class="fa-solid fa-tree"></i>
+        <div class="w-full">
+          <img
+            src="./assets/copade-logo.png"
+            alt="logo copade"
+            class="md:w-16 w-12 place-self-start my-auto ml-4"
+          />
         </div>
+        <div class="flex items-center font-bold w-3/4">
+          <img
+            src="./assets/maiten-logo.png"
+            alt="logo copade"
+            class="md:w-16 w-12 place-self-start my-auto ml-4"
+          />
+          <p
+            style="writing-mode: vertical-lr; text-orientation: upright"
+            class="text-xs tracking-[-0.25rem]"
+          >
+            MAITEN
+          </p>
+          <div class="h-[4.5rem] w-[0.15rem] mx-4 bg-white"></div>
+          <p class="font-normal text-xs tracking-widest">
+            <b> MA</b>PA <br />
+            <b> IN</b>TERACTIVO <br />DE <br />
+            <b> E</b>SPACIOS <br />
+            <b> N</b>ATURALES
+          </p>
+        </div>
+
         <a
           href="https://www.copade.gob.ar/"
           class="place-self-end my-auto hidden md:flex"
@@ -181,16 +200,17 @@
               <h2
                 class="text-lg text-center border-l-4 border-r-4 border-green-700 mt-2"
               >
-                Bienvenidos al mapa <br />
-                de espacios verdes del
-                <b class="text-green-700"> COPADE</b>
+                Bienvenidos a
+                <b class="text-green-700"> MAITEN</b> <br />
+                el mapa interactivo de espacios naturales de Neuquén.
               </h2>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
-                La capa que se muestra en este momento representa a los espacios
-                verdes de la provincia del Neuquén y esta coloreada segun la
-                clasificacion de cada uno.
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+                El visor que se muestra en este momento es una herramienta de
+                planificación y gestión que muestra los espacios verdes, azules
+                y las áreas protegidas de la provincia del Neuquén y sus
+                características.
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
                 Para colorear las capas según su capacidad de
                 <span class="text-blue-500 font-bold">absorción</span> ,
                 porcentaje de
@@ -205,7 +225,7 @@
                 />
                 <br />
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm leading-6">
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
                 Para mover el mapa a una <b>localidad</b> específica, puede
                 elegir cualquiera de la lista en la pestaña de localidades
                 <i
@@ -213,6 +233,10 @@
                 ></i>
 
                 <br />
+              </p>
+              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+                Para conocer el radio de cobertura específico de una espacio
+                verde, azul o un área protegida, clickee sobre el objeto.
               </p>
             </div>
           </div>
@@ -424,7 +448,7 @@
                     class="sr-only peer"
                   />
                   <div
-                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
+                    class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
                   <p class="pr-5 text-center text-white font-bold">
@@ -513,8 +537,8 @@
                 <i class="fa fa-caret-left"></i>
               </div>
             </h1>
-            <div class="text-black h-full w-full p-0 m-0">
-              <p class="mt-1 bg-slate-200 p-2 rounded text-xs leading-6">
+            <div class="text-black h-full w-full p-0 m-0 text-sm">
+              <p class="mt-1 bg-slate-200 p-2 rounded">
                 En el marco de la Agenda 2030 y con la finalidad de dar
                 cumplimento a los Objetivos de Desarrollo Sostenible, queremos
                 fortalecer la gobernanza urbana desde una dimensión ambiental,
@@ -523,16 +547,22 @@
                 propicia el derecho al ambiente sano, para un desarrollo humano
                 armonioso y respetuoso con la naturaleza.
               </p>
-              <p class="mt-1 bg-slate-200 p-2 rounded text-xs leading-6">
-                Por lo tanto, el objetivo de este mapa, es poder brindar a la
-                comunidad una herramienta para la visualización de datos de
-                relevancia y aportar una fuente de datos confiable y actualizada
-                con respecto a los espacios verdes con los que cuentan las
-                localidades de nuestra provincia.
+              <p class="mt-1 bg-slate-200 p-2 rounded">
+                Por lo tanto, el objetivo de esta herramienta es poder brindar a
+                la comunidad una fuente de datos confiable y actualizada con
+                información respecto a los espacios verdes, azules y áreas
+                protegidas con los que cuentan cada una de las localidades de
+                nuestra provincia. Este visor ha sido desarrollado por el equipo
+                de la Dirección General de Información Territorial, de COPADE.
               </p>
-              <p class="mt-1 bg-slate-200 p-1 rounded text-xs leading-6">
+              <p class="mt-1 bg-slate-200 p-1 rounded">
                 Este visor ha sido desarrollado por el equipo de la Dirección
                 general de Información Territorial, de COPADE.
+              </p>
+              <p class="mt-1 bg-slate-200 p-1 rounded">
+                Para conocer la metodología empleada para la construcción de
+                esta herramienta puede consultar el informe técnico
+                <a href="#">aquí <i class="fa-solid fa-file-arrow-down"></i></a>
               </p>
 
               <div class="grid grid-cols-2 place-items-center gap-2 mt-4">

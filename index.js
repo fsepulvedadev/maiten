@@ -4,7 +4,7 @@
 
                 //   Desarrollado por Francisco Sepulveda para COPADE - 2022    \\
 // Pueden contactarme en https://fsepulveda.vercel.app/ o por mail fsepulvedadev@gmail.com \\
-
+radiosAreasNat
 
 -------------------------------------------------------------------------------------------------
 
@@ -449,12 +449,16 @@ const cambiarCapaGeneral = (e) => {
         infVerdeLayers.remove();
         leyenda.remove();
         activas.infVerde = false;
+        e.path[2].classList.add("bg-green-600");
+        e.path[2].classList.remove("bg-green-900");
         if (map.hasLayer(radiosInfVerde)) {
           radiosInfVerde.remove();
         }
         return;
       } else {
         agregarIndice(capaSelecionada);
+        e.path[2].classList.remove("bg-green-600");
+        e.path[2].classList.add("bg-green-900");
         infVerdeLayers.addTo(map);
         activas.infVerde = true;
       }
@@ -463,35 +467,52 @@ const cambiarCapaGeneral = (e) => {
 
     case "infra-azul":
       if (!activas.infVerde) leyenda.remove();
-      if (activas.radiosCober) {
+      if (activas.infAzul) {
         infAzulLayers.remove();
-        activas.radiosCober = false;
+        activas.infAzul = false;
+        e.path[2].classList.add("bg-green-600");
+        e.path[2].classList.remove("bg-green-900");
+        if (map.hasLayer(radiosInfVerde)) {
+          radiosInfVerde.remove();
+        }
         return;
       } else {
+        e.path[2].classList.remove("bg-green-600");
+        e.path[2].classList.add("bg-green-900");
         infAzulLayers.addTo(map);
-        activas.radiosCober = true;
+        activas.infAzul = true;
       }
 
       break;
     case "mancha-urbana":
       if (!activas.infVerde) leyenda.remove();
       if (activas.manchaUrb) {
+        e.path[2].classList.add("bg-green-600");
+        e.path[2].classList.remove("bg-green-900");
         manchaUrbNqnLayers.remove();
         activas.manchaUrb = false;
         return;
       } else {
+        e.path[2].classList.remove("bg-green-600");
+        e.path[2].classList.add("bg-green-900");
         manchaUrbNqnLayers.addTo(map);
         activas.manchaUrb = true;
       }
 
       break;
     case "radios-cobertura":
-      if (!activas.infVerde) leyenda.remove();
+      if (!activas.infVerde) {
+        e.path[2].classList.add("bg-green-600");
+        e.path[2].classList.remove("bg-green-900");
+        leyenda.remove();
+      }
       if (activas.radiosCober) {
         radiosCoberturaVerdeNqnLayers.remove();
         activas.radiosCober = false;
         return;
       } else {
+        e.path[2].classList.remove("bg-green-600");
+        e.path[2].classList.add("bg-green-900");
         radiosCoberturaVerdeNqnLayers.addTo(map);
         activas.radiosCober = true;
       }
@@ -502,13 +523,20 @@ const cambiarCapaGeneral = (e) => {
       if (!activas.infVerde) leyenda.remove();
 
       if (activas.areasNat) {
+        e.path[2].classList.add("bg-green-600");
+        e.path[2].classList.remove("bg-green-900");
         areasNatLayers.remove();
         activas.areasNat = false;
+        if (map.hasLayer(radiosInfVerde)) {
+          radiosInfVerde.remove();
+        }
 
         return;
       } else {
         areasNatLayers.addTo(map);
         activas.areasNat = true;
+        e.path[2].classList.remove("bg-green-600");
+        e.path[2].classList.add("bg-green-900");
       }
 
       break;
@@ -546,6 +574,41 @@ modalAdvertencia.addEventListener("click", handleCerrarModal);
  */
 
 const agregarRadios = () => {
+  radiosInfVerde = L.geoJSON(radiosCombinados, {
+    style: {
+      weight: 2,
+      opacity: 1,
+
+      color: "#B7990D",
+      dashArray: "6",
+      fillOpacity: 0.45,
+    },
+    filter: filtrarRadios,
+  })
+    .bindTooltip(
+      (layer) => {
+        console.log(layer.feature.properties.layer);
+        switch (layer.feature.properties.layer) {
+          case "buffer_300m_plazas_posgar":
+            return "Radio de cobertura de 300m";
+
+          case "buffer_500m_plazas_posgar":
+            return "Radio de cobertura de 500m";
+
+          default:
+            return "Radio de cobertura de 900m";
+        }
+      },
+      {
+        sticky: false,
+        opacity: 1,
+        offset: L.point(50, 14),
+      }
+    )
+    .addTo(map);
+  map.fitBounds(radiosInfVerde.getBounds());
+};
+const agregarRadiosNotVerde = () => {
   radiosInfVerde = L.geoJSON(radiosCombinados, {
     style: {
       weight: 2,
@@ -816,7 +879,7 @@ function onEachFeatureNotInfVerde(feature, layer) {
   layer.on({
     mouseover: onHoverNotEspaciosVerdes,
     click: (e) => {
-      zoomToFeature(e);
+      zoomToFeatureNotVerde(e);
     },
   });
 }
@@ -862,9 +925,17 @@ function zoomToFeature(e) {
   }
 
   idCapaSeleccionada = e.target.feature.properties.id;
-  console.log("idcapaselect", idCapaSeleccionada);
 
   agregarRadios();
+}
+function zoomToFeatureNotVerde(e) {
+  if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
+    radiosInfVerde.remove();
+  }
+
+  idCapaSeleccionada = e.target.feature.properties.id;
+
+  agregarRadiosNotVerde();
 }
 
 function calcularPorcentajes(valor, tipo) {

@@ -16,7 +16,13 @@
         "ordenanza": null,
         "area": "774888.4878450928",
         "sup_ha": 77.489,
-        "id": 416
+        "id": 416,
+        "lineaDeBase": "Si",
+        "endemismos": null,
+        "planDeManejo": "Si",
+        "mobiliario": "No posee",
+        "senderos": "Básico",
+        "especiesEnPeligro": null
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -192,7 +198,13 @@
         "ordenanza": null,
         "area": "3497698.838710064",
         "sup_ha": 349.77,
-        "id": 417
+        "id": 417,
+        "lineaDeBase": "Si",
+        "endemismos": null,
+        "planDeManejo": "No",
+        "mobiliario": "No posee",
+        "senderos": "Superior",
+        "especiesEnPeligro": null
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -491,7 +503,13 @@
         "ordenanza": null,
         "area": "405416.4143101494",
         "sup_ha": 40.542,
-        "id": 418
+        "id": 418,
+        "lineaDeBase": "No",
+        "endemismos": null,
+        "planDeManejo": "No",
+        "mobiliario": "No posee",
+        "senderos": "No posee",
+        "especiesEnPeligro": null
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -588,7 +606,13 @@
         "ordenanza": null,
         "area": "500839.0734014147",
         "sup_ha": 50.084,
-        "id": 419
+        "id": 419,
+        "lineaDeBase": "No",
+        "endemismos": null,
+        "planDeManejo": "No",
+        "mobiliario": "No posee",
+        "senderos": "No posee",
+        "especiesEnPeligro": null
       },
       "geometry": {
         "type": "MultiPolygon",
