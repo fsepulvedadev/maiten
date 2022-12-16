@@ -230,7 +230,7 @@ const colors = {
     "#059669",
     "#006d2c",
   ],
-  tipos: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#059669", "#006d2c"],
+  tipos: ["#2c9699", "#7E52A0", "#f4dd51", "#f06937", "#ea1d4b", "#a72071"],
   arbolado: ["#edf8e9", "#c7e9c0", "#a1d99b", "#74c476", "#31a354", "#006d2c"],
   absorcion: ["#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
   superficie: [
@@ -1144,7 +1144,7 @@ const chartMobiliario = new Chart(ctxChartMobiliario, {
         label: "Cantidad",
         data: [sumatoriaSinMob, sumatoriaMobBasico, sumatoriaMobSup],
         borderWidth: 1,
-        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A"],
+        backgroundColor: ["#0B3142", "#0F5257", "#0E0E52"],
       },
     ],
   },
@@ -1161,7 +1161,7 @@ const chartMobiliario = new Chart(ctxChartMobiliario, {
           let percentage = ((value * 100) / sum).toFixed(2) + "%";
           return percentage;
         },
-        color: ["#392F5A", "#FF8811", "#9DD9D2"],
+        color: ["#fff"],
         font: { size: "14rem" },
       },
     },
@@ -1198,7 +1198,7 @@ const chartAbsorcion = new Chart(ctxChartAbsorcion, {
           datosNeuquen[5].sueloAbsorbente75a100,
         ],
         borderWidth: 1,
-        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A", "#0072BB"],
+        backgroundColor: ["#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
       },
     ],
   },
@@ -1215,7 +1215,7 @@ const chartAbsorcion = new Chart(ctxChartAbsorcion, {
           let percentage = ((value * 100) / sum).toFixed(2) + "%";
           return percentage;
         },
-        color: ["#392F5A", "#0072BB", "#9DD9D2", "#FF8811"],
+        color: ["#fff", "#9DD9D2", "#9DD9D2", "#9DD9D2"],
         font: { size: "14rem" },
       },
     },
@@ -1252,7 +1252,7 @@ const chartArbolado = new Chart(ctxChartArbolado, {
           datosNeuquen[5].arbolado75A100,
         ],
         borderWidth: 1,
-        backgroundColor: ["#FF8811", "#9DD9D2", "#392F5A", "#0072BB"],
+        backgroundColor: ["#a1d99b", "#74c476", "#31a354", "#006d2c"],
       },
     ],
   },
@@ -1269,7 +1269,7 @@ const chartArbolado = new Chart(ctxChartArbolado, {
           let percentage = ((value * 100) / sum).toFixed(2) + "%";
           return percentage;
         },
-        color: ["#392F5A", "#0072BB", "#9DD9D2", "#FF8811"],
+        color: ["#fff"],
         font: { size: "14rem" },
       },
     },
@@ -1284,6 +1284,29 @@ const chartArbolado = new Chart(ctxChartArbolado, {
 // END GRAFICO ARBOLADO //
 
 // GRAFICO  PORCENTAJE ESPACIOS VERDES //
+
+const ctxPorcentajeVerde = document.getElementById("myChart");
+
+new Chart(ctxPorcentajeVerde, {
+  type: "bar",
+  data: {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});
 
 // END GRAFICO  PORCENTAJE ESPACIOS VERDES //
 

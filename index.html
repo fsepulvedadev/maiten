@@ -181,16 +181,12 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0" id="home">
+          <div class="leaflet-sidebar-pane m-0 active" id="home">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
               Inicio
-              <img
-                src="./assets/copade-logo.png"
-                alt="copade-logo"
-                class="w-8 inline mr-5"
-              />
+            
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
@@ -246,11 +242,7 @@
               class="leaflet-sidebar-header flex justify-between items-center"
             >
               Clasificaciones
-              <img
-                src="./assets/copade-logo.png"
-                alt="copade-logo"
-                class="w-8 inline mr-5"
-              />
+             
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
@@ -395,7 +387,7 @@
                     >
                       <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
                       <p id="superficie" class="col-span-3 text-[0.7rem]">
-                        Porcentaje de Absorcion de Agua en funcion de los m<sup
+                        Superficie en m<sup
                           >2</sup
                         >
                       </p>
@@ -495,10 +487,35 @@
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center text-white font-bold">
-                    Radios de cobertura
+                  <p class="pr-5 text-center text-white font-bold flex items-center">
+                    Radios de cobertura 
+                    <i
+                    data-tooltip-target="tooltip-top-capas-radios"
+                    data-tooltip-placement="top"
+                    type="button"
+                    class="fa-solid fa-circle-question ml-2 text-white hover:text-green-700 focus:ring-blue-300 rounded-lg text-xl text-center"
+                  ></i>
+                  <div
+                  id="tooltip-top-capas-radios"
+                  role="tooltip"
+                  class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                >
+                  <ul class="text-left ml-2">
+                    <li class="mb-2">
+                      Para cada tipo de espacio verde se determinó un radio de cobertura, es decir la distancia máxima óptima que tiene que recorrer a pie un habitante  para acceder a un espacio verde, los radios de cobertura por tipo de espacio verde se detallan a continuación:
+                     <ul class="list-disc mt-4 pl-4">
+                      <li>Espacios verdes hasta 3 Ha: 300 metros (5 min)</li>
+                      <li class="mt-2">Espacios verdes entre 3 Ha a 10 Ha: 500 metros (10 min)</li>
+                      <li class="mt-2">Espacios verdes mayores a 10 Ha: 900 m. (15 min)</li>
+                     </ul>
+                    </li>
+                  </ul>
+  
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                  
+              </div>
                   </p>
-                  <div></div>
+               
                 </label>
               </div>
               <div
@@ -585,11 +602,7 @@
               class="leaflet-sidebar-header flex justify-between items-center"
             >
               Localidades
-              <img
-                src="./assets/copade-logo.png"
-                alt="copade-logo"
-                class="w-8 inline mr-5"
-              />
+              
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
@@ -616,11 +629,7 @@
               class="leaflet-sidebar-header flex justify-between items-center"
             >
               Cambiar mapa base
-              <img
-                src="./assets/copade-logo.png"
-                alt="copade-logo"
-                class="w-8 inline mr-5"
-              />
+            
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
@@ -681,19 +690,28 @@
                     srcset=""
                   />
                 </li>
+                <li
+                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  id="sin-mapa"
+                >
+                  <h2 class="text-base">Sin Mapa Base</h2>
+
+                  <img
+                    class="w-10 h-10 rounded drop-shadow-lg grayscale"
+                    src="./assets/satelite.png"
+                    alt="Sin mapa base"
+                    srcset=""
+                  />
+                </li>
               </ul>
             </div>
           </div>
-          <div class="leaflet-sidebar-pane m-0 active" id="detalle">
+          <div class="leaflet-sidebar-pane m-0" id="detalle">
             <h1
               class="leaflet-sidebar-header flex justify-between items-center"
             >
               Detalle de localidad
-              <img
-                src="./assets/copade-logo.png"
-                alt="copade-logo"
-                class="w-8 inline mr-5"
-              />
+              
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
