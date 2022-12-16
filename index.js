@@ -1006,8 +1006,7 @@ info.update = function (props, espaciosVerdes) {
         : "Seleccione una capa");
   } else {
     this._div.innerHTML =
-      `<h4>${props ? props.name : "Datos de la capa"}</h4>` +
-      "Aca va la info de la capa.";
+      `<h4>${props ? props.name : "Datos del elemento"}</h4>` + "";
   }
 };
 
