@@ -1283,6 +1283,10 @@ const chartArbolado = new Chart(ctxChartArbolado, {
 
 // END GRAFICO ARBOLADO //
 
+// GRAFICO  PORCENTAJE ESPACIOS VERDES //
+
+// END GRAFICO  PORCENTAJE ESPACIOS VERDES //
+
 // END Graficos //
 
 //END ELEMENTOS DE UI //
