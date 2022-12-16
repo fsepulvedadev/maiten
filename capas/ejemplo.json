@@ -1,0 +1,40 @@
+{
+  "Neuquen": {
+    "graficoMobiliario": {
+      "basico": 130,
+      "noPosee": 13,
+      "superior": 240
+    },
+    "graficoArbolado": {
+      "0a25": 130,
+      "25a50": 13,
+      "50a75": 240,
+      "75a100": 240
+    },
+    "graficoAbsorcion": {
+      "0a25": 130,
+      "25a50": 13,
+      "50a75": 240,
+      "75a100": 240
+    }
+  },
+  "Alumine": {
+    "graficoMobiliario": {
+      "basico": 130,
+      "noPosee": 13,
+      "superior": 240
+    },
+    "graficoArbolado": {
+      "0a25": 130,
+      "25a50": 13,
+      "50a75": 240,
+      "75a100": 240
+    },
+    "graficoAbsorcion": {
+      "0a25": 130,
+      "25a50": 13,
+      "50a75": 240,
+      "75a100": 240
+    }
+  }
+}

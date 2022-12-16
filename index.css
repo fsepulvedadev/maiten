@@ -1,0 +1,65 @@
+:root {
+  background-color: white;
+}
+
+#map {
+  height: 85vh;
+  width: 100%;
+}
+
+#lista-capas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-sidebar-header {
+  background-color: #15803d;
+}
+
+.leaflet-sidebar-tabs > li > a,
+.leaflet-sidebar-tabs > ul > li > a {
+  width: 90%;
+}
+
+.leaflet-sidebar-tabs > li.active,
+.leaflet-sidebar-tabs > ul > li.active {
+  background-color: #15803d;
+}
+.leaflet-sidebar-tabs > li.active,
+.leaflet-sidebar-tabs > ul > li.active i {
+  color: #fff;
+}
+
+.marker-cluster span {
+  color: black;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  color: black;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #333;
+  font-weight: bold;
+}
+.info i {
+  padding: 0px 5px;
+  margin: 10px 0;
+}
+
+.info i.fa-droplet {
+  color: lightskyblue;
+}
+.info i.fa-tree {
+  color: green;
+}
+.info i.fa-ruler-combined {
+  color: orange;
+}
