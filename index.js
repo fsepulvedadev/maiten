@@ -1090,7 +1090,7 @@ const tabElements = [
 
 // options with default values
 const options = {
-  defaultTabId: "arbolado",
+  defaultTabId: "general",
   activeClasses:
     "text-green-600 hover:text-green-600 dark:text-green-600 dark:hover:text-green-600 border-green-600 dark:border-green-500",
   inactiveClasses:
