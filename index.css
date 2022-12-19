@@ -1,10 +1,10 @@
 :root {
-  background-color: white;
-  zoom: 0.995;
+  background-color: #15803d;
+  zoom: 0.95;
 }
 
 #map {
-  height: 85vh;
+  height: 89vh;
   width: 100%;
 }
 

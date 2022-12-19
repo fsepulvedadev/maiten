@@ -82,13 +82,12 @@ const capasEspaciosVerdes = document.getElementById(
   "lista-capas-espacios-verdes"
 );
 const ModalDetalle = document.getElementById("detalle-modal");
-const btnCerrarModalDetalle = document.getElementById(
-  "detalle-modal-btn-cerrar"
-);
+
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
 const infraVerdeBtn = document.getElementById("infra-verde");
+
 const infraAzulBtn = document.getElementById("infra-azul");
 const areasNatBtn = document.getElementById("areas-nat");
 const radiosCoberturaVerdeNqnBtn = document.getElementById("radios-cobertura");
@@ -319,6 +318,8 @@ const handleClickLocalidades = (e) => {
   cerrarSidebar();
   setTimeout(() => {
     abrirSidebar();
+    let detalleTab = document.getElementById("detalle-tab");
+    detalleTab.classList.add("active");
   }, 500);
 };
 
@@ -557,7 +558,6 @@ const cambiarCapaGeneral = (e) => {
 // END EVENT HANDLERS
 
 // EVENT LISTENERS
-btnCerrarModalDetalle.addEventListener("click", handleCerrarModalDetalle);
 infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
 mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
@@ -1059,7 +1059,7 @@ let infVerdeLayers = L.geoJSON(verdeData, {
   onEachFeature: onEachFeature,
 });
 
-leyenda.addTo(map);
+/* leyenda.addTo(map); */
 
 /* 
 const circle = L.circleMarker([-38.941, -67.115], {
@@ -1135,8 +1135,6 @@ let sumatoriaMobBasico = valoresMobBasico.reduce(
 );
 let sumatoriaMobSup = valoresMobSup.reduce((acc, current) => acc + current, 0);
 let sumatoriaSinMob = valoresSinMob.reduce((acc, current) => acc + current, 0);
-
-console.log(datosNeuquen);
 
 Chart.register(ChartDataLabels);
 
