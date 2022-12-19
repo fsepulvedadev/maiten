@@ -116,7 +116,7 @@ const localidades = [
     zoom: 13,
   },
   {
-    nombre: "Loncopue",
+    nombre: "Loncopué",
     loc: [-38.0711421, -70.6204302],
     id: "loncopue",
     zoom: 15,
@@ -128,13 +128,13 @@ const localidades = [
     zoom: 15,
   },
   {
-    nombre: "Picun Leufu",
+    nombre: "Picún Leufú",
     loc: [-39.5177718, -69.2969567],
     id: "picun",
     zoom: 15,
   },
   {
-    nombre: "Cutral-co",
+    nombre: "Cutral-có",
     loc: [-38.9374343, -69.2552547],
     id: "cutralco",
     zoom: 14,
@@ -153,7 +153,7 @@ const localidades = [
     zoom: 14,
   },
   {
-    nombre: "Rincon de los Sauces",
+    nombre: "Rincón de los Sauces",
     loc: [-37.3967149, -68.9470263],
     id: "rincon",
     zoom: 14,
@@ -189,13 +189,13 @@ const localidades = [
     zoom: 13,
   },
   {
-    nombre: "Pehuenia",
+    nombre: "Villa Pehuenia",
     loc: [-38.890998, -71.1938877],
     zoom: 14,
     id: "pehuenia",
   },
   {
-    nombre: "Alumine",
+    nombre: "Aluminé",
     loc: [-39.2363186, -70.9376694],
     id: "alumine",
     zoom: 14,
@@ -207,7 +207,7 @@ const localidades = [
     zoom: 14,
   },
   {
-    nombre: "Neuquen Capital",
+    nombre: "Neuquén Capital",
     loc: [-38.9410802, -68.1854411],
     id: "neuquen",
     zoom: 12,
@@ -644,6 +644,17 @@ const agregarRadiosNotVerde = () => {
 };
 
 const agregarLocalidadesAlista = () => {
+  // Ordenados alfabeticamente
+  let ordenados = localidades.sort(function (a, b) {
+    if (a.nombre < b.nombre) {
+      return -1;
+    }
+    if (a.nombre > b.nombre) {
+      return 1;
+    }
+    return 0;
+  });
+
   let listaLi = localidades.map(
     (e) =>
       `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`
@@ -745,7 +756,7 @@ const agregarIndice = (tipo) => {
             ";" +
             'margin-right: 5px;"></i> ' +
             (tiposDeEspacios[i] === "X"
-              ? "Plazoleta Pequeña"
+              ? "Espacio sin definir"
               : tiposDeEspacios[i]) +
             "<br>";
         }
@@ -960,7 +971,7 @@ function calcularPorcentajes(valor, tipo) {
         return "Corredor";
         break;
       case 4:
-        return "Plazoleta Pequeña";
+        return "Espacio sin definir";
         break;
       case 5:
         return "Parque";
@@ -996,7 +1007,7 @@ info.update = function (props, espaciosVerdes) {
       `<h4>${
         props
           ? props.tipo === "X"
-            ? "Plazoleta pequeña"
+            ? "Espacio sin definir"
             : props.tipo
           : "Datos de la capa"
       }</h4>` +
@@ -1045,7 +1056,9 @@ leyenda.onAdd = function (map) {
       getColor(grades[i], "tipos") +
       ";" +
       'margin-right: 5px;"></i> ' +
-      (tiposDeEspacios[i] === "X" ? "Plazoleta Pequeña" : tiposDeEspacios[i]) +
+      (tiposDeEspacios[i] === "X"
+        ? "Espacio sin definir"
+        : tiposDeEspacios[i]) +
       "<br>";
   }
   div.innerHTML =

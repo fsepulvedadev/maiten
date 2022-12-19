@@ -1,10 +1,5 @@
-:root {
-  background-color: #15803d;
-  zoom: 0.95;
-}
-
 #map {
-  height: 89vh;
+  height: 85vh;
   width: 100%;
 }
 
@@ -63,4 +58,20 @@
 }
 .info i.fa-ruler-combined {
   color: orange;
+}
+
+p {
+  font-size: 0.7rem !important;
+}
+
+h1.leaflet-sidebar-header {
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 0.9rem !important;
+}
+
+h3 {
+  font-size: 0.8rem !important;
 }

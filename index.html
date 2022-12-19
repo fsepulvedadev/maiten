@@ -60,61 +60,65 @@
         <b class="inline-flex">infoterritorialcopade@gmail.com</b>
       </p>
     </div> -->
-    <div class="navbar bg-green-700 text-neutral-content md:h-[11vh] h-auto">
+    <div class="navbar bg-green-700 text-neutral-content md:h-[10vh] h-auto w-full">
       <div
-        class="normal-case m-2 border-green-400 grid md:grid-cols-3 grid-cols-3 w-full place-items-center text-white text-2xl"
+        class="normal-case  border-green-400 w-full flex justify-between items-center text-white text-sm"
       >
-        <div class="w-full">
           <img
             src="./assets/copade-logo.png"
             alt="logo copade"
-            class="md:w-16 w-12 place-self-start my-auto ml-4"
+            class="md:w-16 w-12 place-self-start my-auto ml-2"
           />
-        </div>
-        <div class="flex md:justify-center justify-start items-center w-full">
-          <div>
+        <div class="flex md:justify-center justify-end items-center w-full">
 
             <img
               src="./assets/maiten-logo.png"
               alt="logo copade"
-              class="md:w-8 w-12 place-self-start my-auto ml-4"
+              class="md:w-10 w-10 place-self-start my-auto md:ml-4 "
             />
-            <p
-              class="text-base text-center font-bold tracking-wider"
+            
+          <div class="h-[3.3rem] w-[0.10rem] mx-2 bg-white"></div>
+          <div class="text-[0.5rem] uppercase text-center md:w-2/12 w-6/12">
+            <h1
+              class="text-xl text-center font-bold tracking-wider"
             >
               MAITEN
-            </p>
+          </h1>
+            <ul class="inline-flex">
+              <li class=" px-1"> <b class="font-extrabold">Ma</b>pa</li>
+              <li class=" px-1"><b class="font-extrabold">I</b>nteractivo</li>
+              <li class=" px-1"><b class="font-extrabold">T</b>écnico</li>
+            </ul>
+
+            <ul class="inline-flex">
+              <li class="px-1">de</li>
+              <li class=" px-1">  <b class="font-extrabold">  E</b>spacios</li>
+              <li class=" px-1"><b class="font-extrabold">N</b>aturales</li>
+            </ul>
+          
           </div>
-          <div class="h-[3.3rem] w-[0.10rem] mx-4 bg-white"></div>
-          <ul class="text-xs uppercase">
-            <li class="-my-[0.20rem] p-0"> <b class="font-extrabold">Ma</b>pa</li>
-            <li class="-my-[0.20rem] p-0"><b class="font-extrabold">I</b>nteractivo</li>
-            <li class="-my-[0.20rem] p-0"><b class="font-extrabold">T</b>ecnico</li>
-            <li class="-my-[0.20rem] p-0">de <b class="font-extrabold">E</b>spacios</li>
-            <li class="-my-[0.20rem] p-0"><b class="font-extrabold">N</b>aturales</li>
-          </ul>
           
         </div>
 
         <a
           href="https://www.copade.gob.ar/"
-          class="place-self-end my-auto hidden md:flex"
+          class="my-auto hidden md:flex w-1/12"
         >
           <button
-            class="text-lg p-1 border rounded mr-4 flex hover:shadow hover:shadow-white duration-200"
+            class="text-xs  border rounded mx-auto flex hover:shadow hover:shadow-white duration-200 p-1"
           >
             Regresar a
             <img
               src="./assets/copade-logo.png"
               alt="logo copade"
-              class="w-8 place-self-start my-auto ml-2"
+              class="w-6 my-auto m-1"
             />
           </button>
         </a>
       </div>
     </div>
 
-    <main class="w-full flex justify-end items-center">
+    <main class="w-full flex justify-end items-center h-auto">
    
 
       <div id="map" class="w-full mx-auto"></div>
@@ -703,7 +707,7 @@
               Neuquen Capital
             </h2>
             <h3
-              class="text-xl my-4 border-2 bg-green-600 text-white text-center"
+              class="text-xl my-2 border-2 bg-green-600 text-white text-center"
             >
               Espacios Verdes
             </h3>
@@ -770,7 +774,7 @@
                 role="tabpanel"
                 aria-labelledby="detalle-general-tab"
               >
-                <h2 class="text-xl text-center text-black mb-4">
+                <h2 class="text-xl text-center text-black mb-1">
                   Espacios Verdes por Habitante
                   <i
                   data-tooltip-target="tooltip-top-general-recomendado"
@@ -806,7 +810,7 @@
                     <div class=" w-[54.5%] z-10 bg-emerald-500 text-center mt-1 rounded">54.5 %</div>
                   </div>
                 </div> -->
-                <div class="border-4 border-green-500 shadow-lg shadow-green-400 p-2 my-4 rounded-xl w-full">
+                <div class="border-4 border-green-500 shadow-lg shadow-green-400 p-2 my-2 rounded-xl w-full">
                   <p id="general-metros-verde-tag" class="text-base text-center bg-green-500 text-white my-1 rounded">Neuquen Capital
                  
 
@@ -833,7 +837,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="border-4 border-amber-500 border-dashed p-2 my-4 rounded-xl">
+                <div class="border-4 border-amber-500 border-dashed p-2 my-2 rounded-xl">
                   <p class="text-base text-center bg-amber-500 text-white my-1 rounded">Mínimo</p>
                   <div class="flex items-center justify-center">
                     <p class="flex items-center">
@@ -855,7 +859,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="border-4 border-emerald-500 border-dashed  p-2 my-4 rounded-xl w-full">
+                <div class="border-4 border-emerald-500 border-dashed  p-2 my-2 rounded-xl w-full">
                   <p class="text-base text-center bg-emerald-500 text-white my-1 rounded">Recomendado
                  
 
@@ -1033,7 +1037,7 @@
     </main>
 
     <footer
-      class="w-full bg-green-700 md:h-[5vh] h-fit flex md:flex-row flex-col items-center justify-between text-center"
+      class="w-full bg-green-700 md:h-[5vh] h-fit flex md:flex-row flex-col items-center justify-between text-center text-xs"
     >
       <h2 class="text-white ml-4">
         Para consultas o sugerencias click
