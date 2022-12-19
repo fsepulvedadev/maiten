@@ -96,6 +96,7 @@ const manchaUrbanaBtn = document.getElementById("mancha-urbana");
 const mapaNegro = document.getElementById("negro");
 const mapaGris = document.getElementById("gris");
 const mapaSatelite = document.getElementById("satelite");
+const sinMapa = document.getElementById("sin-mapa");
 const negro =
   "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG:3857@png/{z}/{x}/{-y}.png";
 const gris =
@@ -217,10 +218,12 @@ let tiposDeEspacios = [
   ...new Set(verdeData.features.map((e) => e.properties.tipo)),
 ];
 let base = "gris";
+
 let mapaBase = L.tileLayer(gris, {
   attribution:
     '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
 }).addTo(map);
+
 const colors = {
   selecionado: [
     "#8dd3c7",
@@ -274,6 +277,7 @@ const handleSeleccionarMapaBase = (e) => {
   mapaNegro.classList.remove("border-2");
   mapaGris.classList.remove("border-2");
   mapaSatelite.classList.remove("border-2");
+  sinMapa.classList.remove("border-2");
   selecionado.classList.add("border-2");
   /*  argenmap.remove(); */
   mapaBase.remove();
@@ -295,6 +299,10 @@ const handleSeleccionarMapaBase = (e) => {
     case "satelite":
       base = "satelite";
       mapaBase = L.tileLayer.bing(BING_KEY).addTo(map);
+      break;
+
+    case "sin-mapa":
+      base = "sin-mapa";
       break;
 
     default:
@@ -553,6 +561,7 @@ btnCerrarModalDetalle.addEventListener("click", handleCerrarModalDetalle);
 infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
 mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
+sinMapa.addEventListener("click", handleSeleccionarMapaBase);
 mapaSatelite.addEventListener("click", handleSeleccionarMapaBase);
 absorcionTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 arboladoTag.addEventListener("click", cambiarCapaEspaciosVerdes);
