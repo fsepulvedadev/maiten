@@ -87,7 +87,25 @@ const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
 const infraVerdeBtn = document.getElementById("infra-verde");
+let tarjetaVerdeAzulState = "actual";
+let tarjetaVerdeState = "actual";
 
+const detalleTarjetaVerdeActual = document.getElementById(
+  "detalle-tarjeta-verde-actual"
+);
+const detalleTarjetaVerde4años = document.getElementById(
+  "detalle-tarjeta-verde-4años"
+);
+
+const detalleTarjetaMetrosVerdeyAzul = document.getElementById(
+  "general-metros-verdeyazul-tag"
+);
+const detalleTarjetaVerdeAzulBtnActual = document.getElementById(
+  "detalle-tarjeta-btn-actual"
+);
+const detalleTarjetaVerdeAzulBtn4años = document.getElementById(
+  "detalle-tarjeta-btn-4años"
+);
 const infraAzulBtn = document.getElementById("infra-azul");
 const areasNatBtn = document.getElementById("areas-nat");
 const radiosCoberturaVerdeNqnBtn = document.getElementById("radios-cobertura");
@@ -255,6 +273,59 @@ let activas = {
 // END DEFINICIONES
 
 // EVENT HANDLERS
+const toggleVerdeActuala4años = () => {
+  if (tarjetaVerdeState === "actual") {
+    return;
+  } else if (tarjetaVerdeState === "4años") {
+    tarjetaVerdeState = "actual";
+    document.getElementById("detalle-tarjeta-verde-text").innerHTML =
+      "34,8 m<sup>2</sup>";
+    detalleTarjetaVerdeActual.classList =
+      "-top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-green-500 border-green-500 p-1 border rounded text-white";
+    detalleTarjetaVerde4años.classList =
+      "-top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-green-500 p-1 border rounded text-green-500";
+  }
+};
+const toggleVerde4añosAactual = () => {
+  if (tarjetaVerdeState === "4años") {
+    return;
+  } else if (tarjetaVerdeState === "actual") {
+    tarjetaVerdeState = "4años";
+    document.getElementById(
+      "detalle-tarjeta-verde-text"
+    ).innerHTML = `29,4 m<sup>2 </sup><span class="text-success font-bold ml-1">   + 5,4 m<sup>2</sup><i class="fa-solid fa-angles-up ml-1"></i> </span>`;
+
+    detalleTarjetaVerdeActual.classList =
+      "-top-3 left-6 absolute text-[0.6rem] cursor-pointer bg-white border-green-500 p-1 border rounded text-green-500";
+    detalleTarjetaVerde4años.classList =
+      "-top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-green-500 border-green-500 p-1 border rounded text-white";
+  }
+};
+const toggleVerdeAzulActuala4años = () => {
+  if (tarjetaVerdeAzulState === "actual") {
+    return;
+  } else if (tarjetaVerdeAzulState === "4años") {
+    tarjetaVerdeAzulState = "actual";
+    detalleTarjetaMetrosVerdeyAzul.innerHTML = "73,3 m<sup>2</sup>";
+    detalleTarjetaVerdeAzulBtnActual.classList =
+      "-top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-[#21A0A0] border-[#21A0A0] p-1 border rounded text-white";
+    detalleTarjetaVerdeAzulBtn4años.classList =
+      "-top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-[#21A0A0] p-1 border rounded text-[#21A0A0]";
+  }
+};
+const toggleVerdeAzul4añosAactual = () => {
+  if (tarjetaVerdeAzulState === "4años") {
+    return;
+  } else if (tarjetaVerdeAzulState === "actual") {
+    tarjetaVerdeAzulState = "4años";
+    detalleTarjetaMetrosVerdeyAzul.innerHTML = `53,9 m<sup>2 </sup><span class="text-success font-bold ml-1">   + 19,4 m<sup>2</sup><i class="fa-solid fa-angles-up ml-1"></i> </span>`;
+
+    detalleTarjetaVerdeAzulBtnActual.classList =
+      "-top-3 left-6 absolute text-[0.6rem] cursor-pointer bg-white border-[#21A0A0] p-1 border rounded text-[#21A0A0]";
+    detalleTarjetaVerdeAzulBtn4años.classList =
+      "-top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-[#21A0A0] border-[#21A0A0] p-1 border rounded text-white";
+  }
+};
 
 const toggleCapasVerdes = () => {
   if (capasEspaciosVerdes.classList.contains("hidden")) {
@@ -558,6 +629,17 @@ const cambiarCapaGeneral = (e) => {
 // END EVENT HANDLERS
 
 // EVENT LISTENERS
+detalleTarjetaVerdeActual.addEventListener("click", toggleVerdeActuala4años);
+detalleTarjetaVerde4años.addEventListener("click", toggleVerde4añosAactual);
+
+detalleTarjetaVerdeAzulBtn4años.addEventListener(
+  "click",
+  toggleVerdeAzul4añosAactual
+);
+detalleTarjetaVerdeAzulBtnActual.addEventListener(
+  "click",
+  toggleVerdeAzulActuala4años
+);
 infraVerdeBtn.addEventListener("click", toggleCapasVerdes);
 mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
