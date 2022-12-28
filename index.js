@@ -21,8 +21,10 @@ import radiosEspVerdes from "./capas/radio_cobertura_espacios_verdes.json" asser
 import radiosEspAzules from "./capas/radios-esp-azules.json" assert { type: "json" };
 import radiosAreasNat from "./capas/radios-areas-nat.json" assert { type: "json" };
 import radiosCombinados from "./capas/radios_combinados.json" assert { type: "json" };
+import datosEspaciosVerdes4Años from "./capas/datosEspaciosVerdes4Años.json" assert { type: "json" };
 // END IMPORTACIONES
 
+console.log(datosEspaciosVerdes4Años);
 // DEFINICIONES
 const map = L.map("map", {
   center: [-38.9410802, -68.1854411],
@@ -89,6 +91,9 @@ const superficieTag = document.getElementById("superficie");
 const infraVerdeBtn = document.getElementById("infra-verde");
 let tarjetaVerdeAzulState = "actual";
 let tarjetaVerdeState = "actual";
+const ver4añosAbsorcionBtn = document.getElementById("ver4añosAbsorcion");
+const ver4añosArboladoBtn = document.getElementById("ver4añosArbolado");
+const ver4añosMobiliarioBtn = document.getElementById("ver4añosMobiliario");
 
 const detalleTarjetaVerdeActual = document.getElementById(
   "detalle-tarjeta-verde-actual"
@@ -273,6 +278,7 @@ let activas = {
 // END DEFINICIONES
 
 // EVENT HANDLERS
+
 const toggleVerdeActuala4años = () => {
   if (tarjetaVerdeState === "actual") {
     return;
@@ -629,6 +635,7 @@ const cambiarCapaGeneral = (e) => {
 // END EVENT HANDLERS
 
 // EVENT LISTENERS
+
 detalleTarjetaVerdeActual.addEventListener("click", toggleVerdeActuala4años);
 detalleTarjetaVerde4años.addEventListener("click", toggleVerde4añosAactual);
 
@@ -1273,6 +1280,36 @@ const chartMobiliario = new Chart(ctxChartMobiliario, {
     },
   },
 });
+
+let mostrar4añosMobiliarioState = false;
+function mostrar4añosGraficoMobiliario() {
+  if (!mostrar4añosMobiliarioState) {
+    const nuevaData = {
+      label: "Cantidad hace 4 años",
+      data: [
+        datosEspaciosVerdes4Años.graficoMobiliario.mobiliarioNoPosee,
+        datosEspaciosVerdes4Años.graficoMobiliario.mobiliarioBasico,
+        datosEspaciosVerdes4Años.graficoMobiliario.mobiliarioSuperior,
+      ],
+      borderWidth: 1,
+      backgroundColor: ["#0B3142", "#0F5257", "#0E0E52"],
+    };
+
+    chartMobiliario.config.data.datasets.push(nuevaData);
+    chartMobiliario.update();
+    mostrar4añosMobiliarioState = true;
+    ver4añosMobiliarioBtn.innerText = "Quitar evolucion";
+  } else {
+    chartMobiliario.config.data.datasets.pop();
+    chartMobiliario.update();
+    mostrar4añosMobiliarioState = false;
+    ver4añosMobiliarioBtn.innerText = "Ver evolucion";
+  }
+}
+ver4añosMobiliarioBtn.addEventListener("click", () => {
+  mostrar4añosGraficoMobiliario();
+});
+
 // END MOBILIARIO //
 
 // GRAFICO ABSORCION //
@@ -1327,6 +1364,36 @@ const chartAbsorcion = new Chart(ctxChartAbsorcion, {
     },
   },
 });
+let mostrar4añosAbsorcionState = false;
+function mostrar4añosGraficoAbsorcion() {
+  if (!mostrar4añosAbsorcionState) {
+    const nuevaData = {
+      label: "Cantidad hace 4 años",
+      data: [
+        datosEspaciosVerdes4Años.graficoAbsorcion.sueloAbsorbente0A25,
+        datosEspaciosVerdes4Años.graficoAbsorcion.sueloAbsorbente25A50,
+        datosEspaciosVerdes4Años.graficoAbsorcion.sueloAbsorbente50A75,
+        datosEspaciosVerdes4Años.graficoAbsorcion.sueloAbsorbente75A100,
+      ],
+      borderWidth: 1,
+      backgroundColor: ["#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
+    };
+
+    chartAbsorcion.config.data.datasets.push(nuevaData);
+    chartAbsorcion.update();
+    mostrar4añosAbsorcionState = true;
+    ver4añosAbsorcionBtn.innerText = "Quitar evolucion";
+  } else {
+    chartAbsorcion.config.data.datasets.pop();
+    console.log(chartAbsorcion.config.data.datasets);
+    chartAbsorcion.update();
+    mostrar4añosAbsorcionState = false;
+    ver4añosAbsorcionBtn.innerText = "Ver evolucion";
+  }
+}
+ver4añosAbsorcionBtn.addEventListener("click", () => {
+  mostrar4añosGraficoAbsorcion("absorcion");
+});
 
 // END GRAFICO ABSORCION //
 // GRAFICO ARBOLADO //
@@ -1380,6 +1447,37 @@ const chartArbolado = new Chart(ctxChartArbolado, {
       },
     },
   },
+});
+
+let mostrar4añosArboladoState = false;
+function mostrar4añosGraficoArbolado() {
+  if (!mostrar4añosArboladoState) {
+    const nuevaData = {
+      label: "Cantidad hace 4 años",
+      data: [
+        datosEspaciosVerdes4Años.graficoArbolado.arbolado0A25,
+        datosEspaciosVerdes4Años.graficoArbolado.arbolado25A50,
+        datosEspaciosVerdes4Años.graficoArbolado.arbolado50A75,
+        datosEspaciosVerdes4Años.graficoArbolado.arbolado75A100,
+      ],
+      borderWidth: 1,
+      backgroundColor: ["#a1d99b", "#74c476", "#31a354", "#006d2c"],
+    };
+
+    chartArbolado.config.data.datasets.push(nuevaData);
+    chartArbolado.update();
+    mostrar4añosArboladoState = true;
+    ver4añosArboladoBtn.innerText = "Quitar evolucion";
+  } else {
+    chartArbolado.config.data.datasets.pop();
+    console.log(chartAbsorcion.config.data.datasets);
+    chartArbolado.update();
+    mostrar4añosArboladoState = false;
+    ver4añosArboladoBtn.innerText = "Ver evolucion";
+  }
+}
+ver4añosArboladoBtn.addEventListener("click", () => {
+  mostrar4añosGraficoArbolado();
 });
 
 // END GRAFICO ARBOLADO //

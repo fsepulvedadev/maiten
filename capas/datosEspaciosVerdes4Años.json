@@ -1,0 +1,19 @@
+{
+  "graficoMobiliario": {
+    "mobiliarioNoPosee": 60,
+    "mobiliarioBasico": 210,
+    "mobiliarioSuperior": 180
+  },
+  "graficoArbolado": {
+    "arbolado0A25": 180,
+    "arbolado25A50": 100,
+    "arbolado50A75": 120,
+    "arbolado75A100": 50
+  },
+  "graficoAbsorcion": {
+    "sueloAbsorbente0A25": 20,
+    "sueloAbsorbente25A50": 55,
+    "sueloAbsorbente50A75": 195,
+    "sueloAbsorbente75A100": 180
+  }
+}

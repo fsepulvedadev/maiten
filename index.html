@@ -961,6 +961,30 @@
                     class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
                   ></i>
                 </div>
+                <div class="flex items-center justify-center">
+                  <button id="ver4añosArbolado" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                  <i
+                  data-tooltip-target="tooltip-top-arbolado-evolucion"
+                  data-tooltip-placement="top"
+                  type="button"
+                  class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-700  rounded-lg text-xl text-center"
+                ></i>
+
+                  <div
+                  id="tooltip-top-arbolado-evolucion"
+                  role="tooltip"
+                  class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                >
+                  <ul class="text-left ml-2">
+                    <li class="mb-2">
+                     
+                      Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de cobertura arborea hace 4 años.
+                    </li>
+                  </ul>
+
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                </div>
                 <canvas width="350" height="350" id="graficoArbolado"></canvas>
               </div>
               <div
@@ -1027,6 +1051,30 @@
                     class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
                   ></i>
                 </div>
+                <div class="flex items-center justify-center">
+                  <button id="ver4añosMobiliario" type="button" class="text-white bg-gradient-to-r from-[#0B3142] via-[#0F5257] to-[#0E0E52] hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                  <i
+                  data-tooltip-target="tooltip-top-mobiliario-evolucion"
+                  data-tooltip-placement="top"
+                  type="button"
+                  class="fa-solid fa-circle-question ml-2 text-[#0B3142] hover:text-[#0F5257] rounded-lg text-xl text-center"
+                ></i>
+
+                  <div
+                  id="tooltip-top-mobiliario-evolucion"
+                  role="tooltip"
+                  class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                >
+                  <ul class="text-left ml-2">
+                    <li class="mb-2">
+                     
+                      Ver valores de la cantidad de espacios verdes clasificados segun su equipamiento y mobiliario hace 4 años.
+                    </li>
+                  </ul>
+
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                </div>
                 <canvas
                   width="350"
                   height="350"
@@ -1039,8 +1087,10 @@
                 role="tabpanel"
                 aria-labelledby="detalle-absorcion-tab"
               >
-                <div class="flex items-center justify-center w-full">
-                  <div
+                <div class="flex flex-col items-center justify-center w-full">
+                
+                  <div class=" flex items-center">
+                    <div
                     id="tooltip-top-absorcion"
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
@@ -1057,15 +1107,42 @@
 
                     <div class="tooltip-arrow" data-popper-arrow></div>
                   </div>
-                  <p class="text-xl text-center text-black">
-                    Terreno absorbente
-                  </p>
-                  <i
-                    data-tooltip-target="tooltip-top-absorcion"
+                    <p class="text-xl text-center text-black">
+                      Terreno absorbente
+                    </p>
+                    <i
+                      data-tooltip-target="tooltip-top-absorcion"
+                      data-tooltip-placement="top"
+                      type="button"
+                      class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                    ></i>
+                   
+                  </div>
+                  <div class="flex items-center">
+                    <button id="ver4añosAbsorcion" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                    <i
+                    data-tooltip-target="tooltip-top-absorcion-evolucion"
                     data-tooltip-placement="top"
                     type="button"
-                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                    class="fa-solid fa-circle-question ml-2 text-blue-600 hover:text-blue-800  rounded-lg text-xl text-center"
                   ></i>
+
+                    <div
+                    id="tooltip-top-absorcion-evolucion"
+                    role="tooltip"
+                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                  >
+                    <ul class="text-left ml-2">
+                      <li class="mb-2">
+                       
+                        Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de absorcion hace 4 años.
+                      </li>
+                    </ul>
+
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  </div>
+ 
                 </div>
                 <canvas width="350" height="350" id="graficoAbsorcion"></canvas>
               </div>
