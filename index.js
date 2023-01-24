@@ -528,6 +528,8 @@ const cambiarCapaEspaciosVerdes = (e) => {
 };
 const cambiarCapaGeneral = (e) => {
   let target = e.target.id;
+  const path = e.composedPath();
+  console.log(path[2].classList);
 
   switch (target) {
     case "infra-verde":
@@ -535,16 +537,16 @@ const cambiarCapaGeneral = (e) => {
         infVerdeLayers.remove();
         leyenda.remove();
         activas.infVerde = false;
-        e.path[2].classList.add("bg-green-600");
-        e.path[2].classList.remove("bg-green-900");
+        path[2].classList.add("bg-green-600");
+        path[2].classList.remove("bg-green-900");
         if (map.hasLayer(radiosInfVerde)) {
           radiosInfVerde.remove();
         }
         return;
       } else {
         agregarIndice(capaSelecionada);
-        e.path[2].classList.remove("bg-green-600");
-        e.path[2].classList.add("bg-green-900");
+        path[2].classList.remove("bg-green-600");
+        path[2].classList.add("bg-green-900");
         infVerdeLayers.addTo(map);
         activas.infVerde = true;
       }
@@ -556,15 +558,15 @@ const cambiarCapaGeneral = (e) => {
       if (activas.infAzul) {
         infAzulLayers.remove();
         activas.infAzul = false;
-        e.path[2].classList.add("bg-green-600");
-        e.path[2].classList.remove("bg-green-900");
+        path[2].classList.add("bg-green-600");
+        path[2].classList.remove("bg-green-900");
         if (map.hasLayer(radiosInfVerde)) {
           radiosInfVerde.remove();
         }
         return;
       } else {
-        e.path[2].classList.remove("bg-green-600");
-        e.path[2].classList.add("bg-green-900");
+        path[2].classList.remove("bg-green-600");
+        path[2].classList.add("bg-green-900");
         infAzulLayers.addTo(map);
         activas.infAzul = true;
       }
@@ -573,14 +575,14 @@ const cambiarCapaGeneral = (e) => {
     case "mancha-urbana":
       if (!activas.infVerde) leyenda.remove();
       if (activas.manchaUrb) {
-        e.path[2].classList.add("bg-green-600");
-        e.path[2].classList.remove("bg-green-900");
+        path[2].classList.add("bg-green-600");
+        path[2].classList.remove("bg-green-900");
         manchaUrbNqnLayers.remove();
         activas.manchaUrb = false;
         return;
       } else {
-        e.path[2].classList.remove("bg-green-600");
-        e.path[2].classList.add("bg-green-900");
+        path[2].classList.remove("bg-green-600");
+        path[2].classList.add("bg-green-900");
         manchaUrbNqnLayers.addTo(map);
         activas.manchaUrb = true;
       }
@@ -588,8 +590,8 @@ const cambiarCapaGeneral = (e) => {
       break;
     case "radios-cobertura":
       if (!activas.infVerde) {
-        e.path[2].classList.add("bg-green-600");
-        e.path[2].classList.remove("bg-green-900");
+        path[2].classList.add("bg-green-600");
+        path[2].classList.remove("bg-green-900");
         leyenda.remove();
       }
       if (activas.radiosCober) {
@@ -597,8 +599,8 @@ const cambiarCapaGeneral = (e) => {
         activas.radiosCober = false;
         return;
       } else {
-        e.path[2].classList.remove("bg-green-600");
-        e.path[2].classList.add("bg-green-900");
+        path[2].classList.remove("bg-green-600");
+        path[2].classList.add("bg-green-900");
         radiosCoberturaVerdeNqnLayers.addTo(map);
         activas.radiosCober = true;
       }
@@ -609,8 +611,8 @@ const cambiarCapaGeneral = (e) => {
       if (!activas.infVerde) leyenda.remove();
 
       if (activas.areasNat) {
-        e.path[2].classList.add("bg-green-600");
-        e.path[2].classList.remove("bg-green-900");
+        path[2].classList.add("bg-green-600");
+        path[2].classList.remove("bg-green-900");
         areasNatLayers.remove();
         activas.areasNat = false;
         if (map.hasLayer(radiosInfVerde)) {
@@ -621,8 +623,8 @@ const cambiarCapaGeneral = (e) => {
       } else {
         areasNatLayers.addTo(map);
         activas.areasNat = true;
-        e.path[2].classList.remove("bg-green-600");
-        e.path[2].classList.add("bg-green-900");
+        path[2].classList.remove("bg-green-600");
+        path[2].classList.add("bg-green-900");
       }
 
       break;

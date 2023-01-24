@@ -49,51 +49,51 @@
       class="absolute z-[90000000] w-11/12 h-[90vh] top-5 left-16 p-6 flex flex-col items-center rounded bg-amber-500"
     >
       <i
-        class="fa-solid fa-xmark absolute top-4 right-6 text-white text-3xl"
+        class="absolute text-3xl text-white fa-solid fa-xmark top-4 right-6"
       ></i>
-      <p class="w-2/3 flex flex-col items-center p-2 text-white rounded">
-        <i class="fa-solid fa-triangle-exclamation text-9xl mb-20"></i>
+      <p class="flex flex-col items-center w-2/3 p-2 text-white rounded">
+        <i class="mb-20 fa-solid fa-triangle-exclamation text-9xl"></i>
         Este visor se encuentra en fase de desarrollo y por lo tanto pueden
         encontrarse errores de funcionamiento y/o mostrar informacion
         desactualizada o inexacta. Ante cualquier inconveniente o sugerencia, se
         puede contactar al siguiente mail:
         <b class="inline-flex">infoterritorialcopade@gmail.com</b>
       </p>
-    </div> -->
+    </div> -->  
     <div class="navbar bg-green-700 text-neutral-content md:h-[10vh] h-auto w-full">
       <div
-        class="normal-case  border-green-400 w-full flex justify-between items-center text-white text-sm"
+        class="flex items-center justify-between w-full text-sm text-white normal-case border-green-400"
       >
           <img
             src="./assets/copade-logo.png"
             alt="logo copade"
-            class="md:w-16 w-12 place-self-start my-auto ml-2"
+            class="w-12 my-auto ml-2 md:w-16 place-self-start"
           />
-        <div class="flex md:justify-center justify-end items-center w-full">
+        <div class="flex items-center justify-end w-full md:justify-center">
 
             <img
               src="./assets/maiten-logo.png"
               alt="logo copade"
-              class="md:w-10 w-10 place-self-start my-auto md:ml-4 "
+              class="w-10 my-auto md:w-10 place-self-start md:ml-4 "
             />
             
           <div class="h-[3.3rem] w-[0.10rem] mx-2 bg-white"></div>
           <div class="text-[0.5rem] uppercase text-center md:w-2/12 w-6/12">
             <h1
-              class="text-xl text-center font-bold tracking-wider"
+              class="text-xl font-bold tracking-wider text-center"
             >
               MAITEN
           </h1>
             <ul class="inline-flex text-[0.6rem]">
-              <li class=" px-1"> <b class="font-extrabold">Ma</b>pa</li>
-              <li class=" px-1"><b class="font-extrabold">I</b>nteractivo</li>
-              <li class=" px-1"><b class="font-extrabold">T</b>écnico</li>
+              <li class="px-1 "> <b class="font-extrabold">Ma</b>pa</li>
+              <li class="px-1 "><b class="font-extrabold">I</b>nteractivo</li>
+              <li class="px-1 "><b class="font-extrabold">T</b>écnico</li>
             </ul>
 
             <ul class="inline-flex text-[0.6rem]">
               <li class="px-1">de</li>
-              <li class=" px-1">  <b class="font-extrabold">  E</b>spacios</li>
-              <li class=" px-1"><b class="font-extrabold">N</b>aturales</li>
+              <li class="px-1 ">  <b class="font-extrabold">  E</b>spacios</li>
+              <li class="px-1 "><b class="font-extrabold">N</b>aturales</li>
             </ul>
           
           </div>
@@ -102,55 +102,55 @@
 
         <a
           href="https://www.copade.gob.ar/"
-          class="my-auto hidden md:flex w-32"
+          class="hidden w-32 my-auto md:flex"
         >
           <button
-            class="w-full text-xs  border rounded mx-auto flex items-center hover:shadow hover:shadow-white duration-200 p-1"
+            class="flex items-center w-full p-1 mx-auto text-xs duration-200 border rounded hover:shadow hover:shadow-white"
           >
             Regresar a
             <img
               src="./assets/copade-logo.png"
               alt="logo copade"
-              class="w-8 my-auto m-1"
+              class="w-8 m-1 my-auto"
             />
           </button>
         </a>
       </div>
     </div>
 
-    <main class="w-full flex justify-end items-center h-auto">
+    <main class="flex items-center justify-end w-full h-auto">
    
 
       <div id="map" class="w-full mx-auto"></div>
-      <div id="sidebar" class="leaflet-sidebar md:mt-0 my-2">
+      <div id="sidebar" class="my-2 leaflet-sidebar md:mt-0">
         <!-- Nav tabs -->
         <div class="leaflet-sidebar-tabs">
           <ul role="tablist">
             <!-- top aligned tabs -->
             <li id="inicio-tab" class="active">
               <a href="#home" role="tab"
-                ><i class="fa fa-bars text-green-700"></i
+                ><i class="text-green-700 fa fa-bars"></i
               ></a>
             </li>
             <li id="capas-tab">
               <a href="#layers" role="tab"
-                ><i class="fa-solid fa-layer-group text-green-700"></i
+                ><i class="text-green-700 fa-solid fa-layer-group"></i
               ></a>
             </li>
             <li id="ciudades-tab">
               <a href="#ciudades" role="tab"
-                ><i class="fa-solid fa-map-location-dot text-green-700"></i
+                ><i class="text-green-700 fa-solid fa-map-location-dot"></i
               ></a>
             </li>
            
             <li id="detalle-tab">
               <a href="#detalle" role="tab"
-                ><i class="fa-solid fa-chart-pie text-green-700"></i
+                ><i class="text-green-700 fa-solid fa-chart-pie"></i
               ></a>
             </li>
             <li id="fondos-tab">
               <a href="#fondos" role="tab"
-                ><i class="fa-solid fa-gears text-green-700"></i
+                ><i class="text-green-700 fa-solid fa-gears"></i
               ></a>
             </li>
           </ul>
@@ -160,7 +160,7 @@
 
             <li id="acerca-tab" class="">
               <a href="#info" role="tab"
-                ><i class="fa-solid fa-circle-info text-green-700"></i
+                ><i class="text-green-700 fa-solid fa-circle-info"></i
               ></a>
             </li>
           </ul>
@@ -168,9 +168,9 @@
 
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
-          <div class="leaflet-sidebar-pane m-0 active" id="home">
+          <div class="m-0 leaflet-sidebar-pane active" id="home">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Inicio
             
@@ -179,23 +179,23 @@
               </div>
             </h1>
 
-            <div class="text-black h-full w-full p-0 m-0">
+            <div class="w-full h-full p-0 m-0 text-black">
               <h2
-                class="text-lg text-center border-l-4 border-r-4 border-green-700 mt-2"
+                class="mt-2 text-lg text-center border-l-4 border-r-4 border-green-700"
               >
                 Bienvenidos a
                 <b class="text-green-700"> MAITEN</b> <br />
                 el mapa interactivo técnico <br> de espacios naturales de Neuquén.
               </h2>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+              <p class="p-2 mt-5 text-sm rounded bg-slate-200">
                 El visor  que se muestra en este momento es una herramienta de planificación y gestión donde se puede analizar los espacios verdes, azules y las áreas protegidas de la provincia del Neuquén y sus características. 
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+              <p class="p-2 mt-5 text-sm rounded bg-slate-200">
                 Para colorear las capas según su capacidad de
-                <span class="text-blue-500 font-bold">absorción</span> ,
+                <span class="font-bold text-blue-500">absorción</span> ,
                 porcentaje de
-                <span class="text-green-600 font-bold">arbolado</span> o su
-                <span class="text-orange-400 font-bold">superficie</span> en
+                <span class="font-bold text-green-600">arbolado</span> o su
+                <span class="font-bold text-orange-400">superficie</span> en
                 m<sup>2</sup>, utilice el menú lateral en la seccion
                 clasificación
                 <img
@@ -205,17 +205,17 @@
                 />
                 <br />
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+              <p class="p-2 mt-5 text-sm rounded bg-slate-200">
                 Para mover el mapa a una <b>localidad</b> específica, puede
                 elegir cualquiera de la lista en la pestaña de localidades
                 <i
-                  class="fa-solid fa-map-location-dot p-1 rounded bg-slate-100"
+                  class="p-1 rounded fa-solid fa-map-location-dot bg-slate-100"
                 ></i>
                 y se desplegará un menú con información personalizada de cada una.
 
                 <br />
               </p>
-              <p class="mt-5 bg-slate-200 p-2 rounded text-sm">
+              <p class="p-2 mt-5 text-sm rounded bg-slate-200">
                 Para conocer el radio de cobertura específico de una espacio verde, azul o un área protegida, clickee sobre el objeto.
               </p>
             </div>
@@ -223,7 +223,7 @@
 
           <div class="leaflet-sidebar-pane" id="layers">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Clasificaciones
              
@@ -232,21 +232,21 @@
               </div>
             </h1>
             <h2
-              class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+              class="flex items-center justify-center p-2 my-4 text-xs text-black rounded bg-slate-200"
             >
-              <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+              <i class="mx-2 text-lg fa-solid fa-circle-info"></i>
               <p>
                 Al hacer <b>click</b> en las capas de <b>Espacios Verdes</b>,
                 <b>Espacios Azules</b> y <b>Areas Naturales Protegidas</b> se
                 mostrará el radio de cobertura del espacio seleccionado.
               </p>
             </h2>
-            <ul id="lista-capas" class="grid grid-rows-10 gap-4 w-full m-0 p-0">
+            <ul id="lista-capas" class="grid w-full gap-4 p-0 m-0 grid-rows-10">
               <div
-                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
               >
-                <label
-                  class="inline-flex relative items-center justify-between cursor-pointer w-full"
+                <label 
+                  class="relative inline-flex items-center justify-between w-full cursor-pointer "
                 >
                   <input
                     type="checkbox"
@@ -257,7 +257,7 @@
                   <div
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
-                  <p class="text-center pr-5 text-white font-bold">
+                  <p class="pr-5 font-bold text-center text-white">
                     Espacios Verdes
                   </p>
                   <div></div>
@@ -265,36 +265,36 @@
               </div>
               <ul
                 id="lista-capas-espacios-verdes"
-                class="grid-rows-3 gap-4 w-full m-0 p-2 hidden bg-slate-300 rounded-xl"
+                class="hidden w-full grid-rows-3 gap-4 p-2 m-0 bg-slate-300 rounded-xl"
               >
                 <div
-                  class="w-full cursor-pointer p-1 rounded ring-blue-400"
+                  class="w-full p-1 rounded cursor-pointer ring-blue-400"
                   id="absorcion"
                 >
                   <h3
                     id="absorcion"
-                    class="text-center text-blue-400 font-bold"
+                    class="font-bold text-center text-blue-400"
                   >
                     Absorcion
                   </h3>
 
                   <div
                     id="absorcion"
-                    class="flex rounded border-2 border-blue-400 h-12"
+                    class="flex h-12 border-2 border-blue-400 rounded"
                   >
                     <label
                       id="absorcion"
-                      class="bg-blue-400 w-1/4 h-full flex items-center justify-center"
+                      class="flex items-center justify-center w-1/4 h-full bg-blue-400"
                     >
                       <i
                         id="absorcion"
-                        class="fa-solid fa-droplet text-white text-sm rounded"
+                        class="text-sm text-white rounded fa-solid fa-droplet"
                       ></i>
                     </label>
 
                     <div
                       id="absorcion"
-                      class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
                     >
                       <p id="absorcion" class="col-span-3 text-[0.7rem]">
                         Porcentaje de Absorcion de Agua en funcion de los m<sup
@@ -305,33 +305,33 @@
                   </div>
                 </div>
                 <div
-                  class="w-full cursor-pointer p-1 rounded ring-green-600"
+                  class="w-full p-1 rounded cursor-pointer ring-green-600"
                   id="arbolado"
                 >
                   <h3
                     id="arbolado"
-                    class="text-center text-green-600 font-bold"
+                    class="font-bold text-center text-green-600"
                   >
                     Arbolado
                   </h3>
 
                   <div
                     id="arbolado"
-                    class="flex rounded border-2 border-green-600 h-12"
+                    class="flex h-12 border-2 border-green-600 rounded"
                   >
                     <label
                       id="arbolado"
-                      class="bg-green-600 w-1/4 h-full flex items-center justify-center"
+                      class="flex items-center justify-center w-1/4 h-full bg-green-600"
                     >
                       <i
                         id="arbolado"
-                        class="fa-solid fa-tree text-white text-sm rounded"
+                        class="text-sm text-white rounded fa-solid fa-tree"
                       ></i>
                     </label>
 
                     <div
                       id="arbolado"
-                      class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
                     >
                       <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
                       <p id="arbolado" class="col-span-3 text-[0.7rem]">
@@ -341,33 +341,33 @@
                   </div>
                 </div>
                 <div
-                  class="w-full cursor-pointer p-1 rounded ring-orange-400"
+                  class="w-full p-1 rounded cursor-pointer ring-orange-400"
                   id="superficie"
                 >
                   <h3
                     id="superficie"
-                    class="text-center text-orange-400 font-bold"
+                    class="font-bold text-center text-orange-400"
                   >
                     Superficie
                   </h3>
 
                   <div
                     id="superficie"
-                    class="flex rounded border-2 border-orange-400 h-12"
+                    class="flex h-12 border-2 border-orange-400 rounded"
                   >
                     <label
                       id="superficie"
-                      class="bg-orange-400 w-1/4 h-full flex items-center justify-center"
+                      class="flex items-center justify-center w-1/4 h-full bg-orange-400"
                     >
                       <i
                         id="superficie"
-                        class="fa-solid fa-ruler-combined text-white text-sm rounded"
+                        class="text-sm text-white rounded fa-solid fa-ruler-combined"
                       ></i>
                     </label>
 
                     <div
                       id="superficie"
-                      class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
                     >
                       <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
                       <p id="superficie" class="col-span-3 text-[0.7rem]">
@@ -379,30 +379,30 @@
                   </div>
                 </div>
                 <div
-                  class="w-full cursor-pointer ring-2 p-1 rounded ring-emerald-600"
+                  class="w-full p-1 rounded cursor-pointer ring-2 ring-emerald-600"
                   id="tipo"
                 >
-                  <h3 id="tipo" class="text-center text-emerald-600 font-bold">
+                  <h3 id="tipo" class="font-bold text-center text-emerald-600">
                     Tipo de Espacios
                   </h3>
 
                   <div
                     id="tipo"
-                    class="flex rounded border-2 border-emerald-600 h-12"
+                    class="flex h-12 border-2 rounded border-emerald-600"
                   >
                     <label
                       id="tipo"
-                      class="bg-emerald-600 w-1/4 h-full flex items-center justify-center"
+                      class="flex items-center justify-center w-1/4 h-full bg-emerald-600"
                     >
                       <i
                         id="tipo"
-                        class="fa-solid fa-leaf text-white text-sm rounded"
+                        class="text-sm text-white rounded fa-solid fa-leaf"
                       ></i>
                     </label>
 
                     <div
                       id="tipo"
-                      class="w-full text-black p-2 rounded grid grid-cols-1 grid-rows-1 place-items-center"
+                      class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
                     >
                       <p id="tipo" class="col-span-3 text-[0.7rem]">
                         Clasificacion segun el tipo de espacio verde
@@ -412,10 +412,10 @@
                 </div>
               </ul>
               <div
-                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
               >
                 <label
-                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                  class="relative inline-flex items-center justify-between w-full cursor-pointer"
                 >
                   <input
                     id="infra-azul"
@@ -427,17 +427,17 @@
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center text-white font-bold">
+                  <p class="pr-5 font-bold text-center text-white">
                     Espacios Azules
                   </p>
                   <div></div>
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
               >
                 <label
-                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                  class="relative inline-flex items-center justify-between w-full cursor-pointer"
                 >
                   <input
                     id="areas-nat"
@@ -449,17 +449,17 @@
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center text-white font-bold">
+                  <p class="pr-5 font-bold text-center text-white">
                     Areas Naturales Protegidas
                   </p>
                   <div></div>
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl shadow-2xl bg-green-600 text-center text-black row-span-8 flex items-center justify-between w-full"
+                class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
               >
                 <label
-                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                  class="relative inline-flex items-center justify-between w-full cursor-pointer"
                 >
                   <input
                     id="radios-cobertura"
@@ -471,23 +471,23 @@
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center text-white font-bold flex items-center">
+                  <p class="flex items-center pr-5 font-bold text-center text-white">
                     Radios de cobertura 
                     <i
                     data-tooltip-target="tooltip-top-capas-radios"
                     data-tooltip-placement="top"
                     type="button"
-                    class="fa-solid fa-circle-question ml-2 text-white hover:text-green-700 focus:ring-blue-300 rounded-lg text-xl text-center"
+                    class="ml-2 text-xl text-center text-white rounded-lg fa-solid fa-circle-question hover:text-green-700 focus:ring-blue-300"
                   ></i>
                   <div
                   id="tooltip-top-capas-radios"
                   role="tooltip"
                   class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                 >
-                  <ul class="text-left ml-2">
+                  <ul class="ml-2 text-left">
                     <li class="mb-2">
                       Para cada tipo de espacio verde se determinó un radio de cobertura, es decir la distancia máxima óptima que tiene que recorrer a pie un habitante  para acceder a un espacio verde, los radios de cobertura por tipo de espacio verde se detallan a continuación:
-                     <ul class="list-disc mt-4 pl-4">
+                     <ul class="pl-4 mt-4 list-disc">
                       <li>Espacios verdes hasta 3 Ha: 300 metros (5 min)</li>
                       <li class="mt-2">Espacios verdes entre 3 Ha a 10 Ha: 500 metros (10 min)</li>
                       <li class="mt-2">Espacios verdes mayores a 10 Ha: 900 m. (15 min)</li>
@@ -503,10 +503,10 @@
                 </label>
               </div>
               <div
-                class="p-2 rounded-xl shadow-2xl text-white bg-green-600 text-center row-span-8 flex items-center justify-between w-full"
+                class="flex items-center justify-between w-full p-2 text-center text-white bg-green-600 shadow-2xl rounded-xl row-span-8"
               >
                 <label
-                  class="inline-flex relative items-center cursor-pointer w-full justify-between"
+                  class="relative inline-flex items-center justify-between w-full cursor-pointer"
                 >
                   <input
                     id="mancha-urbana"
@@ -518,28 +518,28 @@
                     class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
                   ></div>
 
-                  <p class="pr-5 text-center font-bold">Mancha Urbana</p>
+                  <p class="pr-5 font-bold text-center">Mancha Urbana</p>
                   <div></div>
                 </label>
               </div>
             </ul>
           </div>
-          <div class="leaflet-sidebar-pane overflow-y-auto" id="info">
+          <div class="overflow-y-auto leaflet-sidebar-pane" id="info">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Acerca de
               <img
                 src="./assets/copade-logo.png"
                 alt="copade-logo"
-                class="w-8 inline mr-5"
+                class="inline w-8 mr-5"
               />
               <div class="leaflet-sidebar-close">
                 <i class="fa fa-caret-left"></i>
               </div>
             </h1>
-            <div class="text-black h-full w-full p-0 m-0 text-sm">
-              <p class="mt-1 bg-slate-200 p-2 rounded">
+            <div class="w-full h-full p-0 m-0 text-sm text-black">
+              <p class="p-2 mt-1 rounded bg-slate-200">
                 En el marco de la Agenda 2030 y con la finalidad de dar
                 cumplimento a los Objetivos de Desarrollo Sostenible, queremos
                 fortalecer la gobernanza urbana desde una dimensión ambiental,
@@ -548,7 +548,7 @@
                 propicia el derecho al ambiente sano, para un desarrollo humano
                 armonioso y respetuoso con la naturaleza.
               </p>
-              <p class="mt-1 bg-slate-200 p-2 rounded">
+              <p class="p-2 mt-1 rounded bg-slate-200">
                 Por lo tanto, el objetivo de esta herramienta es poder brindar a
                 la comunidad una fuente de datos confiable y actualizada con
                 información respecto a los espacios verdes, azules y áreas
@@ -556,17 +556,17 @@
                 nuestra provincia. Este visor ha sido desarrollado por el equipo
                 de la Dirección General de Información Territorial, de COPADE.
               </p>
-              <p class="mt-1 bg-slate-200 p-1 rounded">
+              <p class="p-1 mt-1 rounded bg-slate-200">
                 Este visor ha sido desarrollado por el equipo de la Dirección
                 general de Información Territorial, de COPADE.
               </p>
-              <p class="mt-1 bg-slate-200 p-1 rounded">
+              <p class="p-1 mt-1 rounded bg-slate-200">
                 Para conocer la metodología empleada para la construcción de
                 esta herramienta puede consultar el informe técnico
                 <a href="#">aquí <i class="fa-solid fa-file-arrow-down"></i></a>
               </p>
 
-              <div class="grid grid-cols-2 place-items-center gap-2 mt-4">
+              <div class="grid grid-cols-2 gap-2 mt-4 place-items-center">
                 <img
                   src="./assets/neuquen-provincia-blanco.png"
                   alt="neuquen provincia"
@@ -583,7 +583,7 @@
           </div>
           <div class="leaflet-sidebar-pane" id="ciudades">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Localidades
               
@@ -593,9 +593,9 @@
             </h1>
             <div>
               <h2
-                class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+                class="flex items-center justify-center p-2 my-4 text-xs text-black rounded bg-slate-200"
               >
-                <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+                <i class="mx-2 text-lg fa-solid fa-circle-info"></i>
 
                 <p>
                   Clickee la localidad que desee localizar. El mapa se movera a
@@ -604,13 +604,13 @@
               </h2>
               <ul
                 id="lista-localidades"
-                class="grid grid-cols-2 gap-2 w-full"
+                class="grid w-full grid-cols-2 gap-2"
               ></ul>
             </div>
           </div>
-          <div class="leaflet-sidebar-pane m-0" id="fondos">
+          <div class="m-0 leaflet-sidebar-pane" id="fondos">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Cambiar mapa base
             
@@ -619,11 +619,11 @@
               </div>
             </h1>
 
-            <div class="text-black h-full w-full p-0 m-0">
+            <div class="w-full h-full p-0 m-0 text-black">
               <h2
-                class="text-black text-xs flex items-center justify-center my-4 bg-slate-200 p-2 rounded"
+                class="flex items-center justify-center p-2 my-4 text-xs text-black rounded bg-slate-200"
               >
-                <i class="fa-solid fa-circle-info mx-2 text-lg"></i>
+                <i class="mx-2 text-lg fa-solid fa-circle-info"></i>
                 <p>
                   Selecione una mapa base para mostrar en el visor, los mapas
                   mas oscuros pueden mejorar el contraste pero dar menos
@@ -636,7 +636,7 @@
               </h2>
               <ul id="lista-mapas-base" class="grid grid-rows-4 gap-2">
                 <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  class="flex items-center justify-between p-2 duration-500 border-green-700 rounded cursor-pointer bg-slate-100 w-100 hover:scale-105 hover:drop-shadow-lg shadow-green-700"
                   id="negro"
                 >
                   <h2 class="text-base">Mapa oscuro</h2>
@@ -649,7 +649,7 @@
                   />
                 </li>
                 <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  class="flex items-center justify-between p-2 duration-500 border-green-700 rounded cursor-pointer bg-slate-100 w-100 hover:scale-105 hover:drop-shadow-lg shadow-green-700"
                   id="gris"
                 >
                   <h2 class="text-base">Mapa gris</h2>
@@ -662,7 +662,7 @@
                   />
                 </li>
                 <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  class="flex items-center justify-between p-2 duration-500 border-green-700 rounded cursor-pointer bg-slate-100 w-100 hover:scale-105 hover:drop-shadow-lg shadow-green-700"
                   id="satelite"
                 >
                   <h2 class="text-base">Mapa Satelital</h2>
@@ -675,7 +675,7 @@
                   />
                 </li>
                 <li
-                  class="bg-slate-100 w-100 flex justify-between items-center rounded p-2 border-green-700 cursor-pointer hover:scale-105 duration-500 hover:drop-shadow-lg shadow-green-700"
+                  class="flex items-center justify-between p-2 duration-500 border-green-700 rounded cursor-pointer bg-slate-100 w-100 hover:scale-105 hover:drop-shadow-lg shadow-green-700"
                   id="sin-mapa"
                 >
                   <h2 class="text-base">Sin Mapa Base</h2>
@@ -690,9 +690,9 @@
               </ul>
             </div>
           </div>
-          <div class="leaflet-sidebar-pane m-0" id="detalle">
+          <div class="m-0 leaflet-sidebar-pane" id="detalle">
             <h1
-              class="leaflet-sidebar-header flex justify-between items-center"
+              class="flex items-center justify-between leaflet-sidebar-header"
             >
               Detalle de localidad
               
@@ -702,24 +702,24 @@
             </h1>
             <h2
               id="detalle-titulo"
-              class="text-center text-2xl mt-4 text-black border-green-600"
+              class="mt-4 text-2xl text-center text-black border-green-600"
             >
               Neuquen Capital
             </h2>
             <h3
-              class="text-xl my-2 border-2 bg-green-600 text-white text-center"
+              class="my-2 text-xl text-center text-white bg-green-600 border-2"
             >
               Espacios Verdes
             </h3>
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
               <ul
-                class="flex flex-wrap -mb-px justify-evenly text-sm font-medium text-center text-gray-500 dark:text-gray-400"
+                class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 justify-evenly dark:text-gray-400"
                 id="tabExample"
                 role="tablist"
               >
                 <li class="md:w-1/4" role="presentation">
                   <button
-                    class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     id="detalle-general-tab"
                     type="button"
                     role="tab"
@@ -731,7 +731,7 @@
                 </li>
                 <li class="md:w-1/4" role="presentation">
                   <button
-                    class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     id="detalle-arbolado-tab"
                     type="button"
                     role="tab"
@@ -743,7 +743,7 @@
                 </li>
                 <li class="md:w-1/4" role="presentation">
                   <button
-                    class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     id="detalle-mobiliario-tab"
                     type="button"
                     role="tab"
@@ -755,7 +755,7 @@
                 </li>
                 <li class="md:w-1/4" role="presentation">
                   <button
-                    class="inline-block md:w-full p-3 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     id="detalle-absorcion-tab"
                     type="button"
                     role="tab"
@@ -769,25 +769,25 @@
             </div>
             <div id="tabContentExample">
               <div
-                class="hidden md:p-4 md:pt-0 p-2 bg-gray-50 rounded-lg text-black "
+                class="hidden p-2 text-black rounded-lg md:p-4 md:pt-0 bg-gray-50 "
                 id="detalle-general"
                 role="tabpanel"
                 aria-labelledby="detalle-general-tab"
               >
-                <h2 class="text-xl text-center text-black mb-1">
+                <h2 class="mb-1 text-xl text-center text-black">
                   Espacios Verdes por Habitante
                   <i
                   data-tooltip-target="tooltip-top-general-recomendado"
                   data-tooltip-placement="top"
                   type="button"
-                  class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                  class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                 ></i>
                 <div
                 id="tooltip-top-general-recomendado"
                 role="tooltip"
                 class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
               >
-                <ul class="text-left ml-2">
+                <ul class="ml-2 text-left">
                   <li class="mb-2">
                     La Organización Mundial de la Salud (OMS) establece como parámetro <b>
                       mínimo 9 m²/habitante
@@ -800,8 +800,8 @@
               </div>
                 </h2>
           <div class="relative">
-            <div class="border-4 border-green-500 shadow-lg shadow-green-400 p-2 my-2 rounded-xl w-full">
-              <p id="general-metros-verde-tag" class="text-base text-center bg-green-500 text-white my-1 rounded">Neuquen Capital
+            <div class="w-full p-2 my-2 border-4 border-green-500 shadow-lg shadow-green-400 rounded-xl">
+              <p id="general-metros-verde-tag" class="my-1 text-base text-center text-white bg-green-500 rounded">Neuquen Capital
              
 
                
@@ -811,9 +811,9 @@
                 <p class="flex items-center">
                   <div class="flex items-center m-1">
 
-                    <img class="w-9 -m-1 md:block hidden" src="./assets/maiten-logo.png" alt="" />
-                    <img class="w-9 -m-3" src="./assets/maiten-logo.png" alt="" />
-                    <img class="w-9 -m-2" src="./assets/maiten-logo.png" alt="" />
+                    <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                    <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                    <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
                   </div>
                 <p id="detalle-tarjeta-verde-text" class="flex items-center mx-1">
 
@@ -822,7 +822,7 @@
                 </p>
                 <p class="flex items-center mx-1">x</p>
                 <p class="flex items-center">
-                  <i class="fa-solid fa-person mx-2 text-base"></i>
+                  <i class="mx-2 text-base fa-solid fa-person"></i>
                   Habitante
                 </p>
               </div>
@@ -850,7 +850,7 @@
                       <p class="flex items-center">
                         <div class="flex items-center m-1">
   
-                          <img class="w-9 -m-1 md:block hidden" src="./assets/maiten-logo.png" alt="" />
+                          <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
                           <img class="w-6 " src="./assets/water.png" alt="" />
                         </div>
                       <div id="general-metros-verdeyazul-tag" class="flex items-center mx-1">
@@ -860,7 +860,7 @@
                       </p>
                       <p class="flex items-center mx-1">x</p>
                       <p class="flex items-center">
-                        <i class="fa-solid fa-person mx-2 text-base"></i>
+                        <i class="mx-2 text-base fa-solid fa-person"></i>
                         Habitante
                       </p>
                     </div>
@@ -876,15 +876,15 @@
                   </span>
               </div>
               
-                <div class="border-4 border-amber-500 border-dashed p-2 my-2 rounded-xl">
-                  <p class="text-base text-center bg-amber-500 text-white my-1 rounded">Mínimo</p>
+                <div class="p-2 my-2 border-4 border-dashed border-amber-500 rounded-xl">
+                  <p class="my-1 text-base text-center text-white rounded bg-amber-500">Mínimo</p>
                   <div class="flex items-center justify-center">
                     <p class="flex items-center">
                       <div class="flex items-center m-1">
 
-                        <img class="w-9 -m-1 md:block hidden" src="./assets/maiten-logo.png" alt="" />
-                        <img class="w-9 -m-3" src="./assets/maiten-logo.png" alt="" />
-                        <img class="w-9 -m-2" src="./assets/maiten-logo.png" alt="" />
+                        <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                        <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                        <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
                       </div>
                     <p class="flex items-center mx-1">
 
@@ -893,13 +893,13 @@
                     </p>
                     <p class="flex items-center mx-1">x</p>
                     <p class="flex items-center">
-                      <i class="fa-solid fa-person mx-2 text-base"></i>
+                      <i class="mx-2 text-base fa-solid fa-person"></i>
                       Habitante
                     </p>
                   </div>
                 </div>
-                <div class="border-4 border-emerald-500 border-dashed  p-2 my-2 rounded-xl w-full">
-                  <p class="text-base text-center bg-emerald-500 text-white my-1 rounded">Recomendado
+                <div class="w-full p-2 my-2 border-4 border-dashed border-emerald-500 rounded-xl">
+                  <p class="my-1 text-base text-center text-white rounded bg-emerald-500">Recomendado
                  
 
                    
@@ -909,9 +909,9 @@
                     <p class="flex items-center">
                       <div class="flex items-center m-1">
 
-                        <img class="w-9 -m-1 md:block hidden" src="./assets/maiten-logo.png" alt="" />
-                        <img class="w-9 -m-3" src="./assets/maiten-logo.png" alt="" />
-                        <img class="w-9 -m-2" src="./assets/maiten-logo.png" alt="" />
+                        <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                        <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                        <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
                       </div>
                     <p class="flex items-center mx-1">
 
@@ -920,7 +920,7 @@
                     </p>
                     <p class="flex items-center mx-1">x</p>
                     <p class="flex items-center">
-                      <i class="fa-solid fa-person mx-2 text-base"></i>
+                      <i class="mx-2 text-base fa-solid fa-person"></i>
                       Habitante
                     </p>
                   </div>
@@ -928,7 +928,7 @@
                
               </div>
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg"
+                class="hidden p-4 rounded-lg bg-gray-50"
                 id="detalle-arbolado"
                 role="tabpanel"
                 aria-labelledby="detalle-arbolado-tab"
@@ -939,7 +939,7 @@
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                   >
-                    <ul class="text-left ml-2">
+                    <ul class="ml-2 text-left">
                       <li class="mb-2">
                         <span class="font-bold underline">
                           Cobertura Forestal:
@@ -958,7 +958,7 @@
                     data-tooltip-target="tooltip-top-arbolado"
                     data-tooltip-placement="top"
                     type="button"
-                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                    class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                   ></i>
                 </div>
                 <div class="flex items-center justify-center">
@@ -967,7 +967,7 @@
                   data-tooltip-target="tooltip-top-arbolado-evolucion"
                   data-tooltip-placement="top"
                   type="button"
-                  class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-700  rounded-lg text-xl text-center"
+                  class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-700"
                 ></i>
 
                   <div
@@ -975,7 +975,7 @@
                   role="tooltip"
                   class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                 >
-                  <ul class="text-left ml-2">
+                  <ul class="ml-2 text-left">
                     <li class="mb-2">
                      
                       Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de cobertura arborea hace 4 años.
@@ -988,7 +988,7 @@
                 <canvas width="350" height="350" id="graficoArbolado"></canvas>
               </div>
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg"
+                class="hidden p-4 rounded-lg bg-gray-50"
                 id="detalle-mobiliario"
                 role="tabpanel"
                 aria-labelledby="detalle-mobiliario-tab"
@@ -999,7 +999,7 @@
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                   >
-                    <ul class="text-left ml-2">
+                    <ul class="ml-2 text-left">
                       <li class="mb-2">
                         <span class="font-bold underline">
                           Mobiliario No Posee:
@@ -1048,7 +1048,7 @@
                     data-tooltip-target="tooltip-top"
                     data-tooltip-placement="top"
                     type="button"
-                    class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                    class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                   ></i>
                 </div>
                 <div class="flex items-center justify-center">
@@ -1065,7 +1065,7 @@
                   role="tooltip"
                   class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                 >
-                  <ul class="text-left ml-2">
+                  <ul class="ml-2 text-left">
                     <li class="mb-2">
                      
                       Ver valores de la cantidad de espacios verdes clasificados segun su equipamiento y mobiliario hace 4 años.
@@ -1082,20 +1082,20 @@
                 ></canvas>
               </div>
               <div
-                class="hidden p-4 bg-gray-50 rounded-lg"
+                class="hidden p-4 rounded-lg bg-gray-50"
                 id="detalle-absorcion"
                 role="tabpanel"
                 aria-labelledby="detalle-absorcion-tab"
               >
                 <div class="flex flex-col items-center justify-center w-full">
                 
-                  <div class=" flex items-center">
+                  <div class="flex items-center ">
                     <div
                     id="tooltip-top-absorcion"
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                   >
-                    <ul class="text-left ml-2">
+                    <ul class="ml-2 text-left">
                       <li class="mb-2">
                         <span class="font-bold underline">
                           Suelo Absorbente:
@@ -1114,7 +1114,7 @@
                       data-tooltip-target="tooltip-top-absorcion"
                       data-tooltip-placement="top"
                       type="button"
-                      class="fa-solid fa-circle-question ml-2 text-green-600 hover:text-green-800 focus:ring-blue-300 rounded-lg text-xl text-center"
+                      class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                     ></i>
                    
                   </div>
@@ -1124,7 +1124,7 @@
                     data-tooltip-target="tooltip-top-absorcion-evolucion"
                     data-tooltip-placement="top"
                     type="button"
-                    class="fa-solid fa-circle-question ml-2 text-blue-600 hover:text-blue-800  rounded-lg text-xl text-center"
+                    class="ml-2 text-xl text-center text-blue-600 rounded-lg fa-solid fa-circle-question hover:text-blue-800"
                   ></i>
 
                     <div
@@ -1132,7 +1132,7 @@
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                   >
-                    <ul class="text-left ml-2">
+                    <ul class="ml-2 text-left">
                       <li class="mb-2">
                        
                         Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de absorcion hace 4 años.
@@ -1155,14 +1155,14 @@
     <footer
       class="w-full bg-green-700 md:h-[5vh] h-fit flex md:flex-row flex-col items-center justify-between text-center text-xs"
     >
-      <h2 class="text-white ml-4">
+      <h2 class="ml-4 text-white">
         Para consultas o sugerencias click
         <a class="underline" href="mailto:infoterritorialcopade@gmail.com">
           aqui</a
         >
       </h2>
       <hr />
-      <h2 class="md:text-right pr-4 text-white">
+      <h2 class="pr-4 text-white md:text-right">
         COPADE <br class="hidden" />
         - Gobierno de la provincia del Neuquen - 2022
       </h2>
