@@ -9,22 +9,108 @@ radiosAreasNat
 -------------------------------------------------------------------------------------------------
 
 */
+let tipoDeCapaClickeada = "";
+const prueba = document.getElementById("capasNeuquen");
+const collapsePrueba = document.getElementById("collapseNeuquen");
+const tituloNeuquen = document.getElementById("tituloNeuquen");
+const collapseRincon = document.getElementById("collapseRincon");
+const capasRincon = document.getElementById("capasRincon");
+const tituloRincon = document.getElementById("tituloRincon");
+const collapseAlumine = document.getElementById("collapseAlumine");
+const capasAlumine = document.getElementById("capasAlumine");
+const tituloAlumine = document.getElementById("tituloAlumine");
+
+collapsePrueba.addEventListener("click", () => {
+  if (prueba.checked) {
+    tituloNeuquen.classList.remove("activado");
+    prueba.checked = false;
+  } else {
+    tituloNeuquen.classList.add("activado");
+    prueba.checked = true;
+  }
+});
+
+collapseRincon.addEventListener("click", () => {
+  if (capasRincon.checked) {
+    tituloRincon.classList.remove("activado");
+    capasRincon.checked = false;
+  } else {
+    tituloRincon.classList.add("activado");
+    capasRincon.checked = true;
+  }
+});
+
+collapseAlumine.addEventListener("click", () => {
+  if (capasAlumine.checked) {
+    tituloAlumine.classList.remove("activado");
+    capasAlumine.checked = false;
+  } else {
+    tituloAlumine.classList.add("activado");
+    capasAlumine.checked = true;
+  }
+});
+
+const espaciosVerdesRincon = document.getElementById("espaciosVerdesRincon");
+const manchaUrbanaRincon = document.getElementById("manchaUrbanaRincon");
+const radiosCoberturaRincon = document.getElementById("radiosCoberturaRincon");
+
+espaciosVerdesRincon.addEventListener("click", (e) => {
+  agregarCapasRincon(e);
+});
+
+manchaUrbanaRincon.addEventListener("click", (e) => {
+  agregarCapasRincon(e);
+});
+
+radiosCoberturaRincon.addEventListener("click", (e) => {
+  agregarCapasRincon(e);
+});
+
+const espaciosVerdesAlumine = document.getElementById("espaciosVerdesAlumine");
+const manchaUrbanaAlumine = document.getElementById("manchaUrbanaAlumine");
+const radiosCoberturaAlumine = document.getElementById(
+  "radiosCoberturaAlumine"
+);
+
+espaciosVerdesAlumine.addEventListener("click", (e) => {
+  agregarCapasAlumine(e);
+});
+
+manchaUrbanaAlumine.addEventListener("click", (e) => {
+  agregarCapasAlumine(e);
+});
+
+radiosCoberturaAlumine.addEventListener("click", (e) => {
+  agregarCapasAlumine(e);
+});
 
 // IMPORTACIONES
+// ------------ NEUQUEN CAPITAL ------------ //
 import datosNeuquen from "./capas/datos_neuquen.json" assert { type: "json" };
 import verdeData from "./capas/espacios-verdes.json" assert { type: "json" };
 import manchaUrbNqn from "./capas/mancha_urbana_nqncap.json" assert { type: "json" };
 import radiosVerdeDisueltos from "./capas/radio_combinado_espacios_verdes_disuelto.json" assert { type: "json" };
 import areasNaturalesData from "./capas/areas_naturales.json" assert { type: "json" };
 import azulData from "./capas/espacios_azules_nqncap.json" assert { type: "json" };
-import radiosEspVerdes from "./capas/radio_cobertura_espacios_verdes.json" assert { type: "json" };
-import radiosEspAzules from "./capas/radios-esp-azules.json" assert { type: "json" };
-import radiosAreasNat from "./capas/radios-areas-nat.json" assert { type: "json" };
 import radiosCombinados from "./capas/radios_combinados.json" assert { type: "json" };
 import datosEspaciosVerdes4Años from "./capas/datosEspaciosVerdes4Años.json" assert { type: "json" };
+
+// ------------ RINCON DE LOS SAUCES --------------- //
+
+import rinconAreaInfluenciaDisuelta from "./capas/rincon/rincon_area_influencia_disuelta.json" assert { type: "json" };
+import rinconAreaInfluencia from "./capas/rincon/rincon_area_influencia.json" assert { type: "json" };
+import rinconInfraVerde from "./capas/rincon/rincon_infra_verde.json" assert { type: "json" };
+import rinconMarchaUrbana from "./capas/rincon/rincon_mancha_urbana_rdls.json" assert { type: "json" };
+
+// -------------- ALUMINE -----------------//
+
+import alumineAreasNaturales from "./capas/alumine/alumine_areas_naturales.json" assert { type: "json" };
+import alumineBufferInfraverdeDisuelto from "./capas/alumine/alumine_buffer_infra_verde_alumine_disuelto.json" assert { type: "json" };
+import alumineInfraVerde from "./capas/alumine/alumine_infra_verde.json" assert { type: "json" };
+import alumineMarchaUrbana from "./capas/alumine/alumine_mancha_urbana.json" assert { type: "json" };
+
 // END IMPORTACIONES
 
-console.log(datosEspaciosVerdes4Años);
 // DEFINICIONES
 const map = L.map("map", {
   center: [-38.9410802, -68.1854411],
@@ -33,6 +119,99 @@ const map = L.map("map", {
 
 let capaSelecionada = "tipos";
 let idCapaSeleccionada = 999999999;
+
+// CAPAS RINCON DE LOS SAUCES
+
+const capaRinconAreaInfluenciaDisuelta = L.geoJSON(
+  rinconAreaInfluenciaDisuelta,
+  {
+    style: {
+      weight: 2,
+      opacity: 1,
+      color: "#4D8B31",
+      dashArray: "3",
+      fillOpacity: 0.25,
+    },
+    onEachFeature: onEachFeatureOtrasCapas,
+  }
+);
+
+const capaRinconAreaInfluencia = L.geoJSON(rinconAreaInfluencia, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#0570b0",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaRinconInfraVerde = L.geoJSON(rinconInfraVerde, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#A3E635",
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaRinconMarchaUrbana = L.geoJSON(rinconMarchaUrbana, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaAlumineAreasNaturales = L.geoJSON(alumineAreasNaturales, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#0570b0",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaAlumineBufferInfraverdeDisuelto = L.geoJSON(
+  alumineBufferInfraverdeDisuelto,
+  {
+    style: {
+      weight: 2,
+      opacity: 1,
+      color: "#4D8B31",
+      dashArray: "3",
+      fillOpacity: 0.25,
+    },
+    onEachFeature: onEachFeatureOtrasCapas,
+  }
+);
+
+const capaAlumineInfraVerde = L.geoJSON(alumineInfraVerde, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#A3E635",
+    fillOpacity: 1,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaAlumineMarchaUrbana = L.geoJSON(alumineMarchaUrbana, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
 
 const infAzulLayers = L.geoJSON(azulData, {
   style: {
@@ -256,7 +435,7 @@ const colors = {
     "#006d2c",
   ],
   tipos: ["#2c9699", "#7E52A0", "#f4dd51", "#f06937", "#ea1d4b", "#a72071"],
-  arbolado: ["#edf8e9", "#c7e9c0", "#a1d99b", "#74c476", "#31a354", "#006d2c"],
+  arbolado: ["#A3E635", "#84CC16", "#65A30D", "#4D7C0F", "#3F6212", "#365314"],
   absorcion: ["#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
   superficie: [
     "#ffffd4",
@@ -415,8 +594,9 @@ const cambiarATabDetalle = () => {
 
 const cargarDetalle = (targetId) => {
   let detalleTitulo = document.getElementById("detalle-titulo");
-
-  detalleTitulo.innerText = targetId;
+  let detalleMetrosCuadrados = document.getElementById(
+    "detalleMetrosCuadrados"
+  );
 };
 const abrirSidebar = () => {
   let targetSidebar = document.getElementById("sidebar");
@@ -526,6 +706,101 @@ const cambiarCapaEspaciosVerdes = (e) => {
       break;
   }
 };
+
+const agregarCapasAlumine = (e) => {
+  let target = e.target.id;
+  const path = e.composedPath();
+  switch (target) {
+    case "infra-verde-alumine":
+      if (map.hasLayer(capaAlumineInfraVerde)) {
+        capaAlumineInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Aluminé") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        cargarDetalle("Aluminé");
+        capaAlumineInfraVerde.addTo(map);
+      }
+      break;
+    case "mancha-urbana-alumine":
+      if (map.hasLayer(capaAlumineMarchaUrbana)) {
+        capaAlumineMarchaUrbana.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Aluminé") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaAlumineMarchaUrbana.addTo(map);
+      }
+      break;
+    case "radios-cobertura-alumine":
+      if (map.hasLayer(capaAlumineBufferInfraverdeDisuelto)) {
+        capaAlumineBufferInfraverdeDisuelto.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Aluminé") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaAlumineBufferInfraverdeDisuelto.addTo(map);
+      }
+      break;
+
+    default:
+      break;
+  }
+};
+
+const agregarCapasRincon = (e) => {
+  let target = e.target.id;
+  const path = e.composedPath();
+  console.log(path[0]);
+  switch (target) {
+    case "infra-verde-rincon":
+      if (map.hasLayer(capaRinconInfraVerde)) {
+        capaRinconInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Rincón de los Sauces") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaRinconInfraVerde.addTo(map);
+      }
+      break;
+    case "mancha-urbana-rincon":
+      if (map.hasLayer(capaRinconMarchaUrbana)) {
+        capaRinconMarchaUrbana.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Rincón de los Sauces") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaRinconMarchaUrbana.addTo(map);
+      }
+      break;
+    case "radios-cobertura-rincon":
+      if (map.hasLayer(capaRinconAreaInfluenciaDisuelta)) {
+        capaRinconAreaInfluenciaDisuelta.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Rincón de los Sauces") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaRinconAreaInfluenciaDisuelta.addTo(map);
+      }
+      break;
+
+    default:
+      break;
+  }
+};
+
 const cambiarCapaGeneral = (e) => {
   let target = e.target.id;
   const path = e.composedPath();
@@ -673,6 +948,48 @@ modalAdvertencia.addEventListener("click", handleCerrarModal);
 #07BEB8
  */
 
+const agregarRadiosOtrasCapas = (localidad) => {
+  switch (localidad) {
+    case "rincon":
+      radiosInfVerde = L.geoJSON(capaRinconAreaInfluencia, {
+        style: {
+          weight: 2,
+          opacity: 1,
+
+          color: "#B7990D",
+          dashArray: "6",
+          fillOpacity: 0.45,
+        },
+        filter: filtrarRadios,
+      })
+        .bindTooltip(
+          (layer) => {
+            console.log(layer.feature.properties.supm2);
+            if (layer.feature.properties.supm2 <= 30000) {
+              return "5' a pie de la plaza";
+            } else if (
+              layer.feature.properties.supm2 > 30000 &&
+              layer.feature.properties.supm2 < 100000
+            ) {
+              return "10' a pie de la plaza";
+            } else {
+              return "15' a pie de la plaza";
+            }
+          },
+          {
+            sticky: false,
+            opacity: 1,
+            offset: L.point(50, 14),
+          }
+        )
+        .addTo(map);
+      map.fitBounds(radiosInfVerde.getBounds());
+      break;
+
+    default:
+      break;
+  }
+};
 const agregarRadios = () => {
   radiosInfVerde = L.geoJSON(radiosCombinados, {
     style: {
@@ -687,17 +1004,27 @@ const agregarRadios = () => {
   })
     .bindTooltip(
       (layer) => {
-        console.log(layer.feature.properties.layer);
-        switch (layer.feature.properties.layer) {
+        console.log(layer.feature.properties.supm2);
+        if (layer.feature.properties.supm2 <= 30000) {
+          return "5' a pie de la plaza";
+        } else if (
+          layer.feature.properties.supm2 > 30000 &&
+          layer.feature.properties.supm2 < 100000
+        ) {
+          return "10' a pie de la plaza";
+        } else {
+          return "15' a pie de la plaza";
+        }
+        /*   switch (layer.feature.properties.layer) {
           case "buffer_300m_plazas_posgar":
-            return "Radio de cobertura de 300m";
+            return "5' a pie de la plaza";
 
           case "buffer_500m_plazas_posgar":
-            return "Radio de cobertura de 500m";
+            return "10' a pie de la plaza";
 
           default:
-            return "Radio de cobertura de 900m";
-        }
+            return "15' a pie de la plaza";
+        } */
       },
       {
         sticky: false,
@@ -722,7 +1049,7 @@ const agregarRadiosNotVerde = () => {
   })
     .bindTooltip(
       () => {
-        return "Radio de cobertura de 900m";
+        return "15' a pie.";
       },
       {
         sticky: false,
@@ -746,10 +1073,13 @@ const agregarLocalidadesAlista = () => {
     return 0;
   });
 
-  let listaLi = localidades.map(
-    (e) =>
-      `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`
-  );
+  let listaLi = localidades.map((e) => {
+    if (e.nombre != "Neuquén Capital") {
+      return `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`;
+    } else {
+      return `<li class='bg-yellow-500 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-yellow-600' id=${e.id}>${e.nombre}</li>`;
+    }
+  });
   let concatenado = [];
   for (let i = 0; i < listaLi.length; i++) {
     concatenado += listaLi[i];
@@ -879,7 +1209,7 @@ const agregarIndice = (tipo) => {
             "<br>";
         }
         div.innerHTML =
-          `<h2 class='text-blue-500 font-bold my-2'>Absorcion</h2>` +
+          `<h2 class='text-blue-500 font-bold my-2'>Absorción</h2>` +
           listaIndices;
 
         return div;
@@ -974,6 +1304,18 @@ function highlightFeature(e) {
 
   layer.bringToFront();
 }
+function highlightFeatureOtrasCapas(e) {
+  var layer = e.target;
+
+  info.update(layer.feature.properties, true);
+
+  layer.setStyle({
+    weight: 5,
+    color: "#666",
+  });
+
+  layer.bringToFront();
+}
 
 function resetHighlight(e) {
   infVerdeLayers.resetStyle(e.target);
@@ -983,6 +1325,11 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
+    click: zoomToFeature,
+  });
+}
+function onEachFeatureOtrasCapas(feature, layer) {
+  layer.on({
     click: zoomToFeature,
   });
 }
@@ -1035,6 +1382,8 @@ function zoomToFeature(e) {
     radiosInfVerde.remove();
   }
 
+  console.log(e.target);
+
   idCapaSeleccionada = e.target.feature.properties.id;
 
   agregarRadios();
@@ -1054,34 +1403,25 @@ function calcularPorcentajes(valor, tipo) {
     switch (+valor) {
       case 1:
         return "Plaza";
-        break;
       case 2:
         return "Plazoleta";
-        break;
       case 3:
         return "Corredor";
-        break;
       case 4:
         return "Espacio sin definir";
-        break;
       case 5:
         return "Parque";
-        break;
     }
   } else {
     switch (+valor) {
       case 1:
         return "0 a 25%";
-        break;
       case 2:
         return "25 a 50%";
-        break;
       case 3:
         return "50 a 75%";
-        break;
       case 4:
         return "75 a 100%";
-        break;
     }
   }
 }
@@ -1103,7 +1443,7 @@ info.update = function (props, espaciosVerdes) {
           : "Datos de la capa"
       }</h4>` +
       (props
-        ? `<i class="fa-solid fa-droplet"></i></i> Absorcion: <br/> ${calcularPorcentajes(
+        ? `<i class="fa-solid fa-droplet"></i></i> Absorción: <br/> ${calcularPorcentajes(
             props.suel_absor
           )} en relacion a m<sup>2</sup>` +
           "<br />" +
@@ -1323,10 +1663,10 @@ const chartAbsorcion = new Chart(ctxChartAbsorcion, {
   plugins: [ChartDataLabels],
   data: {
     labels: [
-      "Absorcion de 0 a 25%",
-      "Absorcion de 25 a 50%",
-      "Absorcion de 50 a 75%",
-      "Absorcion de 75 a 100%",
+      "Absorción de 0 a 25%",
+      "Absorción de 25 a 50%",
+      "Absorción de 50 a 75%",
+      "Absorción de 75 a 100%",
     ],
     datasets: [
       {
@@ -1422,7 +1762,7 @@ const chartArbolado = new Chart(ctxChartArbolado, {
           datosNeuquen[5].arbolado75A100,
         ],
         borderWidth: 1,
-        backgroundColor: ["#a1d99b", "#74c476", "#31a354", "#006d2c"],
+        backgroundColor: ["#A3E635", "#84CC16", "#65A30D", "#4D7C0F"],
       },
     ],
   },
