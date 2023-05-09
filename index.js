@@ -9,6 +9,11 @@ radiosAreasNat
 -------------------------------------------------------------------------------------------------
 
 */
+let valoresMobBasico = [];
+let valoresMobSup = [];
+let valoresSinMob = [];
+let sumatoriaSinMob, sumatoriaMobBasico, sumatoriaMobSup;
+
 let tipoDeCapaClickeada = "";
 const prueba = document.getElementById("capasNeuquen");
 const collapsePrueba = document.getElementById("collapseNeuquen");
@@ -119,6 +124,153 @@ const map = L.map("map", {
 
 let capaSelecionada = "tipos";
 let idCapaSeleccionada = 999999999;
+
+let contadoresAlumine = {
+  mobiliario: {
+    basico: 0,
+    superior: 0,
+  },
+  arbolado: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+  absorcion: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+};
+
+alumineInfraVerde.features.map((elemento) => {
+  switch (elemento.properties.suel_absor) {
+    case "1":
+      contadoresAlumine.absorcion["0a25"]++;
+      break;
+    case "2":
+      contadoresAlumine.absorcion["25a50"]++;
+      break;
+    case "3":
+      contadoresAlumine.absorcion["50a75"]++;
+      break;
+    case "4":
+      contadoresAlumine.absorcion["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.arbolado) {
+    case "1":
+      contadoresAlumine.arbolado["0a25"]++;
+      break;
+    case "2":
+      contadoresAlumine.arbolado["25a50"]++;
+      break;
+    case "3":
+      contadoresAlumine.arbolado["50a75"]++;
+      break;
+    case "4":
+      contadoresAlumine.arbolado["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.mobiliario) {
+    case "Basico":
+      contadoresAlumine.mobiliario.basico++;
+      break;
+    case "Superior":
+      contadoresAlumine.mobiliario.superior++;
+      break;
+    case "No posee":
+      contadoresAlumine.mobiliario.noPosee++;
+      break;
+
+    default:
+      break;
+  }
+});
+
+let contadoresRincon = {
+  mobiliario: {
+    basico: 0,
+    superior: 0,
+    noPosee: 0,
+  },
+  arbolado: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+  absorcion: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+};
+
+rinconInfraVerde.features.map((elemento) => {
+  switch (elemento.properties.suel_absor) {
+    case "1":
+      contadoresRincon.absorcion["0a25"]++;
+      break;
+    case "2":
+      contadoresRincon.absorcion["25a50"]++;
+      break;
+    case "3":
+      contadoresRincon.absorcion["50a75"]++;
+      break;
+    case "4":
+      contadoresRincon.absorcion["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.arbolado) {
+    case "1":
+      contadoresRincon.arbolado["0a25"]++;
+      break;
+    case "2":
+      contadoresRincon.arbolado["25a50"]++;
+      break;
+    case "3":
+      contadoresRincon.arbolado["50a75"]++;
+      break;
+    case "4":
+      contadoresRincon.arbolado["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.mobiliario) {
+    case "Básico":
+      contadoresRincon.mobiliario.basico++;
+      break;
+    case "Superior":
+      contadoresRincon.mobiliario.superior++;
+      break;
+    case "No posee":
+      contadoresRincon.mobiliario.noPosee++;
+      break;
+
+    default:
+      break;
+  }
+
+  console.log(
+    ["absorcion", contadoresRincon.absorcion],
+    ["arbolado", contadoresRincon.arbolado],
+    ["mobiliario", contadoresRincon.mobiliario]
+  );
+});
 
 // CAPAS RINCON DE LOS SAUCES
 
@@ -310,6 +462,11 @@ const listaLocalidades = document.getElementById("lista-localidades");
 var info = L.control();
 const BING_KEY =
   "Av3IJWsQuEeoFjlg5eoVctOE9QvC_EXejm8IlG7m80D0KDWV8bK3cDhjpF4k-mfv";
+const localidadesActivas = [
+  "Neuquén Capital",
+  "Rincón de los Sauces",
+  "Aluminé",
+];
 const localidades = [
   {
     nombre: "Zapala",
@@ -597,6 +754,74 @@ const cargarDetalle = (targetId) => {
   let detalleMetrosCuadrados = document.getElementById(
     "detalleMetrosCuadrados"
   );
+  let generalMetrosVerdes = document.getElementById("general-metros-verde-tag");
+
+  console.log(targetId);
+
+  generalMetrosVerdes.innerText = targetId;
+  detalleTitulo.innerText = targetId;
+
+  switch (targetId) {
+    case "Aluminé":
+      chartMobiliario.data.datasets[0].data = [
+        contadoresAlumine.mobiliario.basico,
+        contadoresAlumine.mobiliario.superior,
+      ];
+
+      chartMobiliario.data.labels = ["Basico", "Superior"];
+
+      chartMobiliario.update();
+
+      chartAbsorcion.data.datasets[0].data = [
+        contadoresAlumine.absorcion["0a25"],
+        contadoresAlumine.absorcion["25a50"],
+        contadoresAlumine.absorcion["50a75"],
+        contadoresAlumine.absorcion["75a100"],
+      ];
+      chartAbsorcion.update();
+
+      chartArbolado.data.datasets[0].data = [
+        contadoresAlumine.arbolado["0a25"],
+        contadoresAlumine.arbolado["25a50"],
+        contadoresAlumine.arbolado["50a75"],
+        contadoresAlumine.arbolado["75a100"],
+      ];
+      chartArbolado.update();
+
+      break;
+
+    case "Rincón de los Sauces":
+      chartMobiliario.data.datasets[0].data = [
+        contadoresRincon.mobiliario.noPosee,
+        contadoresRincon.mobiliario.basico,
+        contadoresRincon.mobiliario.superior,
+      ];
+
+      chartMobiliario.data.labels = ["No posee", "Basico", "Superior"];
+
+      chartMobiliario.update();
+
+      chartAbsorcion.data.datasets[0].data = [
+        contadoresRincon.absorcion["0a25"],
+        contadoresRincon.absorcion["25a50"],
+        contadoresRincon.absorcion["50a75"],
+        contadoresRincon.absorcion["75a100"],
+      ];
+      chartAbsorcion.update();
+
+      chartArbolado.data.datasets[0].data = [
+        contadoresRincon.arbolado["0a25"],
+        contadoresRincon.arbolado["25a50"],
+        contadoresRincon.arbolado["50a75"],
+        contadoresRincon.arbolado["75a100"],
+      ];
+      chartArbolado.update();
+
+      break;
+
+    default:
+      break;
+  }
 };
 const abrirSidebar = () => {
   let targetSidebar = document.getElementById("sidebar");
@@ -1074,10 +1299,14 @@ const agregarLocalidadesAlista = () => {
   });
 
   let listaLi = localidades.map((e) => {
-    if (e.nombre != "Neuquén Capital") {
-      return `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`;
+    if (localidadesActivas.includes(e.nombre)) {
+      if (e.nombre != "Neuquén Capital") {
+        return `<li class='bg-green-700 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-green-600' id=${e.id}>${e.nombre}</li>`;
+      } else {
+        return `<li class='bg-yellow-500 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-yellow-600' id=${e.id}>${e.nombre}</li>`;
+      }
     } else {
-      return `<li class='bg-yellow-500 text-white text-center rounded localidad cursor-pointer h-8 flex items-center justify-center font-bold hover:scale-105 duration-300 hover:shadow-lg hover:shadow-yellow-600' id=${e.id}>${e.nombre}</li>`;
+      return "";
     }
   });
   let concatenado = [];
@@ -1557,9 +1786,6 @@ const tabs = new Tabs(tabElements, options);
 //    Graficos    //
 
 // MOBILIARIO //
-let valoresMobBasico = [];
-let valoresMobSup = [];
-let valoresSinMob = [];
 
 datosNeuquen.map((dato) => {
   if (
@@ -1573,13 +1799,12 @@ datosNeuquen.map((dato) => {
   valoresSinMob.push(dato.mobiliarioNoPosee);
 });
 
-let sumatoriaMobBasico = valoresMobBasico.reduce(
+sumatoriaMobBasico = valoresMobBasico.reduce(
   (acc, current) => acc + current,
   0
 );
-let sumatoriaMobSup = valoresMobSup.reduce((acc, current) => acc + current, 0);
-let sumatoriaSinMob = valoresSinMob.reduce((acc, current) => acc + current, 0);
-
+sumatoriaMobSup = valoresMobSup.reduce((acc, current) => acc + current, 0);
+sumatoriaSinMob = valoresSinMob.reduce((acc, current) => acc + current, 0);
 Chart.register(ChartDataLabels);
 
 const ctxChartMobiliario = document.getElementById("graficoMobiliario");
@@ -1622,6 +1847,8 @@ const chartMobiliario = new Chart(ctxChartMobiliario, {
     },
   },
 });
+
+console.log(chartMobiliario.data);
 
 let mostrar4añosMobiliarioState = false;
 function mostrar4añosGraficoMobiliario() {
