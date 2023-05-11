@@ -76,7 +76,11 @@ const manchaUrbanaAlumine = document.getElementById("manchaUrbanaAlumine");
 const radiosCoberturaAlumine = document.getElementById(
   "radiosCoberturaAlumine"
 );
+const areasNaturalesAlumine = document.getElementById("areasNaturalesAlumine");
 
+areasNaturalesAlumine.addEventListener("click", (e) => {
+  agregarCapasAlumine(e);
+});
 espaciosVerdesAlumine.addEventListener("click", (e) => {
   agregarCapasAlumine(e);
 });
@@ -319,7 +323,7 @@ const capaAlumineAreasNaturales = L.geoJSON(alumineAreasNaturales, {
   style: {
     weight: 2,
     opacity: 1,
-    color: "#0570b0",
+    color: "#006d2c",
     dashArray: "3",
     fillOpacity: 0.25,
   },
@@ -634,10 +638,7 @@ const calcularEspaciosVerdesPorHab = (localidad) => {
       });
       return verdePorHab;
     case "Rincón de los Sauces":
-      alumineInfraVerde.features.map((espacio) => {
-        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
-      });
-      alumineAreasNaturales.features.map((espacio) => {
+      rinconInfraVerde.features.map((espacio) => {
         superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
       });
 
@@ -989,6 +990,19 @@ const agregarCapasAlumine = (e) => {
         });
         cargarDetalle("Aluminé");
         capaAlumineInfraVerde.addTo(map);
+      }
+      break;
+    case "areas-nat-alumine":
+      if (map.hasLayer(capaAlumineAreasNaturales)) {
+        capaAlumineInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Aluminé") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        cargarDetalle("Aluminé");
+        capaAlumineAreasNaturales.addTo(map);
       }
       break;
     case "mancha-urbana-alumine":
