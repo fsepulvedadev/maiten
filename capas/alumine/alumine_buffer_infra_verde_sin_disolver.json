@@ -17,7 +17,8 @@
         "mobiliario": "Superior",
         "arbolado": "3",
         "agua_super": "No",
-        "supm2": 8809.96
+        "supm2": 8809.96,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -77,7 +78,8 @@
         "mobiliario": "Superior",
         "arbolado": "2",
         "agua_super": "No",
-        "supm2": 798.58
+        "supm2": 798.58,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -126,7 +128,8 @@
         "mobiliario": "Superior",
         "arbolado": "2",
         "agua_super": "No",
-        "supm2": 1946.23
+        "supm2": 1946.23,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -179,7 +182,8 @@
         "mobiliario": "Basico",
         "arbolado": "4",
         "agua_super": "No",
-        "supm2": 3889.291
+        "supm2": 3889.291,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -237,7 +241,8 @@
         "mobiliario": "Basico",
         "arbolado": "1",
         "agua_super": "No",
-        "supm2": 542.346
+        "supm2": 542.346,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -295,7 +300,8 @@
         "mobiliario": null,
         "arbolado": null,
         "agua_super": null,
-        "supm2": 929.857
+        "supm2": 929.857,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -348,7 +354,8 @@
         "mobiliario": "Basico",
         "arbolado": "1",
         "agua_super": "No",
-        "supm2": 1419.809
+        "supm2": 1419.809,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -407,7 +414,8 @@
         "mobiliario": "Superior",
         "arbolado": "1",
         "agua_super": "No",
-        "supm2": 6216.575
+        "supm2": 6216.575,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -465,7 +473,8 @@
         "mobiliario": "Basico",
         "arbolado": "1",
         "agua_super": "No",
-        "supm2": 2259.726
+        "supm2": 2259.726,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -530,7 +539,8 @@
         "mobiliario": "Basico",
         "arbolado": "2",
         "agua_super": "No",
-        "supm2": 2879.411
+        "supm2": 2879.411,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -584,7 +594,8 @@
         "mobiliario": "Basico",
         "arbolado": "2",
         "agua_super": "No",
-        "supm2": 3530.156
+        "supm2": 3530.156,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -643,7 +654,8 @@
         "mobiliario": "Basico",
         "arbolado": "1",
         "agua_super": "No",
-        "supm2": 9449.701
+        "supm2": 9449.701,
+        "localidad": "Aluminé"
       },
       "geometry": {
         "type": "MultiPolygon",

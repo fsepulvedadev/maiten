@@ -17,7 +17,8 @@
         "mobiliario": "Superior",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 13898.374
+        "supm2": 13898.374,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -264,7 +265,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 4431.286
+        "supm2": 4431.286,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -505,7 +507,8 @@
         "mobiliario": "Superior",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 6007.31
+        "supm2": 6007.31,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -750,7 +753,8 @@
         "mobiliario": "Superior",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 4566.56
+        "supm2": 4566.56,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -991,7 +995,8 @@
         "mobiliario": "No posee",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 8063.939
+        "supm2": 8063.939,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1233,7 +1238,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 2573.684
+        "supm2": 2573.684,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1468,7 +1474,8 @@
         "mobiliario": "Superior",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 3642.697
+        "supm2": 3642.697,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1709,7 +1716,8 @@
         "mobiliario": "Superior",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 1160.77
+        "supm2": 1160.77,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1946,7 +1954,8 @@
         "mobiliario": "Superior",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1549.694
+        "supm2": 1549.694,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2182,7 +2191,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 2828.204
+        "supm2": 2828.204,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2428,7 +2438,8 @@
         "mobiliario": "Superior",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 4980.278
+        "supm2": 4980.278,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2668,7 +2679,8 @@
         "mobiliario": "Superior",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 1918.492
+        "supm2": 1918.492,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2902,7 +2914,8 @@
         "mobiliario": "Superior",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 2472.857
+        "supm2": 2472.857,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3136,7 +3149,8 @@
         "mobiliario": "Superior",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 28377.937
+        "supm2": 28377.937,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3427,7 +3441,8 @@
         "mobiliario": "Superior",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 1159.406
+        "supm2": 1159.406,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3660,7 +3675,8 @@
         "mobiliario": "Superior",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 1124.343
+        "supm2": 1124.343,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3895,7 +3911,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1029.509
+        "supm2": 1029.509,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4130,7 +4147,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 27540.552
+        "supm2": 27540.552,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4380,7 +4398,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 4649.049
+        "supm2": 4649.049,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4649,7 +4668,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 6300.837
+        "supm2": 6300.837,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4913,7 +4933,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 3701.676
+        "supm2": 3701.676,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5160,7 +5181,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 2750.028
+        "supm2": 2750.028,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5408,7 +5430,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1112.582
+        "supm2": 1112.582,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5654,7 +5677,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1656.091
+        "supm2": 1656.091,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5901,7 +5925,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 2503.577
+        "supm2": 2503.577,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6153,7 +6178,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1355.446
+        "supm2": 1355.446,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6395,7 +6421,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 2446.425
+        "supm2": 2446.425,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6655,7 +6682,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 1172.885
+        "supm2": 1172.885,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6898,7 +6926,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 592.052
+        "supm2": 592.052,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7145,7 +7174,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 338.513
+        "supm2": 338.513,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7386,7 +7416,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 344.31
+        "supm2": 344.31,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7629,7 +7660,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 691.808
+        "supm2": 691.808,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7875,7 +7907,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 1340.577
+        "supm2": 1340.577,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8121,7 +8154,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 1913.16
+        "supm2": 1913.16,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8375,7 +8409,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 834.82
+        "supm2": 834.82,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8621,7 +8656,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 695.648
+        "supm2": 695.648,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8867,7 +8903,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 498.255
+        "supm2": 498.255,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9115,7 +9152,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 635.386
+        "supm2": 635.386,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9359,7 +9397,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1333.169
+        "supm2": 1333.169,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9609,7 +9648,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 650.586
+        "supm2": 650.586,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9855,7 +9895,8 @@
         "mobiliario": "Básico",
         "arbolado": "4",
         "agua_super": "no",
-        "supm2": 403.484
+        "supm2": 403.484,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10097,7 +10138,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 846.956
+        "supm2": 846.956,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10337,7 +10379,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 1364.446
+        "supm2": 1364.446,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10584,7 +10627,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 2239.672
+        "supm2": 2239.672,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -10836,7 +10880,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 954.073
+        "supm2": 954.073,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11082,7 +11127,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 1038.733
+        "supm2": 1038.733,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11321,7 +11367,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 1494.844
+        "supm2": 1494.844,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11567,7 +11614,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 1373.564
+        "supm2": 1373.564,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11815,7 +11863,8 @@
         "mobiliario": "Básico",
         "arbolado": "2",
         "agua_super": "no",
-        "supm2": 1819.142
+        "supm2": 1819.142,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12068,7 +12117,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 1561.232
+        "supm2": 1561.232,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12313,7 +12363,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 454.082
+        "supm2": 454.082,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12555,7 +12606,8 @@
         "mobiliario": "Básico",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 515.727
+        "supm2": 515.727,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12798,7 +12850,8 @@
         "mobiliario": "Básico",
         "arbolado": "3",
         "agua_super": "no",
-        "supm2": 252.707
+        "supm2": 252.707,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13040,7 +13093,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 835.539
+        "supm2": 835.539,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13278,7 +13332,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1058.818
+        "supm2": 1058.818,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13515,7 +13570,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 710.717
+        "supm2": 710.717,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13747,7 +13803,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 3932.219
+        "supm2": 3932.219,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14004,7 +14061,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 2153.084
+        "supm2": 2153.084,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14241,7 +14299,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1137.207
+        "supm2": 1137.207,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14484,7 +14543,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 7131.395
+        "supm2": 7131.395,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14770,7 +14830,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 1930.354
+        "supm2": 1930.354,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15021,7 +15082,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 742.645
+        "supm2": 742.645,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15260,7 +15322,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 912.513
+        "supm2": 912.513,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15497,7 +15560,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 394.824
+        "supm2": 394.824,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15742,7 +15806,8 @@
         "mobiliario": "No posee",
         "arbolado": "1",
         "agua_super": "no",
-        "supm2": 488.226
+        "supm2": 488.226,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",

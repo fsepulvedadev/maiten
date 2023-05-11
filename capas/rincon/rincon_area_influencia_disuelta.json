@@ -17,7 +17,8 @@
         "mobiliario": "Superior",
         "arbolado": "3",
         "agua_super": "No",
-        "supm2": 13898.374
+        "supm2": 13898.374,
+        "localidad": "Rincón de los Sauces"
       },
       "geometry": {
         "type": "MultiPolygon",

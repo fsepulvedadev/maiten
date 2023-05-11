@@ -111,6 +111,7 @@ import rinconMarchaUrbana from "./capas/rincon/rincon_mancha_urbana_rdls.json" a
 
 import alumineAreasNaturales from "./capas/alumine/alumine_areas_naturales.json" assert { type: "json" };
 import alumineBufferInfraverdeDisuelto from "./capas/alumine/alumine_buffer_infra_verde_alumine_disuelto.json" assert { type: "json" };
+import alumineBufferInfraverdeSinDisolver from "./capas/alumine/alumine_buffer_infra_verde_sin_disolver.json" assert { type: "json" };
 import alumineInfraVerde from "./capas/alumine/alumine_infra_verde.json" assert { type: "json" };
 import alumineMarchaUrbana from "./capas/alumine/alumine_mancha_urbana.json" assert { type: "json" };
 
@@ -124,6 +125,7 @@ const map = L.map("map", {
 
 let capaSelecionada = "tipos";
 let idCapaSeleccionada = 999999999;
+let localidadCapaSeleccionada;
 
 let contadoresAlumine = {
   mobiliario: {
@@ -406,6 +408,13 @@ const radiosCoberturaVerdeNqnLayers = L.geoJSON(radiosVerdeDisueltos, {
 });
 
 const filtrarRadios = (feature) => {
+  console.log(feature);
+  if (feature.properties.id === idCapaSeleccionada) {
+    return true;
+  }
+};
+const filtrarRadiosNotNqn = (feature) => {
+  console.log(feature);
   if (feature.properties.id === idCapaSeleccionada) {
     return true;
   }
@@ -1173,10 +1182,10 @@ modalAdvertencia.addEventListener("click", handleCerrarModal);
 #07BEB8
  */
 
-const agregarRadiosOtrasCapas = (localidad) => {
-  switch (localidad) {
-    case "rincon":
-      radiosInfVerde = L.geoJSON(capaRinconAreaInfluencia, {
+const agregarRadiosOtrasCapas = () => {
+  switch (localidadCapaSeleccionada) {
+    case "Rincón de los Sauces":
+      radiosInfVerde = L.geoJSON(rinconAreaInfluencia, {
         style: {
           weight: 2,
           opacity: 1,
@@ -1185,7 +1194,42 @@ const agregarRadiosOtrasCapas = (localidad) => {
           dashArray: "6",
           fillOpacity: 0.45,
         },
-        filter: filtrarRadios,
+        filter: filtrarRadiosNotNqn,
+      })
+        .bindTooltip(
+          (layer) => {
+            console.log(layer.feature.properties.supm2);
+            if (layer.feature.properties.supm2 <= 30000) {
+              return "5' a pie de la plaza";
+            } else if (
+              layer.feature.properties.supm2 > 30000 &&
+              layer.feature.properties.supm2 < 100000
+            ) {
+              return "10' a pie de la plaza";
+            } else {
+              return "15' a pie de la plaza";
+            }
+          },
+          {
+            sticky: false,
+            opacity: 1,
+            offset: L.point(50, 14),
+          }
+        )
+        .addTo(map);
+      map.fitBounds(radiosInfVerde.getBounds());
+      break;
+    case "Aluminé":
+      radiosInfVerde = L.geoJSON(alumineBufferInfraverdeSinDisolver, {
+        style: {
+          weight: 2,
+          opacity: 1,
+
+          color: "#B7990D",
+          dashArray: "6",
+          fillOpacity: 0.45,
+        },
+        filter: filtrarRadiosNotNqn,
       })
         .bindTooltip(
           (layer) => {
@@ -1559,7 +1603,9 @@ function onEachFeature(feature, layer) {
 }
 function onEachFeatureOtrasCapas(feature, layer) {
   layer.on({
-    click: zoomToFeature,
+    click: (e) => {
+      zoomToFeatureOtras(e);
+    },
   });
 }
 function onEachFeatureNotInfVerde(feature, layer) {
@@ -1616,6 +1662,18 @@ function zoomToFeature(e) {
   idCapaSeleccionada = e.target.feature.properties.id;
 
   agregarRadios();
+}
+function zoomToFeatureOtras(e) {
+  if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
+    radiosInfVerde.remove();
+  }
+
+  console.log(e.target);
+
+  idCapaSeleccionada = e.target.feature.properties.id;
+  localidadCapaSeleccionada = e.target.feature.properties.localidad;
+
+  agregarRadiosOtrasCapas();
 }
 function zoomToFeatureNotVerde(e) {
   if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
