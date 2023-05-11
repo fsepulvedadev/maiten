@@ -116,6 +116,7 @@ import rinconMarchaUrbana from "./capas/rincon/rincon_mancha_urbana_rdls.json" a
 import alumineAreasNaturales from "./capas/alumine/alumine_areas_naturales.json" assert { type: "json" };
 import alumineBufferInfraverdeDisuelto from "./capas/alumine/alumine_buffer_infra_verde_alumine_disuelto.json" assert { type: "json" };
 import alumineBufferInfraverdeSinDisolver from "./capas/alumine/alumine_buffer_infra_verde_sin_disolver.json" assert { type: "json" };
+import alumineBufferAreasNaturales from "./capas/alumine/alumine_buffer_areas_naturales.json" assert { type: "json" };
 import alumineInfraVerde from "./capas/alumine/alumine_infra_verde.json" assert { type: "json" };
 import alumineMarchaUrbana from "./capas/alumine/alumine_mancha_urbana.json" assert { type: "json" };
 
@@ -327,7 +328,7 @@ const capaAlumineAreasNaturales = L.geoJSON(alumineAreasNaturales, {
     dashArray: "3",
     fillOpacity: 0.25,
   },
-  onEachFeature: onEachFeatureOtrasCapas,
+  onEachFeature: onEachFeatureAlumineNat,
 });
 
 const capaAlumineBufferInfraverdeDisuelto = L.geoJSON(
@@ -994,7 +995,7 @@ const agregarCapasAlumine = (e) => {
       break;
     case "areas-nat-alumine":
       if (map.hasLayer(capaAlumineAreasNaturales)) {
-        capaAlumineInfraVerde.remove();
+        capaAlumineAreasNaturales.remove();
       } else {
         localidades.map((e) => {
           if (e.nombre === "Aluminé") {
@@ -1229,81 +1230,115 @@ modalAdvertencia.addEventListener("click", handleCerrarModal);
 #07BEB8
  */
 
-const agregarRadiosOtrasCapas = () => {
-  switch (localidadCapaSeleccionada) {
-    case "Rincón de los Sauces":
-      radiosInfVerde = L.geoJSON(rinconAreaInfluencia, {
-        style: {
-          weight: 2,
-          opacity: 1,
+const agregarRadiosOtrasCapas = (esAreasNat) => {
+  if (esAreasNat) {
+    radiosInfVerde = L.geoJSON(alumineBufferAreasNaturales, {
+      style: {
+        weight: 2,
+        opacity: 1,
 
-          color: "#B7990D",
-          dashArray: "6",
-          fillOpacity: 0.45,
-        },
-        filter: filtrarRadiosNotNqn,
-      })
-        .bindTooltip(
-          (layer) => {
-            console.log(layer.feature.properties.supm2);
-            if (layer.feature.properties.supm2 <= 30000) {
-              return "5' a pie de la plaza";
-            } else if (
-              layer.feature.properties.supm2 > 30000 &&
-              layer.feature.properties.supm2 < 100000
-            ) {
-              return "10' a pie de la plaza";
-            } else {
-              return "15' a pie de la plaza";
-            }
-          },
-          {
-            sticky: false,
-            opacity: 1,
-            offset: L.point(50, 14),
+        color: "#B7990D",
+        dashArray: "6",
+        fillOpacity: 0.45,
+      },
+    })
+      .bindTooltip(
+        (layer) => {
+          console.log(layer.feature.properties.supm2);
+          if (layer.feature.properties.supm2 <= 30000) {
+            return "5' a pie de la plaza";
+          } else if (
+            layer.feature.properties.supm2 > 30000 &&
+            layer.feature.properties.supm2 < 100000
+          ) {
+            return "10' a pie de la plaza";
+          } else {
+            return "15' a pie de la plaza";
           }
-        )
-        .addTo(map);
-      map.fitBounds(radiosInfVerde.getBounds());
-      break;
-    case "Aluminé":
-      radiosInfVerde = L.geoJSON(alumineBufferInfraverdeSinDisolver, {
-        style: {
-          weight: 2,
-          opacity: 1,
-
-          color: "#B7990D",
-          dashArray: "6",
-          fillOpacity: 0.45,
         },
-        filter: filtrarRadiosNotNqn,
-      })
-        .bindTooltip(
-          (layer) => {
-            console.log(layer.feature.properties.supm2);
-            if (layer.feature.properties.supm2 <= 30000) {
-              return "5' a pie de la plaza";
-            } else if (
-              layer.feature.properties.supm2 > 30000 &&
-              layer.feature.properties.supm2 < 100000
-            ) {
-              return "10' a pie de la plaza";
-            } else {
-              return "15' a pie de la plaza";
-            }
-          },
-          {
-            sticky: false,
+        {
+          sticky: false,
+          opacity: 1,
+          offset: L.point(50, 14),
+        }
+      )
+      .addTo(map);
+    map.fitBounds(radiosInfVerde.getBounds());
+  } else {
+    switch (localidadCapaSeleccionada) {
+      case "Rincón de los Sauces":
+        radiosInfVerde = L.geoJSON(rinconAreaInfluencia, {
+          style: {
+            weight: 2,
             opacity: 1,
-            offset: L.point(50, 14),
-          }
-        )
-        .addTo(map);
-      map.fitBounds(radiosInfVerde.getBounds());
-      break;
+            color: "#B7990D",
+            dashArray: "6",
+            fillOpacity: 0.45,
+          },
+          filter: filtrarRadiosNotNqn,
+        })
+          .bindTooltip(
+            (layer) => {
+              console.log(layer.feature.properties.supm2);
+              if (layer.feature.properties.supm2 <= 30000) {
+                return "5' a pie de la plaza";
+              } else if (
+                layer.feature.properties.supm2 > 30000 &&
+                layer.feature.properties.supm2 < 100000
+              ) {
+                return "10' a pie de la plaza";
+              } else {
+                return "15' a pie de la plaza";
+              }
+            },
+            {
+              sticky: false,
+              opacity: 1,
+              offset: L.point(50, 14),
+            }
+          )
+          .addTo(map);
+        map.fitBounds(radiosInfVerde.getBounds());
+        break;
+      case "Aluminé":
+        radiosInfVerde = L.geoJSON(alumineBufferInfraverdeSinDisolver, {
+          style: {
+            weight: 2,
+            opacity: 1,
 
-    default:
-      break;
+            color: "#B7990D",
+            dashArray: "6",
+            fillOpacity: 0.45,
+          },
+          filter: filtrarRadiosNotNqn,
+        })
+          .bindTooltip(
+            (layer) => {
+              console.log(layer.feature.properties.supm2);
+              if (layer.feature.properties.supm2 <= 30000) {
+                return "5' a pie de la plaza";
+              } else if (
+                layer.feature.properties.supm2 > 30000 &&
+                layer.feature.properties.supm2 < 100000
+              ) {
+                return "10' a pie de la plaza";
+              } else {
+                return "15' a pie de la plaza";
+              }
+            },
+            {
+              sticky: false,
+              opacity: 1,
+              offset: L.point(50, 14),
+            }
+          )
+          .addTo(map);
+        map.fitBounds(radiosInfVerde.getBounds());
+        break;
+
+      default:
+        break;
+    }
   }
 };
 const agregarRadios = () => {
@@ -1655,6 +1690,13 @@ function onEachFeatureOtrasCapas(feature, layer) {
     },
   });
 }
+function onEachFeatureAlumineNat(feature, layer) {
+  layer.on({
+    click: (e) => {
+      zoomToFeatureAlumineNat(e);
+    },
+  });
+}
 function onEachFeatureNotInfVerde(feature, layer) {
   layer.on({
     mouseover: onHoverNotEspaciosVerdes,
@@ -1710,7 +1752,7 @@ function zoomToFeature(e) {
 
   agregarRadios();
 }
-function zoomToFeatureOtras(e) {
+function zoomToFeatureAlumineNat(e) {
   if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
     radiosInfVerde.remove();
   }
@@ -1720,7 +1762,7 @@ function zoomToFeatureOtras(e) {
   idCapaSeleccionada = e.target.feature.properties.id;
   localidadCapaSeleccionada = e.target.feature.properties.localidad;
 
-  agregarRadiosOtrasCapas();
+  agregarRadiosOtrasCapas("alumineNat");
 }
 function zoomToFeatureNotVerde(e) {
   if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
