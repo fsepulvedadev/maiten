@@ -235,7 +235,7 @@
                 </div>
             </div>
              -->
-             <div id="collapseNeuquen" class="collapse">
+             <div id="collapseNeuquen" class="hidden collapse">
               <input id="capasNeuquen" type="checkbox" class="peer" />
               <div id="tituloNeuquen" class="flex items-center justify-center p-1 mt-2 text-xl font-medium text-center text-white bg-green-700 border border-green-700 collapse-title">
                 Neuquen Capital <i class="ml-2 fa-solid fa-layer-group"></i>
@@ -940,440 +940,448 @@
                 <i class="fa fa-caret-left"></i>
               </div>
             </h1>
-            <h2
-              id="detalle-titulo"
-              class="mt-4 text-2xl text-center text-black border-green-600"
-            >
-              Neuquen Capital 
-            </h2>
-            <h3
-              class="my-2 text-xl text-center text-white bg-green-600 border-2"
-            >
-              Espacios Verdes
-            </h3>
-            <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-              <ul
-                class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 justify-evenly dark:text-gray-400"
-                id="tabExample"
-                role="tablist"
-              >
-                <li class="md:w-1/4" role="presentation">
-                  <button
-                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="detalle-general-tab"
-                    type="button"
-                    role="tab"
-                    aria-controls="detalle-general"
-                    aria-selected="false"
-                  >
-                    General
-                  </button>
-                </li>
-                <li class="md:w-1/4" role="presentation">
-                  <button
-                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="detalle-arbolado-tab"
-                    type="button"
-                    role="tab"
-                    aria-controls="detalle-arbolado"
-                    aria-selected="false"
-                  >
-                    Arbolado
-                  </button>
-                </li>
-                <li class="md:w-1/4" role="presentation">
-                  <button
-                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="detalle-mobiliario-tab"
-                    type="button"
-                    role="tab"
-                    aria-controls="detalle-mobiliario"
-                    aria-selected="false"
-                  >
-                    Mobiliario
-                  </button>
-                </li>
-                <li class="md:w-1/4" role="presentation">
-                  <button
-                    class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                    id="detalle-absorcion-tab"
-                    type="button"
-                    role="tab"
-                    aria-controls="detalle-absorcion"
-                    aria-selected="false"
-                  >
-                    Absorción
-                  </button>
-                </li>
-              </ul>
+            <div id="placeholderDetallesDeLocalidad" class="flex items-center justify-center h-full">
+
+              <h1 class="mt-10 text-xl font-bold text-center ">Seleccione una localidad en la pestaña localidades <i class="text-green-700 fa-solid fa-map-location-dot"></i
+                > para ver sus datos y graficos.</h1>
             </div>
-            <div id="tabContentExample">
-              <div
-                class="hidden p-2 text-black rounded-lg md:p-4 md:pt-0 bg-gray-50 "
-                id="detalle-general"
-                role="tabpanel"
-                aria-labelledby="detalle-general-tab"
+            <div id="detallesDeLocalidad" class="hidden">
+              
+              <h2
+                id="detalle-titulo"
+                class="mt-4 text-2xl text-center text-black border-green-600"
               >
-                <h2 class="mb-1 text-xl text-center text-black">
-                  Espacios verdes, azules y areas naturales protegidas por habitante.
-                  <i
-                  data-tooltip-target="tooltip-top-general-recomendado"
-                  data-tooltip-placement="top"
-                  type="button"
-                  class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
-                ></i>
-                <div
-                id="tooltip-top-general-recomendado"
-                role="tooltip"
-                class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                Neuquen Capital 
+              </h2>
+              <h3
+                class="my-2 text-xl text-center text-white bg-green-600 border-2"
               >
-                <ul class="ml-2 text-left">
-                  <li class="mb-2">
-                    La Organización Mundial de la Salud (OMS) establece como parámetro <b>
-                      mínimo 9 m²/habitante
-                    </b> y la Organización de las Naciones Unidas (ONU) <b>recomienda</b>  un valor ideal de <b>16 m²/habitante</b> .
-                  
+                Espacios Verdes
+              </h3>
+              <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                <ul
+                  class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 justify-evenly dark:text-gray-400"
+                  id="tabExample"
+                  role="tablist"
+                >
+                  <li class="md:w-1/4" role="presentation">
+                    <button
+                      class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      id="detalle-general-tab"
+                      type="button"
+                      role="tab"
+                      aria-controls="detalle-general"
+                      aria-selected="false"
+                    >
+                      General
+                    </button>
+                  </li>
+                  <li class="md:w-1/4" role="presentation">
+                    <button
+                      class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      id="detalle-arbolado-tab"
+                      type="button"
+                      role="tab"
+                      aria-controls="detalle-arbolado"
+                      aria-selected="false"
+                    >
+                      Arbolado
+                    </button>
+                  </li>
+                  <li class="md:w-1/4" role="presentation">
+                    <button
+                      class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      id="detalle-mobiliario-tab"
+                      type="button"
+                      role="tab"
+                      aria-controls="detalle-mobiliario"
+                      aria-selected="false"
+                    >
+                      Mobiliario
+                    </button>
+                  </li>
+                  <li class="md:w-1/4" role="presentation">
+                    <button
+                      class="inline-block p-3 border-b-2 border-transparent rounded-t-lg md:w-full hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      id="detalle-absorcion-tab"
+                      type="button"
+                      role="tab"
+                      aria-controls="detalle-absorcion"
+                      aria-selected="false"
+                    >
+                      Absorción
+                    </button>
                   </li>
                 </ul>
-
-                <div class="tooltip-arrow" data-popper-arrow></div>
               </div>
-                </h2>
-          <div class="relative">
-            <div class="w-full p-2 my-2 border-2 border-green-500 shadow-lg shadow-green-400 rounded-xl">
-              <p id="general-metros-verde-tag" class="my-1 text-base text-center text-white bg-green-500 rounded">Neuquen Capital
-             
-
-               
-
-              </p>
-              <div class="flex items-center justify-center">
-                <p class="flex items-center">
-                  <div class="flex items-center m-1">
-
-                  </div>
-                <p id="detalle-tarjeta-verde-text" class="flex items-center py-2 mx-1">
-                  <p>
-                    <span class="font-bold text-green-600">
-                      Espacios verdes
-                    </span>   <br/> 
-                    <span class="font-bold text-blue-500">
-                      Espacios azules
-                    </span>   <br/> 
-                    <span class="font-bold text-green-800">
-                       Areas naturales protegidas
-                    </span> 
-                  </p>
-                  <img class="w-3 mx-1" src="./assets/llaveCurva.png">
-                  <span id="detalleMetroCuadrados" class="font-bold">51,37 m<sup>2</sup></span> 
-                </p>  
-                </p>
-                <p class="flex items-center mx-1">x</p>
-                <p class="flex items-center">
-                  <i class="mx-2 text-base fa-solid fa-person"></i>
-                  Habitante
-                </p>
-              </div>
-            </div>
-<!-- ESTOS DOS BOTONES ESTAN OCULTOS HASTA QUE HAYAN DATOS CONCRETOS DE LA EVOLUCION EN LOS ULTIMOS 4 AÑOS -->
-            <span id="detalle-tarjeta-verde-actual" class="hidden -top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-green-500 border-green-500 p-1 border rounded text-white">
-              Actual
-            </span>
-            <span id="detalle-tarjeta-verde-4años" class="hidden -top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-green-500 p-1 border rounded text-green-500">
-              Ultimos 4 años
-            </span>
-
-          </div>
-                
-                <div class="relative">
-
-               
-
-
-<!-- ESTOS TAMBIEN ESTAN OCULTOS CON LA CLASE HIDDEN -->
-                  <span id="detalle-tarjeta-btn-actual" class="hidden -top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-[#21A0A0] border-[#21A0A0] p-1 border rounded text-white">
-                    Actual
-                  </span>
-                  <span id="detalle-tarjeta-btn-4años" class="hidden -top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-[#21A0A0] p-1 border rounded text-[#21A0A0]">
-                    Ultimos 4 años
-                  </span>
-              </div>
-              
-             
-                <div class="w-full p-2 mt-6 mb-2 border-2 border-yellow-500 border-dashed rounded-xl">
-                  <p class="my-1 text-base text-center text-white bg-yellow-500 rounded">Minimo
-                 
-
-                   
-
-                  </p>
-                  <div class="flex items-center justify-center mt-4">
-                    <p class="flex items-center">
-                      <div class="flex items-center m-1">
-
-                        <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
-                        <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
-                        <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
-                      </div>
-                    <p class="flex items-center mx-1">
-
-                      9 m<sup>2</sup>
-                    </p>  
-                    </p>
-                    <p class="flex items-center mx-1">x</p>
-                    <p class="flex items-center">
-                      <i class="mx-2 text-base fa-solid fa-person"></i>
-                      Habitante
-                    </p>
-                  </div>
-                </div>
-                <div class="w-full p-2 mt-6 mb-2 border-2 border-dashed border-emerald-500 rounded-xl">
-                  <p class="my-1 text-base text-center text-white rounded bg-emerald-500">Recomendado
-                 
-
-                   
-
-                  </p>
-                  <div class="flex items-center justify-center mt-4">
-                    <p class="flex items-center">
-                      <div class="flex items-center m-1">
-
-                        <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
-                        <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
-                        <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
-                      </div>
-                    <p class="flex items-center mx-1">
-
-                      16 m<sup>2</sup>
-                    </p>  
-                    </p>
-                    <p class="flex items-center mx-1">x</p>
-                    <p class="flex items-center">
-                      <i class="mx-2 text-base fa-solid fa-person"></i>
-                      Habitante
-                    </p>
-                  </div>
-                </div>
-               
-              </div>
-              <div
-                class="hidden p-4 rounded-lg bg-gray-50"
-                id="detalle-arbolado"
-                role="tabpanel"
-                aria-labelledby="detalle-arbolado-tab"
-              >
-                <div class="flex items-center justify-center w-full">
-                  <div
-                    id="tooltip-top-arbolado"
-                    role="tooltip"
-                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                  >
-                    <ul class="ml-2 text-left">
-                      <li class="mb-2">
-                        <span class="font-bold underline">
-                          Cobertura Forestal:
-                        </span>
-                        Proporción de cobertura forestal en relación al área
-                        total del espacio verde.
-                      </li>
-                    </ul>
-
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                  </div>
-                  <p class="text-xl text-center text-black">
-                    Cobertura Arbórea
-                  </p>
-                  <i
-                    data-tooltip-target="tooltip-top-arbolado"
-                    data-tooltip-placement="top"
-                    type="button"
-                    class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
-                  ></i>
-                </div>
-                <div class="flex items-center justify-center">
-                  <button id="ver4añosArbolado" type="button" class="hidden text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
-                 <!--  <i
-                  data-tooltip-target="tooltip-top-arbolado-evolucion"
-                  data-tooltip-placement="top"
-                  type="button"
-                  class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-700"
-                ></i>
- -->
-                  <div
-                  id="tooltip-top-arbolado-evolucion"
-                  role="tooltip"
-                  class=" inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              <div id="tabContentExample">
+                <div
+                  class="hidden p-2 text-black rounded-lg md:p-4 md:pt-0 bg-gray-50 "
+                  id="detalle-general"
+                  role="tabpanel"
+                  aria-labelledby="detalle-general-tab"
                 >
-                  <ul class="ml-2 text-left">
-                    <li class="mb-2">
-                     
-                      Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de cobertura arborea hace 4 años.
-                    </li>
-                  </ul>
-
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                </div>
-                <canvas width="350" height="350" id="graficoArbolado"></canvas>
-              </div>
-              <div
-                class="hidden p-4 rounded-lg bg-gray-50"
-                id="detalle-mobiliario"
-                role="tabpanel"
-                aria-labelledby="detalle-mobiliario-tab"
-              >
-                <div class="flex items-center justify-center w-full">
-                  <div
-                    id="tooltip-top"
-                    role="tooltip"
-                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                  >
-                    <ul class="ml-2 text-left">
-                      <li class="mb-2">
-                        <span class="font-bold underline">
-                          Mobiliario No Posee:
-                        </span>
-                        Posee menos del básico predeterminado
-                      </li>
-                      <li class="mb-2">
-                        <span class="font-bold underline">
-                          Mobiliario Básico:
-                        </span>
-                        Espacio que contiene el mobiliario predeterminado:
-                        <ul class="ml-4">
-                          <li>
-                            <span class="font-bold">Parque:</span> luminaria,
-                            bancos, cestos
-                          </li>
-                          <li>
-                            <span class="font-bold">Plaza:</span> luminaria,
-                            bancos, cestos, juegos para niños.
-                          </li>
-                          <li>
-                            <span class="font-bold">Plazoleta:</span> luminaria,
-                            bancos, cestos.
-                          </li>
-                          <li>
-                            <span class="font-bold">Corredor:</span> luminaria,
-                            cestos.
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="">
-                        <span class="font-bold underline">
-                          Mobiliario Superior:
-                        </span>
-                        Contiene el mobiliario adicional al predeterminado para
-                        el tipo
-                      </li>
-                    </ul>
-
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                  </div>
-                  <p class="text-xl text-center text-black">
-                    Tipo de Mobiliario
-                  </p>
-                  <i
-                    data-tooltip-target="tooltip-top"
+                  <h2 class="mb-1 text-xl text-center text-black">
+                    Espacios verdes, azules y areas naturales protegidas por habitante.
+                    <i
+                    data-tooltip-target="tooltip-top-general-recomendado"
                     data-tooltip-placement="top"
                     type="button"
                     class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                   ></i>
-                </div>
-                <div class="flex items-center justify-center">
-                  <button id="ver4añosMobiliario" type="button" class="hidden text-white bg-gradient-to-r from-[#0B3142] via-[#0F5257] to-[#0E0E52] hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
-                <!--   <i
-                  data-tooltip-target="tooltip-top-mobiliario-evolucion"
-                  data-tooltip-placement="top"
-                  type="button"
-                  class="fa-solid fa-circle-question ml-2 text-[#0B3142] hover:text-[#0F5257] rounded-lg text-xl text-center"
-                ></i> -->
-
                   <div
-                  id="tooltip-top-mobiliario-evolucion"
+                  id="tooltip-top-general-recomendado"
                   role="tooltip"
                   class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                 >
                   <ul class="ml-2 text-left">
                     <li class="mb-2">
-                     
-                      Ver valores de la cantidad de espacios verdes clasificados segun su equipamiento y mobiliario hace 4 años.
+                      La Organización Mundial de la Salud (OMS) establece como parámetro <b>
+                        mínimo 9 m²/habitante
+                      </b> y la Organización de las Naciones Unidas (ONU) <b>recomienda</b>  un valor ideal de <b>16 m²/habitante</b> .
+                    
                     </li>
                   </ul>
-
+  
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
+                  </h2>
+            <div class="relative">
+              <div class="w-full p-2 my-2 border-2 border-green-500 shadow-lg shadow-green-400 rounded-xl">
+                <p id="general-metros-verde-tag" class="my-1 text-base text-center text-white bg-green-500 rounded">Neuquen Capital
+               
+  
+                 
+  
+                </p>
+                <div class="flex items-center justify-center">
+                  <p class="flex items-center">
+                    <div class="flex items-center m-1">
+  
+                    </div>
+                  <p id="detalle-tarjeta-verde-text" class="flex items-center py-2 mx-1">
+                    <p>
+                      <span class="font-bold text-green-600">
+                        Espacios verdes
+                      </span>   <br/> 
+                      <span class="font-bold text-blue-500">
+                        Espacios azules
+                      </span>   <br/> 
+                      <span class="font-bold text-green-800">
+                         Areas naturales protegidas
+                      </span> 
+                    </p>
+                    <img class="w-3 mx-1" src="./assets/llaveCurva.png">
+                    <p id="detalleMetroCuadrados" class="mr-1 font-bold">51,37 </p> <span>m<sup>2</sup> </span> 
+                  </p>  
+                  </p>
+                  <p class="flex items-center mx-1">x</p>
+                  <p class="flex items-center">
+                    <i class="mx-2 text-base fa-solid fa-person"></i>
+                    Habitante
+                  </p>
                 </div>
-                <canvas
-                  width="350"
-                  height="350"
-                  id="graficoMobiliario"
-                ></canvas>
               </div>
-              <div
-                class="hidden p-4 rounded-lg bg-gray-50"
-                id="detalle-absorcion"
-                role="tabpanel"
-                aria-labelledby="detalle-absorcion-tab"
-              >
-                <div class="flex flex-col items-center justify-center w-full">
+  <!-- ESTOS DOS BOTONES ESTAN OCULTOS HASTA QUE HAYAN DATOS CONCRETOS DE LA EVOLUCION EN LOS ULTIMOS 4 AÑOS -->
+              <span id="detalle-tarjeta-verde-actual" class="hidden -top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-green-500 border-green-500 p-1 border rounded text-white">
+                Actual
+              </span>
+              <span id="detalle-tarjeta-verde-4años" class="hidden -top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-green-500 p-1 border rounded text-green-500">
+                Ultimos 4 años
+              </span>
+  
+            </div>
+                  
+                  <div class="relative">
+  
+                 
+  
+  
+  <!-- ESTOS TAMBIEN ESTAN OCULTOS CON LA CLASE HIDDEN -->
+                    <span id="detalle-tarjeta-btn-actual" class="hidden -top-3 left-6 absolute text-[0.6rem] cursor-pointer   bg-[#21A0A0] border-[#21A0A0] p-1 border rounded text-white">
+                      Actual
+                    </span>
+                    <span id="detalle-tarjeta-btn-4años" class="hidden -top-3 right-6 absolute text-[0.6rem] cursor-pointer   bg-white border-[#21A0A0] p-1 border rounded text-[#21A0A0]">
+                      Ultimos 4 años
+                    </span>
+                </div>
                 
-                  <div class="flex items-center ">
-                    <div
-                    id="tooltip-top-absorcion"
-                    role="tooltip"
-                    class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                  >
-                    <ul class="ml-2 text-left">
-                      <li class="mb-2">
-                        <span class="font-bold underline">
-                          Suelo Absorbente:
-                        </span>
-                        Proporción de terreno absorbente en relación al área
-                        total de un espacio verde de uso público.
-                      </li>
-                    </ul>
-
-                    <div class="tooltip-arrow" data-popper-arrow></div>
+               
+                  <div class="w-full p-2 mt-6 mb-2 border-2 border-yellow-500 border-dashed rounded-xl">
+                    <p class="my-1 text-base text-center text-white bg-yellow-500 rounded">Minimo
+                   
+  
+                     
+  
+                    </p>
+                    <div class="flex items-center justify-center mt-4">
+                      <p class="flex items-center">
+                        <div class="flex items-center m-1">
+  
+                          <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
+                        </div>
+                      <p class="flex items-center mx-1">
+  
+                        9 m<sup>2</sup>
+                      </p>  
+                      </p>
+                      <p class="flex items-center mx-1">x</p>
+                      <p class="flex items-center">
+                        <i class="mx-2 text-base fa-solid fa-person"></i>
+                        Habitante
+                      </p>
+                    </div>
                   </div>
+                  <div class="w-full p-2 mt-6 mb-2 border-2 border-dashed border-emerald-500 rounded-xl">
+                    <p class="my-1 text-base text-center text-white rounded bg-emerald-500">Recomendado
+                   
+  
+                     
+  
+                    </p>
+                    <div class="flex items-center justify-center mt-4">
+                      <p class="flex items-center">
+                        <div class="flex items-center m-1">
+  
+                          <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
+                        </div>
+                      <p class="flex items-center mx-1">
+  
+                        16 m<sup>2</sup>
+                      </p>  
+                      </p>
+                      <p class="flex items-center mx-1">x</p>
+                      <p class="flex items-center">
+                        <i class="mx-2 text-base fa-solid fa-person"></i>
+                        Habitante
+                      </p>
+                    </div>
+                  </div>
+                 
+                </div>
+                <div
+                  class="hidden p-4 rounded-lg bg-gray-50"
+                  id="detalle-arbolado"
+                  role="tabpanel"
+                  aria-labelledby="detalle-arbolado-tab"
+                >
+                  <div class="flex items-center justify-center w-full">
+                    <div
+                      id="tooltip-top-arbolado"
+                      role="tooltip"
+                      class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                    >
+                      <ul class="ml-2 text-left">
+                        <li class="mb-2">
+                          <span class="font-bold underline">
+                            Cobertura Forestal:
+                          </span>
+                          Proporción de cobertura forestal en relación al área
+                          total del espacio verde.
+                        </li>
+                      </ul>
+  
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
                     <p class="text-xl text-center text-black">
-                      Terreno absorbente
+                      Cobertura Arbórea
                     </p>
                     <i
-                      data-tooltip-target="tooltip-top-absorcion"
+                      data-tooltip-target="tooltip-top-arbolado"
                       data-tooltip-placement="top"
                       type="button"
                       class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
                     ></i>
-                   
                   </div>
-                  <div class="flex items-center">
-                    <button id="ver4añosAbsorcion" type="button" class="hidden text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
-                <!--     <i
-                    data-tooltip-target="tooltip-top-absorcion-evolucion"
+                  <div class="flex items-center justify-center">
+                    <button id="ver4añosArbolado" type="button" class="hidden text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                   <!--  <i
+                    data-tooltip-target="tooltip-top-arbolado-evolucion"
                     data-tooltip-placement="top"
                     type="button"
-                    class="ml-2 text-xl text-center text-blue-600 rounded-lg fa-solid fa-circle-question hover:text-blue-800"
+                    class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-700"
                   ></i>
- -->
+   -->
                     <div
-                    id="tooltip-top-absorcion-evolucion"
+                    id="tooltip-top-arbolado-evolucion"
+                    role="tooltip"
+                    class=" inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                  >
+                    <ul class="ml-2 text-left">
+                      <li class="mb-2">
+                       
+                        Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de cobertura arborea hace 4 años.
+                      </li>
+                    </ul>
+  
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  </div>
+                  <canvas width="350" height="350" id="graficoArbolado"></canvas>
+                </div>
+                <div
+                  class="hidden p-4 rounded-lg bg-gray-50"
+                  id="detalle-mobiliario"
+                  role="tabpanel"
+                  aria-labelledby="detalle-mobiliario-tab"
+                >
+                  <div class="flex items-center justify-center w-full">
+                    <div
+                      id="tooltip-top"
+                      role="tooltip"
+                      class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                    >
+                      <ul class="ml-2 text-left">
+                        <li class="mb-2">
+                          <span class="font-bold underline">
+                            Mobiliario No Posee:
+                          </span>
+                          Posee menos del básico predeterminado
+                        </li>
+                        <li class="mb-2">
+                          <span class="font-bold underline">
+                            Mobiliario Básico:
+                          </span>
+                          Espacio que contiene el mobiliario predeterminado:
+                          <ul class="ml-4">
+                            <li>
+                              <span class="font-bold">Parque:</span> luminaria,
+                              bancos, cestos
+                            </li>
+                            <li>
+                              <span class="font-bold">Plaza:</span> luminaria,
+                              bancos, cestos, juegos para niños.
+                            </li>
+                            <li>
+                              <span class="font-bold">Plazoleta:</span> luminaria,
+                              bancos, cestos.
+                            </li>
+                            <li>
+                              <span class="font-bold">Corredor:</span> luminaria,
+                              cestos.
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="">
+                          <span class="font-bold underline">
+                            Mobiliario Superior:
+                          </span>
+                          Contiene el mobiliario adicional al predeterminado para
+                          el tipo
+                        </li>
+                      </ul>
+  
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    <p class="text-xl text-center text-black">
+                      Tipo de Mobiliario
+                    </p>
+                    <i
+                      data-tooltip-target="tooltip-top"
+                      data-tooltip-placement="top"
+                      type="button"
+                      class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
+                    ></i>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <button id="ver4añosMobiliario" type="button" class="hidden text-white bg-gradient-to-r from-[#0B3142] via-[#0F5257] to-[#0E0E52] hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                  <!--   <i
+                    data-tooltip-target="tooltip-top-mobiliario-evolucion"
+                    data-tooltip-placement="top"
+                    type="button"
+                    class="fa-solid fa-circle-question ml-2 text-[#0B3142] hover:text-[#0F5257] rounded-lg text-xl text-center"
+                  ></i> -->
+  
+                    <div
+                    id="tooltip-top-mobiliario-evolucion"
                     role="tooltip"
                     class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                   >
                     <ul class="ml-2 text-left">
                       <li class="mb-2">
                        
-                        Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de absorción hace 4 años.
+                        Ver valores de la cantidad de espacios verdes clasificados segun su equipamiento y mobiliario hace 4 años.
                       </li>
                     </ul>
-
+  
                     <div class="tooltip-arrow" data-popper-arrow></div>
                   </div>
                   </div>
- 
+                  <canvas
+                    width="350"
+                    height="350"
+                    id="graficoMobiliario"
+                  ></canvas>
                 </div>
-                <canvas width="350" height="350" id="graficoAbsorcion"></canvas>
+                <div
+                  class="hidden p-4 rounded-lg bg-gray-50"
+                  id="detalle-absorcion"
+                  role="tabpanel"
+                  aria-labelledby="detalle-absorcion-tab"
+                >
+                  <div class="flex flex-col items-center justify-center w-full">
+                  
+                    <div class="flex items-center ">
+                      <div
+                      id="tooltip-top-absorcion"
+                      role="tooltip"
+                      class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                    >
+                      <ul class="ml-2 text-left">
+                        <li class="mb-2">
+                          <span class="font-bold underline">
+                            Suelo Absorbente:
+                          </span>
+                          Proporción de terreno absorbente en relación al área
+                          total de un espacio verde de uso público.
+                        </li>
+                      </ul>
+  
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                      <p class="text-xl text-center text-black">
+                        Terreno absorbente
+                      </p>
+                      <i
+                        data-tooltip-target="tooltip-top-absorcion"
+                        data-tooltip-placement="top"
+                        type="button"
+                        class="ml-2 text-xl text-center text-green-600 rounded-lg fa-solid fa-circle-question hover:text-green-800 focus:ring-blue-300"
+                      ></i>
+                     
+                    </div>
+                    <div class="flex items-center">
+                      <button id="ver4añosAbsorcion" type="button" class="hidden text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br   font-medium rounded-lg text-sm px-2.5 py-1.15 text-center ">Ver evolucion</button>
+                  <!--     <i
+                      data-tooltip-target="tooltip-top-absorcion-evolucion"
+                      data-tooltip-placement="top"
+                      type="button"
+                      class="ml-2 text-xl text-center text-blue-600 rounded-lg fa-solid fa-circle-question hover:text-blue-800"
+                    ></i>
+   -->
+                      <div
+                      id="tooltip-top-absorcion-evolucion"
+                      role="tooltip"
+                      class="inline-block absolute invisible z-[90000] py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                    >
+                      <ul class="ml-2 text-left">
+                        <li class="mb-2">
+                         
+                          Ver valores de la cantidad de espacios verdes clasificados segun su porcentaje de absorción hace 4 años.
+                        </li>
+                      </ul>
+  
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    </div>
+   
+                  </div>
+                  <canvas width="350" height="350" id="graficoAbsorcion"></canvas>
+                </div>
               </div>
             </div>
           </div>

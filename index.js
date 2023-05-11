@@ -266,12 +266,6 @@ rinconInfraVerde.features.map((elemento) => {
     default:
       break;
   }
-
-  console.log(
-    ["absorcion", contadoresRincon.absorcion],
-    ["arbolado", contadoresRincon.arbolado],
-    ["mobiliario", contadoresRincon.mobiliario]
-  );
 });
 
 // CAPAS RINCON DE LOS SAUCES
@@ -471,11 +465,7 @@ const listaLocalidades = document.getElementById("lista-localidades");
 var info = L.control();
 const BING_KEY =
   "Av3IJWsQuEeoFjlg5eoVctOE9QvC_EXejm8IlG7m80D0KDWV8bK3cDhjpF4k-mfv";
-const localidadesActivas = [
-  "Neuquén Capital",
-  "Rincón de los Sauces",
-  "Aluminé",
-];
+const localidadesActivas = ["Rincón de los Sauces", "Aluminé"];
 const localidades = [
   {
     nombre: "Zapala",
@@ -525,6 +515,7 @@ const localidades = [
     loc: [-37.3967149, -68.9470263],
     id: "rincon",
     zoom: 14,
+    poblacion: 29910,
   },
   {
     nombre: "Plottier",
@@ -567,6 +558,7 @@ const localidades = [
     loc: [-39.2363186, -70.9376694],
     id: "alumine",
     zoom: 14,
+    poblacion: 6479,
   },
   {
     nombre: "Las lajas",
@@ -623,6 +615,43 @@ let activas = {
 // END DEFINICIONES
 
 // EVENT HANDLERS
+const calcularEspaciosVerdesPorHab = (localidad) => {
+  let superficieVerdeTotal = 0;
+  let verdePorHab = 0;
+  switch (localidad) {
+    case "Aluminé":
+      alumineInfraVerde.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+      alumineAreasNaturales.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+
+      localidades.map((local) => {
+        if (localidad == local.nombre) {
+          verdePorHab = superficieVerdeTotal / local.poblacion;
+        }
+      });
+      return verdePorHab;
+    case "Rincón de los Sauces":
+      alumineInfraVerde.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+      alumineAreasNaturales.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+
+      localidades.map((local) => {
+        if (localidad == local.nombre) {
+          verdePorHab = superficieVerdeTotal / local.poblacion;
+        }
+      });
+      return verdePorHab;
+
+    default:
+      break;
+  }
+};
 
 const toggleVerdeActuala4años = () => {
   if (tarjetaVerdeState === "actual") {
@@ -760,15 +789,19 @@ const cambiarATabDetalle = () => {
 
 const cargarDetalle = (targetId) => {
   let detalleTitulo = document.getElementById("detalle-titulo");
-  let detalleMetrosCuadrados = document.getElementById(
-    "detalleMetrosCuadrados"
-  );
+  let detalleMetrosCuadrados = document.getElementById("detalleMetroCuadrados");
   let generalMetrosVerdes = document.getElementById("general-metros-verde-tag");
+  let detalleLocalidad = document.getElementById("detallesDeLocalidad");
+  let placeholderDetalleLocalidad = document.getElementById(
+    "placeholderDetallesDeLocalidad"
+  );
 
-  console.log(targetId);
-
+  detalleLocalidad.classList.remove("hidden");
+  placeholderDetalleLocalidad.classList.add("hidden");
   generalMetrosVerdes.innerText = targetId;
   detalleTitulo.innerText = targetId;
+  detalleMetrosCuadrados.innerText =
+    calcularEspaciosVerdesPorHab(targetId).toFixed(2);
 
   switch (targetId) {
     case "Aluminé":
