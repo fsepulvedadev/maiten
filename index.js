@@ -1241,6 +1241,13 @@ const agregarRadiosOtrasCapas = (esAreasNat) => {
         dashArray: "6",
         fillOpacity: 0.45,
       },
+      onEachFeature: (feature, layer) => {
+        layer.on({
+          click: (e) => {
+            map.removeLayer(layer);
+          },
+        });
+      },
     })
       .bindTooltip(
         (layer) => {
@@ -1276,6 +1283,13 @@ const agregarRadiosOtrasCapas = (esAreasNat) => {
             fillOpacity: 0.45,
           },
           filter: filtrarRadiosNotNqn,
+          onEachFeature: (feature, layer) => {
+            layer.on({
+              click: (e) => {
+                map.removeLayer(layer);
+              },
+            });
+          },
         })
           .bindTooltip(
             (layer) => {
@@ -1311,6 +1325,13 @@ const agregarRadiosOtrasCapas = (esAreasNat) => {
             fillOpacity: 0.45,
           },
           filter: filtrarRadiosNotNqn,
+          onEachFeature: (feature, layer) => {
+            layer.on({
+              click: (e) => {
+                map.removeLayer(layer);
+              },
+            });
+          },
         })
           .bindTooltip(
             (layer) => {
@@ -1642,7 +1663,7 @@ function getColor(d, tipo) {
 function onHoverNotEspaciosVerdes(e) {
   let layer = e.target;
 
-  info.update(layer.feature.properties, false);
+  info.update(layer.feature.properties, true);
 }
 
 function highlightFeature(e) {
@@ -1688,12 +1709,26 @@ function onEachFeatureOtrasCapas(feature, layer) {
     click: (e) => {
       zoomToFeatureOtras(e);
     },
+
+    mouseover: (e) => {
+      onHoverNotEspaciosVerdes(e);
+    },
+    mouseout: (e) => {
+      info.update();
+    },
   });
 }
 function onEachFeatureAlumineNat(feature, layer) {
   layer.on({
     click: (e) => {
       zoomToFeatureAlumineNat(e);
+    },
+
+    mouseover: (e) => {
+      onHoverNotEspaciosVerdes(e);
+    },
+    mouseout: (e) => {
+      info.update();
     },
   });
 }
@@ -1762,7 +1797,19 @@ function zoomToFeatureAlumineNat(e) {
   idCapaSeleccionada = e.target.feature.properties.id;
   localidadCapaSeleccionada = e.target.feature.properties.localidad;
 
-  agregarRadiosOtrasCapas("alumineNat");
+  agregarRadiosOtrasCapas(true);
+}
+function zoomToFeatureOtras(e) {
+  if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
+    radiosInfVerde.remove();
+  }
+
+  console.log(e.target);
+
+  idCapaSeleccionada = e.target.feature.properties.id;
+  localidadCapaSeleccionada = e.target.feature.properties.localidad;
+
+  agregarRadiosOtrasCapas();
 }
 function zoomToFeatureNotVerde(e) {
   if (radiosInfVerde !== "" && map.hasLayer(radiosInfVerde)) {
