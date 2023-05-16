@@ -9,6 +9,36 @@ radiosAreasNat
 -------------------------------------------------------------------------------------------------
 
 */
+
+const colors = {
+  selecionado: [
+    "#8dd3c7",
+    "#ffffb3",
+    "#bebada",
+    "#fb8072",
+    "#059669",
+    "#006d2c",
+  ],
+  tipos: ["#2c9699", "#7E52A0", "#f4dd51", "#f06937", "#ea1d4b", "#a72071"],
+  arbolado: ["#A3E635", "#84CC16", "#65A30D", "#4D7C0F", "#3F6212", "#365314"],
+  absorcion: ["#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
+  superficie: [
+    "#ffffd4",
+    "#fee391",
+    "#fec44f",
+    "#fe9929",
+    "#d95f0e",
+    "#993404",
+  ],
+};
+let activas = {
+  infVerde: false,
+  infAzul: false,
+  areasNat: false,
+  radiosCober: false,
+  manchaUrb: false,
+};
+
 let valoresMobBasico = [];
 let valoresMobSup = [];
 let valoresSinMob = [];
@@ -58,8 +88,13 @@ collapseAlumine.addEventListener("click", () => {
 const espaciosVerdesRincon = document.getElementById("espaciosVerdesRincon");
 const manchaUrbanaRincon = document.getElementById("manchaUrbanaRincon");
 const radiosCoberturaRincon = document.getElementById("radiosCoberturaRincon");
+const listaClasificacionesRincon = document.getElementById(
+  "lista-capas-espacios-verdes-rincon"
+);
 
 espaciosVerdesRincon.addEventListener("click", (e) => {
+  listaClasificacionesRincon.classList.remove("hidden");
+
   agregarCapasRincon(e);
 });
 
@@ -77,11 +112,16 @@ const radiosCoberturaAlumine = document.getElementById(
   "radiosCoberturaAlumine"
 );
 const areasNaturalesAlumine = document.getElementById("areasNaturalesAlumine");
+const listaClasificacionesAlumine = document.getElementById(
+  "lista-capas-espacios-verdes-alumine"
+);
 
 areasNaturalesAlumine.addEventListener("click", (e) => {
   agregarCapasAlumine(e);
 });
 espaciosVerdesAlumine.addEventListener("click", (e) => {
+  listaClasificacionesAlumine.classList.remove("hidden");
+
   agregarCapasAlumine(e);
 });
 
@@ -301,11 +341,7 @@ const capaRinconAreaInfluencia = L.geoJSON(rinconAreaInfluencia, {
 });
 
 const capaRinconInfraVerde = L.geoJSON(rinconInfraVerde, {
-  style: {
-    weight: 2,
-    opacity: 1,
-    color: "#A3E635",
-  },
+  style: style,
   onEachFeature: onEachFeatureOtrasCapas,
 });
 
@@ -346,12 +382,7 @@ const capaAlumineBufferInfraverdeDisuelto = L.geoJSON(
 );
 
 const capaAlumineInfraVerde = L.geoJSON(alumineInfraVerde, {
-  style: {
-    weight: 2,
-    opacity: 1,
-    color: "#A3E635",
-    fillOpacity: 1,
-  },
+  style: style,
   onEachFeature: onEachFeatureOtrasCapas,
 });
 
@@ -424,6 +455,12 @@ const capasEspaciosVerdes = document.getElementById(
 );
 const ModalDetalle = document.getElementById("detalle-modal");
 
+const absorcionRinconTag = document.getElementById("absorcionrincon");
+const arboladoRinconTag = document.getElementById("arboladorincon");
+const superficieRinconTag = document.getElementById("superficierincon");
+const absorcionAlumineTag = document.getElementById("absorcionAlumine");
+const arboladoAlumineTag = document.getElementById("arboladoAlumine");
+const superficieAlumineTag = document.getElementById("superficieAlumine");
 const absorcionTag = document.getElementById("absorcion");
 const arboladoTag = document.getElementById("arbolado");
 const superficieTag = document.getElementById("superficie");
@@ -465,6 +502,8 @@ const gris =
 
 /* const modalAdvertencia = document.getElementById("modal"); */
 const tiposTag = document.getElementById("tipo");
+const tiposTagAlumine = document.getElementById("tipoAlumine");
+const tiposTagrincon = document.getElementById("tiporincon");
 var sidebar = L.control.sidebar("sidebar").addTo(map);
 const listaLocalidades = document.getElementById("lista-localidades");
 var info = L.control();
@@ -587,35 +626,6 @@ let mapaBase = L.tileLayer(gris, {
   attribution:
     '&copy; <a href="https://ign-argentina.github.io/argenmap-web/">Argenmap</a> ',
 }).addTo(map);
-
-const colors = {
-  selecionado: [
-    "#8dd3c7",
-    "#ffffb3",
-    "#bebada",
-    "#fb8072",
-    "#059669",
-    "#006d2c",
-  ],
-  tipos: ["#2c9699", "#7E52A0", "#f4dd51", "#f06937", "#ea1d4b", "#a72071"],
-  arbolado: ["#A3E635", "#84CC16", "#65A30D", "#4D7C0F", "#3F6212", "#365314"],
-  absorcion: ["#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#034e7b"],
-  superficie: [
-    "#ffffd4",
-    "#fee391",
-    "#fec44f",
-    "#fe9929",
-    "#d95f0e",
-    "#993404",
-  ],
-};
-let activas = {
-  infVerde: false,
-  infAzul: false,
-  areasNat: false,
-  radiosCober: false,
-  manchaUrb: false,
-};
 
 // END DEFINICIONES
 
@@ -888,6 +898,14 @@ const cambiarCapaEspaciosVerdes = (e) => {
   let arb = document.querySelectorAll("#arbolado");
   let sup = document.querySelectorAll("#superficie");
   let tip = document.querySelectorAll("#tipo");
+  let absAlumine = document.querySelectorAll("#absorcionAlumine");
+  let arbAlumine = document.querySelectorAll("#arboladoAlumine");
+  let supAlumine = document.querySelectorAll("#superficieAlumine");
+  let tipoAlumine = document.querySelectorAll("#tipoAlumine");
+  let absrincon = document.querySelectorAll("#absorcionrincon");
+  let arbrincon = document.querySelectorAll("#arboladorincon");
+  let suprincon = document.querySelectorAll("#superficierincon");
+  let tiporincon = document.querySelectorAll("#tiporincon");
 
   abs.forEach((e) => {
     e.classList.remove("ring-2");
@@ -899,6 +917,30 @@ const cambiarCapaEspaciosVerdes = (e) => {
     e.classList.remove("ring-2");
   });
   tip.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  absAlumine.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  arbAlumine.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  supAlumine.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  tipoAlumine.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  absrincon.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  arbrincon.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  suprincon.forEach((e) => {
+    e.classList.remove("ring-2");
+  });
+  tiporincon.forEach((e) => {
     e.classList.remove("ring-2");
   });
 
@@ -927,8 +969,53 @@ const cambiarCapaEspaciosVerdes = (e) => {
       );
       targetEle4.classList.add("ring-2");
       break;
-
-    default:
+    case "arboladoAlumine":
+      let targetEle5 = document.querySelector(
+        "div#arboladoAlumine.w-full.cursor-pointer.p-1.rounded.ring-green-600"
+      );
+      targetEle5.classList.add("ring-2");
+      break;
+    case "absorcionAlumine":
+      let targetEle6 = document.querySelector(
+        "div#absorcionAlumine.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
+      );
+      targetEle6.classList.add("ring-2");
+      break;
+    case "superficieAlumine":
+      let targetEle7 = document.querySelector(
+        "div#superficieAlumine.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
+      );
+      targetEle7.classList.add("ring-2");
+      break;
+    case "tipoAlumine":
+      let targetEle8 = document.querySelector(
+        "div#tipoAlumine.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
+      );
+      targetEle8.classList.add("ring-2");
+      break;
+    case "arboladorincon":
+      let targetEle9 = document.querySelector(
+        "div#arboladorincon.w-full.cursor-pointer.p-1.rounded.ring-green-600"
+      );
+      targetEle9.classList.add("ring-2");
+      break;
+    case "absorcionrincon":
+      let targetEle10 = document.querySelector(
+        "div#absorcionrincon.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
+      );
+      targetEle10.classList.add("ring-2");
+      break;
+    case "superficierincon":
+      let targetEle11 = document.querySelector(
+        "div#superficierincon.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
+      );
+      targetEle11.classList.add("ring-2");
+      break;
+    case "tiporincon":
+      let targetEle12 = document.querySelector(
+        "div#tiporincon.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
+      );
+      targetEle12.classList.add("ring-2");
       break;
   }
   console.log(target.id);
@@ -966,6 +1053,78 @@ const cambiarCapaEspaciosVerdes = (e) => {
       capaSelecionada = "tipos";
       agregarIndice(capaSelecionada);
       infVerdeLayers.setStyle(style);
+
+      colors.selecionado = colors.tipos;
+
+      break;
+    case "absorcionAlumine":
+      capaSelecionada = "abs";
+      agregarIndice(capaSelecionada);
+
+      capaAlumineInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.absorcion;
+      break;
+
+    case "arboladoAlumine":
+      capaSelecionada = "arb";
+      agregarIndice(capaSelecionada);
+
+      capaAlumineInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.arbolado;
+
+      break;
+
+    case "superficieAlumine":
+      capaSelecionada = "sup";
+      agregarIndice(capaSelecionada);
+
+      capaAlumineInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.superficie;
+
+      break;
+    case "tipoAlumine":
+      capaSelecionada = "tipos";
+      agregarIndice(capaSelecionada);
+      capaAlumineInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.tipos;
+
+      break;
+    case "absorcionrincon":
+      capaSelecionada = "abs";
+      agregarIndice(capaSelecionada);
+
+      capaRinconInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.absorcion;
+      break;
+
+    case "arboladorincon":
+      capaSelecionada = "arb";
+      agregarIndice(capaSelecionada);
+
+      capaRinconInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.arbolado;
+
+      break;
+
+    case "superficierincon":
+      capaSelecionada = "sup";
+      agregarIndice(capaSelecionada);
+
+      capaRinconInfraVerde.setStyle(style);
+
+      colors.selecionado = colors.superficie;
+
+      break;
+    case "tiporincon":
+      capaSelecionada = "tipos";
+      agregarIndice(capaSelecionada);
+      capaRinconInfraVerde.setStyle(style);
 
       colors.selecionado = colors.tipos;
 
@@ -1215,6 +1374,15 @@ absorcionTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 arboladoTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 superficieTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 tiposTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+tiposTagAlumine.addEventListener("click", cambiarCapaEspaciosVerdes);
+absorcionAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+arboladoAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+superficieAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+tiposTagrincon.addEventListener("click", cambiarCapaEspaciosVerdes);
+absorcionRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+arboladoRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+superficieRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+//tiposAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 infraVerdeBtn.addEventListener("click", cambiarCapaGeneral);
 infraAzulBtn.addEventListener("click", cambiarCapaGeneral);
 areasNatBtn.addEventListener("click", cambiarCapaGeneral);
@@ -1976,6 +2144,42 @@ const options = {
 };
 
 const tabs = new Tabs(tabElements, options);
+const tabElementsAlumine = [
+  {
+    id: "general",
+    triggerEl: document.querySelector("#detalle-general-tab"),
+    targetEl: document.querySelector("#detalle-general"),
+  },
+  {
+    id: "arbolado",
+    triggerEl: document.querySelector("#detalle-arbolado-tab"),
+    targetEl: document.querySelector("#detalle-arbolado"),
+  },
+  {
+    id: "mobiliario",
+    triggerEl: document.querySelector("#detalle-mobiliario-tab"),
+    targetEl: document.querySelector("#detalle-mobiliario"),
+  },
+  {
+    id: "absorcionAlumine",
+    triggerEl: document.querySelector("#detalle-absorcion-tab"),
+    targetEl: document.querySelector("#detalle-absorcion"),
+  },
+];
+
+// options with default values
+const optionsAlumine = {
+  defaultTabId: "general",
+  activeClasses:
+    "text-green-600 hover:text-green-600 dark:text-green-600 dark:hover:text-green-600 border-green-600 dark:border-green-500",
+  inactiveClasses:
+    "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
+  onShow: () => {
+    /* ModalDetalle.classList.remove("hidden"); */
+  },
+};
+
+const tabsAlumine = new Tabs(tabElementsAlumine, optionsAlumine);
 
 //    Graficos    //
 
