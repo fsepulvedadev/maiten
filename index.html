@@ -1277,7 +1277,7 @@
               <h3
                 class="my-2 text-xl text-center text-white bg-green-600 border-2"
               >
-                Espacios Verdes
+                Espacios Verdes 
               </h3>
               <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul
@@ -1368,32 +1368,37 @@
                 </div>
                   </h2>
             <div class="relative">
-              <div class="w-full p-2 my-2 border-2 border-green-500 shadow-lg shadow-green-400 rounded-xl">
-                <p id="general-metros-verde-tag" class="my-1 text-base text-center text-white bg-green-500 rounded">Neuquen Capital
-               
-  
-                 
-  
+
+              <div class="grid justify-center w-full grid-cols-6 grid-rows-4 p-2 my-2 border-2 border-green-500 shadow-lg h-52 shadow-green-400 rounded-xl">
+              <p id="general-metros-verde-tag" class="self-start col-span-6 my-1 text-base text-center text-white bg-green-500 rounded">Neuquen Capital
                 </p>
-                <div class="flex items-center justify-center">
+
+                <div class="flex col-span-6 row-span-3 ">
                   <p class="flex items-center">
                     <div class="flex items-center m-1">
   
                     </div>
-                  <p id="detalle-tarjeta-verde-text" class="flex items-center py-2 mx-1">
-                    <p>
-                      <span class="font-bold text-green-600">
-                        Espacios verdes
-                      </span>   <br/> 
-                      <span class="font-bold text-blue-500">
-                        Espacios azules
-                      </span>   <br/> 
-                      <span class="font-bold text-green-800">
-                         Areas naturales protegidas
-                      </span> 
-                    </p>
+                  <p id="detalle-tarjeta-verde-text" class="py-2 mx-1 ">
+                    <div class="grid ">
+                      <div class="flex items-center justify-between ">
+                        <span  class="text-xs font-bold text-green-600">
+                          Espacios verdes = <br> <span id="tagEspaciosVerdes" class="w-full text-center"></span>
+                        </span>
+                      </div>
+                         <div class="flex items-center justify-between">
+                          <span  class="text-xs font-bold text-blue-500">
+                            Espacios azules = <br> <span id="tagEspaciosAzules" class="w-full text-center"></span>
+                          </span>
+                         </div>
+                        <div class="flex items-center justify-between">
+                          <span  class="text-xs font-bold text-green-800">
+                            Areas naturales protegidas = <br> <span id="tagAreasNaturales" class="w-full font-semibold text-center"></span>
+                         </span> 
+                        </div>
+                   
+                    </div>
                     <img class="w-3 mx-1" src="./assets/llaveCurva.png">
-                    <p id="detalleMetroCuadrados" class="mr-1 font-bold">51,37 </p> <span>m<sup>2</sup> </span> 
+                    <p id="detalleMetroCuadrados" class="flex flex-col items-center justify-center mr-1 font-bold">51,37 </p> <span class="flex flex-col items-center justify-center"> <span>m<sup>2</sup> </span>  </span> 
                   </p>  
                   </p>
                   <p class="flex items-center mx-1">x</p>
@@ -1428,6 +1433,33 @@
                 </div>
                 
                
+                  <div class="w-full p-2 mt-6 mb-2 border-2 border-green-500 rounded-xl">
+                    <p class="my-1 text-base text-center text-white bg-green-500 rounded">Espacios verdes por habitante
+                   
+  
+                     
+  
+                    </p>
+                    <div class="flex items-center justify-center mt-4">
+                      <p class="flex items-center">
+                        <div class="flex items-center m-1">
+  
+                          <img class="hidden -m-1 w-9 md:block" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-3 w-9" src="./assets/maiten-logo.png" alt="" />
+                          <img class="-m-2 w-9" src="./assets/maiten-logo.png" alt="" />
+                        </div>
+                      <p id="soloEspaciosVerdesPorHab" class="flex items-center mx-1">
+  
+                        9 m<sup>2</sup>
+                      </p>  
+                      </p>
+                      <p class="flex items-center mx-1">x</p>
+                      <p class="flex items-center">
+                        <i class="mx-2 text-base fa-solid fa-person"></i>
+                        Habitante
+                      </p>
+                    </div>
+                  </div>
                   <div class="w-full p-2 mt-6 mb-2 border-2 border-yellow-500 border-dashed rounded-xl">
                     <p class="my-1 text-base text-center text-white bg-yellow-500 rounded">Minimo
                    

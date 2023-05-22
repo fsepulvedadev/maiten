@@ -630,35 +630,93 @@ let mapaBase = L.tileLayer(gris, {
 // END DEFINICIONES
 
 // EVENT HANDLERS
-const calcularEspaciosVerdesPorHab = (localidad) => {
+
+const calcularEspaciosTotalesIndividuales = (localidad) => {
+  let espacioVerdeTotal = 0;
+  let espacioAzulTotal = 0;
+  let areasNatTotal = 0;
+
+  switch (localidad) {
+    case "Aluminé":
+      alumineInfraVerde.features.map((espacio) => {
+        espacioVerdeTotal = espacio.properties.supm2 + espacioVerdeTotal;
+      });
+      alumineAreasNaturales.features.map((espacio) => {
+        areasNatTotal = espacio.properties.supm2 + areasNatTotal;
+      });
+
+      return {
+        verde: espacioVerdeTotal.toFixed(2),
+        azul: espacioAzulTotal.toFixed(2),
+        nat: areasNatTotal.toFixed(2),
+      };
+
+    case "Rincón de los Sauces":
+      rinconInfraVerde.features.map((espacio) => {
+        espacioVerdeTotal = espacio.properties.supm2 + espacioVerdeTotal;
+      });
+
+      return {
+        verde: espacioVerdeTotal.toFixed(2),
+        azul: espacioAzulTotal.toFixed(2),
+        nat: areasNatTotal.toFixed(2),
+      };
+
+    default:
+      break;
+  }
+};
+
+const calcularEspaciosVerdesPorHab = (localidad, soloVerde) => {
   let superficieVerdeTotal = 0;
+
   let verdePorHab = 0;
+
   switch (localidad) {
     case "Aluminé":
       alumineInfraVerde.features.map((espacio) => {
         superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
       });
-      alumineAreasNaturales.features.map((espacio) => {
-        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
-      });
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        alumineAreasNaturales.features.map((espacio) => {
+          superficieVerdeTotal =
+            espacio.properties.supm2 + superficieVerdeTotal;
+        });
 
-      localidades.map((local) => {
-        if (localidad == local.nombre) {
-          verdePorHab = superficieVerdeTotal / local.poblacion;
-        }
-      });
-      return verdePorHab;
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
+
     case "Rincón de los Sauces":
       rinconInfraVerde.features.map((espacio) => {
         superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
       });
-
-      localidades.map((local) => {
-        if (localidad == local.nombre) {
-          verdePorHab = superficieVerdeTotal / local.poblacion;
-        }
-      });
-      return verdePorHab;
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
 
     default:
       break;
@@ -807,6 +865,32 @@ const cargarDetalle = (targetId) => {
   let placeholderDetalleLocalidad = document.getElementById(
     "placeholderDetallesDeLocalidad"
   );
+  let tagEspaciosVerdes = document.getElementById("tagEspaciosVerdes");
+  let tagEspaciosAzules = document.getElementById("tagEspaciosAzules");
+  let tagAreasNaturales = document.getElementById("tagAreasNaturales");
+  let soloEspaciosVerdesTag = document.getElementById(
+    "soloEspaciosVerdesPorHab"
+  );
+  let formatoNumero = new Intl.NumberFormat("en-US", {
+    style: "unit",
+    unit: "meter",
+  });
+
+  soloEspaciosVerdesTag.innerHTML = `${formatoNumero.format(
+    calcularEspaciosVerdesPorHab(targetId, true).toFixed(2)
+  )} <sup>2</sup>`;
+
+  let totalEspacios = calcularEspaciosTotalesIndividuales(targetId);
+
+  tagEspaciosVerdes.innerHTML = `${formatoNumero.format(
+    totalEspacios.verde
+  )} <sup>2</sup>`;
+  tagEspaciosAzules.innerHTML = `${formatoNumero.format(
+    totalEspacios.azul
+  )} <sup>2</sup>`;
+  tagAreasNaturales.innerHTML = `${formatoNumero.format(
+    totalEspacios.nat
+  )} <sup>2</sup>`;
 
   detalleLocalidad.classList.remove("hidden");
   placeholderDetalleLocalidad.classList.add("hidden");
