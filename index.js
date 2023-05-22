@@ -646,9 +646,9 @@ const calcularEspaciosTotalesIndividuales = (localidad) => {
       });
 
       return {
-        verde: espacioVerdeTotal.toFixed(2),
-        azul: espacioAzulTotal.toFixed(2),
-        nat: areasNatTotal.toFixed(2),
+        verde: espacioVerdeTotal,
+        azul: espacioAzulTotal,
+        nat: areasNatTotal,
       };
 
     case "Rincón de los Sauces":
@@ -657,9 +657,9 @@ const calcularEspaciosTotalesIndividuales = (localidad) => {
       });
 
       return {
-        verde: espacioVerdeTotal.toFixed(2),
-        azul: espacioAzulTotal.toFixed(2),
-        nat: areasNatTotal.toFixed(2),
+        verde: espacioVerdeTotal,
+        azul: espacioAzulTotal,
+        nat: areasNatTotal,
       };
 
     default:
@@ -1226,12 +1226,14 @@ const agregarCapasAlumine = (e) => {
     case "infra-verde-alumine":
       if (map.hasLayer(capaAlumineInfraVerde)) {
         capaAlumineInfraVerde.remove();
+        leyenda.remove();
       } else {
         localidades.map((e) => {
           if (e.nombre === "Aluminé") {
             map.flyTo(e.loc, e.zoom);
           }
         });
+        leyenda.addTo(map);
         cargarDetalle("Aluminé");
         capaAlumineInfraVerde.addTo(map);
       }
@@ -1287,12 +1289,14 @@ const agregarCapasRincon = (e) => {
     case "infra-verde-rincon":
       if (map.hasLayer(capaRinconInfraVerde)) {
         capaRinconInfraVerde.remove();
+        leyenda.remove();
       } else {
         localidades.map((e) => {
           if (e.nombre === "Rincón de los Sauces") {
             map.flyTo(e.loc, e.zoom);
           }
         });
+        leyenda.addTo(map);
         capaRinconInfraVerde.addTo(map);
       }
       break;
