@@ -3298,3 +3298,12 @@ new Chart(ctxPorcentajeVerde, {
 // END Graficos //
 
 //END ELEMENTOS DE UI //
+
+L.BrowserPrint.Mode.Landscape("Landscape", { title: "Imprimir mapa" });
+
+var browserControl = L.control
+  .browserPrint({
+    title: "Imprimir mapa",
+    printModes: ["Landscape"],
+  })
+  .addTo(map);
