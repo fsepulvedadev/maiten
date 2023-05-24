@@ -259,6 +259,10 @@ import elHuecuManchaUrbana from "./capas/huecu/mancha_urbana_el_huecu.json" asse
 
 // DEFINICIONES
 const map = L.map("map", {
+  fullscreenControl: true,
+  fullscreenControlOptions: {
+    position: "topleft",
+  },
   center: [-38.9410802, -68.1854411],
   zoom: "12",
 });
