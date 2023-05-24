@@ -54,6 +54,31 @@ const tituloRincon = document.getElementById("tituloRincon");
 const collapseAlumine = document.getElementById("collapseAlumine");
 const capasAlumine = document.getElementById("capasAlumine");
 const tituloAlumine = document.getElementById("tituloAlumine");
+const collapseManzano = document.getElementById("collapseManzano");
+const capasManzano = document.getElementById("capasManzano");
+const tituloManzano = document.getElementById("tituloManzano");
+const collapseHuecu = document.getElementById("collapseHuecu");
+const capasHuecu = document.getElementById("capasHuecu");
+const tituloHuecu = document.getElementById("tituloHuecu");
+
+collapseHuecu.addEventListener("click", () => {
+  if (capasHuecu.checked) {
+    tituloHuecu.classList.remove("activado");
+    capasHuecu.checked = false;
+  } else {
+    tituloHuecu.classList.add("activado");
+    capasHuecu.checked = true;
+  }
+});
+collapseManzano.addEventListener("click", () => {
+  if (capasManzano.checked) {
+    tituloManzano.classList.remove("activado");
+    capasManzano.checked = false;
+  } else {
+    tituloManzano.classList.add("activado");
+    capasManzano.checked = true;
+  }
+});
 
 collapsePrueba.addEventListener("click", () => {
   if (prueba.checked) {
@@ -133,6 +158,61 @@ radiosCoberturaAlumine.addEventListener("click", (e) => {
   agregarCapasAlumine(e);
 });
 
+const espaciosVerdesManzano = document.getElementById("espaciosVerdesManzano");
+const manchaUrbanaManzano = document.getElementById("manchaUrbanaManzano");
+const radiosCoberturaManzano = document.getElementById(
+  "radiosCoberturaManzano"
+);
+const infraAzulManzano = document.getElementById("infraAzulManzano");
+
+const listaClasificacionesManzano = document.getElementById(
+  "lista-capas-espacios-verdes-manzano"
+);
+
+infraAzulManzano.addEventListener("click", (e) => {
+  agregarCapasManzanoAmargo(e);
+});
+
+espaciosVerdesManzano.addEventListener("click", (e) => {
+  listaClasificacionesManzano.classList.remove("hidden");
+
+  agregarCapasManzanoAmargo(e);
+});
+
+manchaUrbanaManzano.addEventListener("click", (e) => {
+  agregarCapasManzanoAmargo(e);
+});
+
+radiosCoberturaManzano.addEventListener("click", (e) => {
+  agregarCapasManzanoAmargo(e);
+});
+const espaciosVerdesHuecu = document.getElementById("espaciosVerdesHuecu");
+const manchaUrbanaHuecu = document.getElementById("manchaUrbanaHuecu");
+const radiosCoberturaHuecu = document.getElementById("radiosCoberturaHuecu");
+const infraAzulHuecu = document.getElementById("infraAzulHuecu");
+
+const listaClasificacionesHuecu = document.getElementById(
+  "lista-capas-espacios-verdes-huecu"
+);
+
+infraAzulHuecu.addEventListener("click", (e) => {
+  agregarCapasElHuecu(e);
+});
+
+espaciosVerdesHuecu.addEventListener("click", (e) => {
+  listaClasificacionesHuecu.classList.remove("hidden");
+
+  agregarCapasElHuecu(e);
+});
+
+manchaUrbanaHuecu.addEventListener("click", (e) => {
+  agregarCapasElHuecu(e);
+});
+
+radiosCoberturaHuecu.addEventListener("click", (e) => {
+  agregarCapasElHuecu(e);
+});
+
 // IMPORTACIONES
 // ------------ NEUQUEN CAPITAL ------------ //
 import datosNeuquen from "./capas/datos_neuquen.json" assert { type: "json" };
@@ -160,6 +240,21 @@ import alumineBufferAreasNaturales from "./capas/alumine/alumine_buffer_areas_na
 import alumineInfraVerde from "./capas/alumine/alumine_infra_verde.json" assert { type: "json" };
 import alumineMarchaUrbana from "./capas/alumine/alumine_mancha_urbana.json" assert { type: "json" };
 
+// -------------- MANZANO AMARGO -----------------//
+
+import manzanoInfraVerde from "./capas/manzano/infra_verde_manzano_amargo.json" assert { type: "json" };
+import manzanoInfraAzul from "./capas/manzano/infra_azul_manzano_amargo.json" assert { type: "json" };
+import manzanoBufferInfraVerdeDisuelto from "./capas/manzano/area_influencia_disuelta_infra_verde_manzano_amargo.json" assert { type: "json" };
+import manzanoBufferInfraVerdeSinDisolver from "./capas/manzano/area_influencia_infra_verde_manzano_amargo.json" assert { type: "json" };
+import manzanoManchaUrbana from "./capas/manzano/mancha_urbana_manzano_amargo.json" assert { type: "json" };
+// -------------- EL HUECU -----------------//
+
+import elHuecuInfraVerde from "./capas/huecu/infra_verde_el_huecu.json" assert { type: "json" };
+import elHuecuInfraAzul from "./capas/huecu/infra_azul_el_huecu.json" assert { type: "json" };
+import elHuecuBufferInfraVerdeDisuelto from "./capas/huecu/area_influencia_disuelto_infra_verde_el_huecu.json" assert { type: "json" };
+import elHuecuBufferInfraVerdeSinDisolver from "./capas/huecu/area_influencia_infra_verde_el_huecu.json" assert { type: "json" };
+import elHuecuManchaUrbana from "./capas/huecu/mancha_urbana_el_huecu.json" assert { type: "json" };
+
 // END IMPORTACIONES
 
 // DEFINICIONES
@@ -167,6 +262,7 @@ const map = L.map("map", {
   center: [-38.9410802, -68.1854411],
   zoom: "12",
 });
+const leyenda = L.control({ position: "bottomright" });
 
 let capaSelecionada = "tipos";
 let idCapaSeleccionada = 999999999;
@@ -313,6 +409,145 @@ rinconInfraVerde.features.map((elemento) => {
   }
 });
 
+let contadoresManzano = {
+  mobiliario: {
+    basico: 0,
+    superior: 0,
+  },
+  arbolado: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+  absorcion: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+};
+
+manzanoInfraVerde.features.map((elemento) => {
+  switch (elemento.properties.suel_absor) {
+    case "1":
+      contadoresManzano.absorcion["0a25"]++;
+      break;
+    case "2":
+      contadoresManzano.absorcion["25a50"]++;
+      break;
+    case "3":
+      contadoresManzano.absorcion["50a75"]++;
+      break;
+    case "4":
+      contadoresManzano.absorcion["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.arbolado) {
+    case "1":
+      contadoresManzano.arbolado["0a25"]++;
+      break;
+    case "2":
+      contadoresManzano.arbolado["25a50"]++;
+      break;
+    case "3":
+      contadoresManzano.arbolado["50a75"]++;
+      break;
+    case "4":
+      contadoresManzano.arbolado["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.mobiliario) {
+    case "Basico":
+      contadoresManzano.mobiliario.basico++;
+      break;
+    case "Superior":
+      contadoresManzano.mobiliario.superior++;
+      break;
+    case "No posee":
+      contadoresManzano.mobiliario.noPosee++;
+      break;
+
+    default:
+      break;
+  }
+});
+let contadoresHuecu = {
+  mobiliario: {
+    basico: 0,
+    superior: 0,
+  },
+  arbolado: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+  absorcion: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+};
+
+elHuecuInfraVerde.features.map((elemento) => {
+  switch (elemento.properties.suel_absor) {
+    case "1":
+      contadoresHuecu.absorcion["0a25"]++;
+      break;
+    case "2":
+      contadoresHuecu.absorcion["25a50"]++;
+      break;
+    case "3":
+      contadoresHuecu.absorcion["50a75"]++;
+      break;
+    case "4":
+      contadoresHuecu.absorcion["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.arbolado) {
+    case "1":
+      contadoresHuecu.arbolado["0a25"]++;
+      break;
+    case "2":
+      contadoresHuecu.arbolado["25a50"]++;
+      break;
+    case "3":
+      contadoresHuecu.arbolado["50a75"]++;
+      break;
+    case "4":
+      contadoresHuecu.arbolado["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.mobiliario) {
+    case "Basico":
+      contadoresHuecu.mobiliario.basico++;
+      break;
+    case "Superior":
+      contadoresHuecu.mobiliario.superior++;
+      break;
+    case "No posee":
+      contadoresHuecu.mobiliario.noPosee++;
+      break;
+
+    default:
+      break;
+  }
+});
+
 // CAPAS RINCON DE LOS SAUCES
 
 const capaRinconAreaInfluenciaDisuelta = L.geoJSON(
@@ -356,6 +591,8 @@ const capaRinconMarchaUrbana = L.geoJSON(rinconMarchaUrbana, {
   onEachFeature: onEachFeatureOtrasCapas,
 });
 
+// CAPAS ALUMINE
+
 const capaAlumineAreasNaturales = L.geoJSON(alumineAreasNaturales, {
   style: {
     weight: 2,
@@ -383,7 +620,7 @@ const capaAlumineBufferInfraverdeDisuelto = L.geoJSON(
 
 const capaAlumineInfraVerde = L.geoJSON(alumineInfraVerde, {
   style: style,
-  onEachFeature: onEachFeatureOtrasCapas,
+  onEachFeature: onEachFeature,
 });
 
 const capaAlumineMarchaUrbana = L.geoJSON(alumineMarchaUrbana, {
@@ -396,6 +633,8 @@ const capaAlumineMarchaUrbana = L.geoJSON(alumineMarchaUrbana, {
   },
   onEachFeature: onEachFeatureOtrasCapas,
 });
+
+// CAPAS NEUQUEN CAPITAL
 
 const infAzulLayers = L.geoJSON(azulData, {
   style: {
@@ -437,8 +676,85 @@ const radiosCoberturaVerdeNqnLayers = L.geoJSON(radiosVerdeDisueltos, {
   },
 });
 
+// CAPAS MANZANO AMARGO
+
+const capaManzanoInfraVerde = L.geoJSON(manzanoInfraVerde, {
+  style: style,
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+const capaManzanoInfraAzul = L.geoJSON(manzanoInfraAzul, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#0570b0",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+const capaManzanoManchaUrbana = L.geoJSON(manzanoManchaUrbana, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaManzanoBufferInfraVerde = L.geoJSON(manzanoBufferInfraVerdeDisuelto, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#4D8B31",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+// CAPAS EL HUECU
+
+const capaHuecuInfraVerde = L.geoJSON(elHuecuInfraVerde, {
+  style: style,
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+const capaHuecuInfraAzul = L.geoJSON(elHuecuInfraAzul, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#0570b0",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+const capaHuecuManchaUrbana = L.geoJSON(elHuecuManchaUrbana, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaHuecuBufferInfraVerde = L.geoJSON(elHuecuBufferInfraVerdeDisuelto, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#4D8B31",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+// FIN CAPAS
+
 const filtrarRadios = (feature) => {
-  console.log(feature);
   if (feature.properties.id === idCapaSeleccionada) {
     return true;
   }
@@ -455,9 +771,21 @@ const capasEspaciosVerdes = document.getElementById(
 );
 const ModalDetalle = document.getElementById("detalle-modal");
 
+const infraVerdeHuecuBtn = document.getElementById("infra-verde-huecu");
+const absorcionHuecuTag = document.getElementById("absorcionHuecu");
+const arboladoHuecuTag = document.getElementById("arboladoHuecu");
+const superficieHuecuTag = document.getElementById("superficieHuecu");
+const tiposHuecuTag = document.getElementById("tipoHuecu");
+const infraVerdeManzanoBtn = document.getElementById("infra-verde-manzano");
+const absorcionManzanoTag = document.getElementById("absorcionManzano");
+const arboladoManzanoTag = document.getElementById("arboladoManzano");
+const superficieManzanoTag = document.getElementById("superficieManzano");
+const tiposManzanoTag = document.getElementById("tipoManzano");
+const infraVerdeRinconBtn = document.getElementById("infra-verde-rincon");
 const absorcionRinconTag = document.getElementById("absorcionrincon");
 const arboladoRinconTag = document.getElementById("arboladorincon");
 const superficieRinconTag = document.getElementById("superficierincon");
+const infraVerdeAlumineBtn = document.getElementById("infra-verde-alumine");
 const absorcionAlumineTag = document.getElementById("absorcionAlumine");
 const arboladoAlumineTag = document.getElementById("arboladoAlumine");
 const superficieAlumineTag = document.getElementById("superficieAlumine");
@@ -509,7 +837,13 @@ const listaLocalidades = document.getElementById("lista-localidades");
 var info = L.control();
 const BING_KEY =
   "Av3IJWsQuEeoFjlg5eoVctOE9QvC_EXejm8IlG7m80D0KDWV8bK3cDhjpF4k-mfv";
-const localidadesActivas = ["Rincón de los Sauces", "Aluminé"];
+const localidadesActivas = [
+  "Rincón de los Sauces",
+  "Aluminé",
+  "Neuquén Capital",
+  "Manzano Amargo",
+  "El Huecú",
+];
 const localidades = [
   {
     nombre: "Zapala",
@@ -556,9 +890,9 @@ const localidades = [
   },
   {
     nombre: "Rincón de los Sauces",
-    loc: [-37.3967149, -68.9470263],
+    loc: [-37.3965221, -69.0771707],
     id: "rincon",
-    zoom: 14,
+    zoom: 12,
     poblacion: 29910,
   },
   {
@@ -615,6 +949,21 @@ const localidades = [
     loc: [-38.9410802, -68.1854411],
     id: "neuquen",
     zoom: 12,
+    poblacion: 262241,
+  },
+  {
+    nombre: "Manzano Amargo",
+    loc: [-36.7544959, -70.7721295],
+    id: "manzanoamargo",
+    zoom: 15,
+    poblacion: 800,
+  },
+  {
+    nombre: "El Huecú",
+    loc: [-37.6423588, -70.5989308],
+    id: "elhuecu",
+    zoom: 14,
+    poblacion: 1803,
   },
 ];
 let tiposDeEspacios = [
@@ -649,6 +998,50 @@ const calcularEspaciosTotalesIndividuales = (localidad) => {
         verde: espacioVerdeTotal,
         azul: espacioAzulTotal,
         nat: areasNatTotal,
+      };
+    case "Neuquén Capital":
+      verdeData.features.map((espacio) => {
+        espacioVerdeTotal = espacio.properties.supm2 + espacioVerdeTotal;
+      });
+      areasNaturalesData.features.map((espacio) => {
+        areasNatTotal = espacio.properties.supkm2 + areasNatTotal;
+      });
+      azulData.features.map((espacio) => {
+        espacioAzulTotal = espacio.properties.supkm2 + espacioAzulTotal;
+      });
+
+      return {
+        verde: Math.round(espacioVerdeTotal),
+        azul: Math.round(espacioAzulTotal * 1000000),
+        nat: Math.round(areasNatTotal * 1000000),
+      };
+    case "El Huecú":
+      elHuecuInfraVerde.features.map((espacio) => {
+        espacioVerdeTotal = espacio.properties.supm2 + espacioVerdeTotal;
+      });
+
+      elHuecuInfraAzul.features.map((espacio) => {
+        espacioAzulTotal = espacio.properties.supm2 + espacioAzulTotal;
+      });
+
+      return {
+        verde: Math.round(espacioVerdeTotal),
+        azul: Math.round(espacioAzulTotal),
+        nat: Math.round(areasNatTotal),
+      };
+    case "Manzano Amargo":
+      manzanoInfraVerde.features.map((espacio) => {
+        espacioVerdeTotal = espacio.properties.supm2 + espacioVerdeTotal;
+      });
+
+      manzanoInfraAzul.features.map((espacio) => {
+        espacioAzulTotal = espacio.properties.supm2 + espacioAzulTotal;
+      });
+
+      return {
+        verde: Math.round(espacioVerdeTotal),
+        azul: Math.round(espacioAzulTotal),
+        nat: Math.round(areasNatTotal),
       };
 
     case "Rincón de los Sauces":
@@ -697,6 +1090,30 @@ const calcularEspaciosVerdesPorHab = (localidad, soloVerde) => {
         });
         return verdePorHab;
       }
+    case "Manzano Amargo":
+      manzanoInfraVerde.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        manzanoInfraAzul.features.map((espacio) => {
+          superficieVerdeTotal =
+            espacio.properties.supm2 + superficieVerdeTotal;
+        });
+
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
 
     case "Rincón de los Sauces":
       rinconInfraVerde.features.map((espacio) => {
@@ -710,6 +1127,58 @@ const calcularEspaciosVerdesPorHab = (localidad, soloVerde) => {
         });
         return verdePorHab;
       } else {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
+    case "Neuquén Capital":
+      verdeData.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        areasNaturalesData.features.map((espacio) => {
+          superficieVerdeTotal =
+            espacio.properties.supkm2 * 1000000 + superficieVerdeTotal;
+        });
+        azulData.features.map((espacio) => {
+          superficieVerdeTotal =
+            espacio.properties.supkm2 * 1000000 + superficieVerdeTotal;
+        });
+
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
+    case "El Huecú":
+      elHuecuInfraVerde.features.map((espacio) => {
+        superficieVerdeTotal = espacio.properties.supm2 + superficieVerdeTotal;
+      });
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        elHuecuInfraAzul.features.map((espacio) => {
+          superficieVerdeTotal =
+            espacio.properties.supm2 + superficieVerdeTotal;
+        });
+
         localidades.map((local) => {
           if (localidad == local.nombre) {
             verdePorHab = superficieVerdeTotal / local.poblacion;
@@ -784,6 +1253,44 @@ const toggleCapasVerdes = () => {
   } else {
     capasEspaciosVerdes.classList.add("hidden");
     capasEspaciosVerdes.classList.remove("grid");
+  }
+};
+const toggleCapasVerdesOtras = (localidad) => {
+  console.log(localidad);
+  console.log(listaClasificacionesManzano);
+  switch (localidad) {
+    case "manzano":
+      if (listaClasificacionesManzano.classList.contains("hidden")) {
+        listaClasificacionesManzano.classList.add("grid");
+        listaClasificacionesManzano.classList.remove("hidden");
+      } else {
+        listaClasificacionesManzano.classList.add("hidden");
+        listaClasificacionesManzano.classList.remove("grid");
+        console.log(listaClasificacionesManzano.classList.contains("hidden"));
+      }
+      break;
+    case "alumine":
+      if (listaClasificacionesAlumine.classList.contains("hidden")) {
+        listaClasificacionesAlumine.classList.add("grid");
+        listaClasificacionesAlumine.classList.remove("hidden");
+      } else {
+        listaClasificacionesAlumine.classList.add("hidden");
+        listaClasificacionesAlumine.classList.remove("grid");
+      }
+      break;
+    case "rincon":
+      if (listaClasificacionesRincon.classList.contains("hidden")) {
+        listaClasificacionesRincon.classList.add("grid");
+        listaClasificacionesRincon.classList.remove("hidden");
+      } else {
+        listaClasificacionesRincon.classList.add("hidden");
+        listaClasificacionesRincon.classList.remove("grid");
+        console.log(listaClasificacionesRincon.classList.contains("hidden"));
+      }
+      break;
+
+    default:
+      break;
   }
 };
 
@@ -896,8 +1403,10 @@ const cargarDetalle = (targetId) => {
   placeholderDetalleLocalidad.classList.add("hidden");
   generalMetrosVerdes.innerText = targetId;
   detalleTitulo.innerText = targetId;
-  detalleMetrosCuadrados.innerText =
-    calcularEspaciosVerdesPorHab(targetId).toFixed(2);
+  detalleMetrosCuadrados.innerText = calcularEspaciosVerdesPorHab(
+    targetId,
+    false
+  ).toFixed(2);
 
   switch (targetId) {
     case "Aluminé":
@@ -923,6 +1432,60 @@ const cargarDetalle = (targetId) => {
         contadoresAlumine.arbolado["25a50"],
         contadoresAlumine.arbolado["50a75"],
         contadoresAlumine.arbolado["75a100"],
+      ];
+      chartArbolado.update();
+
+      break;
+    case "Manzano Amargo":
+      chartMobiliario.data.datasets[0].data = [
+        contadoresManzano.mobiliario.basico,
+        contadoresManzano.mobiliario.superior,
+      ];
+
+      chartMobiliario.data.labels = ["Basico", "Superior"];
+
+      chartMobiliario.update();
+
+      chartAbsorcion.data.datasets[0].data = [
+        contadoresManzano.absorcion["0a25"],
+        contadoresManzano.absorcion["25a50"],
+        contadoresManzano.absorcion["50a75"],
+        contadoresManzano.absorcion["75a100"],
+      ];
+      chartAbsorcion.update();
+
+      chartArbolado.data.datasets[0].data = [
+        contadoresManzano.arbolado["0a25"],
+        contadoresManzano.arbolado["25a50"],
+        contadoresManzano.arbolado["50a75"],
+        contadoresManzano.arbolado["75a100"],
+      ];
+      chartArbolado.update();
+
+      break;
+    case "El Huecú":
+      chartMobiliario.data.datasets[0].data = [
+        contadoresHuecu.mobiliario.basico,
+        contadoresHuecu.mobiliario.superior,
+      ];
+
+      chartMobiliario.data.labels = ["Basico", "Superior"];
+
+      chartMobiliario.update();
+
+      chartAbsorcion.data.datasets[0].data = [
+        contadoresHuecu.absorcion["0a25"],
+        contadoresHuecu.absorcion["25a50"],
+        contadoresHuecu.absorcion["50a75"],
+        contadoresHuecu.absorcion["75a100"],
+      ];
+      chartAbsorcion.update();
+
+      chartArbolado.data.datasets[0].data = [
+        contadoresHuecu.arbolado["0a25"],
+        contadoresHuecu.arbolado["25a50"],
+        contadoresHuecu.arbolado["50a75"],
+        contadoresHuecu.arbolado["75a100"],
       ];
       chartArbolado.update();
 
@@ -976,7 +1539,6 @@ const cerrarSidebar = () => {
 };
 const cambiarCapaEspaciosVerdes = (e) => {
   let target = e.target;
-  /* cerrarSidebar(); */
 
   let abs = document.querySelectorAll("#absorcion");
   let arb = document.querySelectorAll("#arbolado");
@@ -990,235 +1552,240 @@ const cambiarCapaEspaciosVerdes = (e) => {
   let arbrincon = document.querySelectorAll("#arboladorincon");
   let suprincon = document.querySelectorAll("#superficierincon");
   let tiporincon = document.querySelectorAll("#tiporincon");
+  let absManzano = document.querySelectorAll("#absorcionManzano");
+  let arbManzano = document.querySelectorAll("#arboladoManzano");
+  let supManzano = document.querySelectorAll("#superficieManzano");
+  let tipoManzano = document.querySelectorAll("#tipoManzano");
+  let absHuecu = document.querySelectorAll("#absorcionHuecu");
+  let arbHuecu = document.querySelectorAll("#arboladoHuecu");
+  let supHuecu = document.querySelectorAll("#superficieHuecu");
+  let tipoHuecu = document.querySelectorAll("#tipoHuecu");
 
-  abs.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  arb.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  sup.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  tip.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  absAlumine.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  arbAlumine.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  supAlumine.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  tipoAlumine.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  absrincon.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  arbrincon.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  suprincon.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
-  tiporincon.forEach((e) => {
-    e.classList.remove("ring-2");
-  });
+  let locs = {
+    rincon: {
+      absorcion: absrincon,
+      arbolado: arbrincon,
+      superficie: suprincon,
+      tipo: tiporincon,
+    },
+    neuquen: {
+      absorcion: abs,
+      arbolado: arb,
+      superficie: sup,
+      tipo: tip,
+    },
+    manzano: {
+      absorcion: absManzano,
+      arbolado: arbManzano,
+      superficie: supManzano,
+      tipo: tipoManzano,
+    },
+    alumine: {
+      absorcion: absAlumine,
+      arbolado: arbAlumine,
+      superficie: supAlumine,
+      tipo: tipoAlumine,
+    },
+    huecu: {
+      absorcion: absHuecu,
+      arbolado: arbHuecu,
+      superficie: supHuecu,
+      tipo: tipoHuecu,
+    },
+  };
 
-  switch (target.id) {
-    case "arbolado":
-      let targetEle = document.querySelector(
-        "div#arbolado.w-full.cursor-pointer.p-1.rounded.ring-green-600"
-      );
-      targetEle.classList.add("ring-2");
-      break;
-    case "absorcion":
-      let targetEle2 = document.querySelector(
-        "div#absorcion.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
-      );
-      targetEle2.classList.add("ring-2");
-      break;
-    case "superficie":
-      let targetEle3 = document.querySelector(
-        "div#superficie.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
-      );
-      targetEle3.classList.add("ring-2");
-      break;
-    case "tipo":
-      let targetEle4 = document.querySelector(
-        "div#tipo.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
-      );
-      targetEle4.classList.add("ring-2");
-      break;
-    case "arboladoAlumine":
-      let targetEle5 = document.querySelector(
-        "div#arboladoAlumine.w-full.cursor-pointer.p-1.rounded.ring-green-600"
-      );
-      targetEle5.classList.add("ring-2");
-      break;
-    case "absorcionAlumine":
-      let targetEle6 = document.querySelector(
-        "div#absorcionAlumine.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
-      );
-      targetEle6.classList.add("ring-2");
-      break;
-    case "superficieAlumine":
-      let targetEle7 = document.querySelector(
-        "div#superficieAlumine.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
-      );
-      targetEle7.classList.add("ring-2");
-      break;
-    case "tipoAlumine":
-      let targetEle8 = document.querySelector(
-        "div#tipoAlumine.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
-      );
-      targetEle8.classList.add("ring-2");
-      break;
-    case "arboladorincon":
-      let targetEle9 = document.querySelector(
-        "div#arboladorincon.w-full.cursor-pointer.p-1.rounded.ring-green-600"
-      );
-      targetEle9.classList.add("ring-2");
-      break;
-    case "absorcionrincon":
-      let targetEle10 = document.querySelector(
-        "div#absorcionrincon.w-full.cursor-pointer.p-1.rounded.ring-blue-400"
-      );
-      targetEle10.classList.add("ring-2");
-      break;
-    case "superficierincon":
-      let targetEle11 = document.querySelector(
-        "div#superficierincon.w-full.cursor-pointer.p-1.rounded.ring-orange-400"
-      );
-      targetEle11.classList.add("ring-2");
-      break;
-    case "tiporincon":
-      let targetEle12 = document.querySelector(
-        "div#tiporincon.w-full.cursor-pointer.p-1.rounded.ring-emerald-600"
-      );
-      targetEle12.classList.add("ring-2");
-      break;
+  for (let loc in locs) {
+    locs[loc]["absorcion"].forEach((e) => {
+      e.classList.remove("ring-2");
+    });
+    locs[loc]["arbolado"].forEach((e) => {
+      e.classList.remove("ring-2");
+    });
+    locs[loc]["superficie"].forEach((e) => {
+      e.classList.remove("ring-2");
+    });
+    locs[loc]["tipo"].forEach((e) => {
+      e.classList.remove("ring-2");
+    });
   }
-  console.log(target.id);
+
+  function cambiarSeleccionDeCapa(target) {
+    if (target.includes("absorcion")) {
+      let targetTagAbs = `div${target}.w-full.cursor-pointer.p-1.rounded.ring-blue-400`;
+      document.querySelector(targetTagAbs).classList.add("ring-2");
+    } else if (target.includes("arbolado")) {
+      let targetTagArb = `div${target}.w-full.cursor-pointer.p-1.rounded.ring-green-600`;
+      document.querySelector(targetTagArb).classList.add("ring-2");
+    } else if (target.includes("superficie")) {
+      let targetTagSup = `div${target}.w-full.cursor-pointer.p-1.rounded.ring-orange-400`;
+      document.querySelector(targetTagSup).classList.add("ring-2");
+    } else if (target.includes("tipo")) {
+      let targetTagTipo = `div${target}.w-full.cursor-pointer.p-1.rounded.ring-emerald-600`;
+      document.querySelector(targetTagTipo).classList.add("ring-2");
+    }
+  }
+
+  cambiarSeleccionDeCapa(`#${target.id}`);
+
   leyenda.remove();
-  switch (target.id) {
-    case "absorcion":
-      capaSelecionada = "abs";
-      agregarIndice(capaSelecionada);
 
-      infVerdeLayers.setStyle(style);
+  if (target.id.includes("absorcion")) {
+    capaSelecionada = "abs";
+    agregarIndice(capaSelecionada);
+    colors.selecionado = colors.absorcion;
+  } else if (target.id.includes("arbolado")) {
+    capaSelecionada = "arb";
+    agregarIndice(capaSelecionada);
+    colors.selecionado = colors.arbolado;
+  } else if (target.id.includes("superficie")) {
+    capaSelecionada = "sup";
+    agregarIndice(capaSelecionada);
+    colors.selecionado = colors.arbolado;
+  } else if (target.id.includes("tipo")) {
+    capaSelecionada = "tipos";
+    agregarIndice(capaSelecionada);
+    colors.selecionado = colors.tipos;
+  }
 
-      colors.selecionado = colors.absorcion;
+  if (target.id.includes("rincon")) {
+    capaRinconInfraVerde.setStyle(style);
+  } else if (target.id.includes("Alumine")) {
+    capaAlumineInfraVerde.setStyle(style);
+  } else if (target.id.includes("Manzano")) {
+    capaManzanoInfraVerde.setStyle(style);
+  } else if (target.id.includes("Huecu")) {
+    capaHuecuInfraVerde.setStyle(style);
+  } else {
+    infVerdeLayers.setStyle(style);
+  }
+};
+
+const agregarCapasElHuecu = (e) => {
+  let target = e.target.id;
+  const path = e.composedPath();
+  switch (target) {
+    case "infra-verde-huecu":
+      if (map.hasLayer(capaHuecuInfraVerde)) {
+        capaHuecuInfraVerde.remove();
+        leyenda.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "El Huecú") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        leyenda.addTo(map);
+        cargarDetalle("El Huecú");
+        capaHuecuInfraVerde.addTo(map);
+      }
+      break;
+    case "infra-azul-huecu":
+      if (map.hasLayer(capaHuecuInfraAzul)) {
+        capaHuecuInfraAzul.remove();
+        leyenda.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "El Huecú") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        cargarDetalle("El Huecú");
+        capaHuecuInfraAzul.addTo(map);
+      }
       break;
 
-    case "arbolado":
-      capaSelecionada = "arb";
-      agregarIndice(capaSelecionada);
-
-      infVerdeLayers.setStyle(style);
-
-      colors.selecionado = colors.arbolado;
-
+    case "mancha-urbana-huecu":
+      if (map.hasLayer(capaHuecuManchaUrbana)) {
+        capaHuecuManchaUrbana.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "El Huecú") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaHuecuManchaUrbana.addTo(map);
+      }
       break;
-
-    case "superficie":
-      capaSelecionada = "sup";
-      agregarIndice(capaSelecionada);
-
-      infVerdeLayers.setStyle(style);
-
-      colors.selecionado = colors.superficie;
-
-      break;
-    case "tipo":
-      capaSelecionada = "tipos";
-      agregarIndice(capaSelecionada);
-      infVerdeLayers.setStyle(style);
-
-      colors.selecionado = colors.tipos;
-
-      break;
-    case "absorcionAlumine":
-      capaSelecionada = "abs";
-      agregarIndice(capaSelecionada);
-
-      capaAlumineInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.absorcion;
-      break;
-
-    case "arboladoAlumine":
-      capaSelecionada = "arb";
-      agregarIndice(capaSelecionada);
-
-      capaAlumineInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.arbolado;
-
-      break;
-
-    case "superficieAlumine":
-      capaSelecionada = "sup";
-      agregarIndice(capaSelecionada);
-
-      capaAlumineInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.superficie;
-
-      break;
-    case "tipoAlumine":
-      capaSelecionada = "tipos";
-      agregarIndice(capaSelecionada);
-      capaAlumineInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.tipos;
-
-      break;
-    case "absorcionrincon":
-      capaSelecionada = "abs";
-      agregarIndice(capaSelecionada);
-
-      capaRinconInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.absorcion;
-      break;
-
-    case "arboladorincon":
-      capaSelecionada = "arb";
-      agregarIndice(capaSelecionada);
-
-      capaRinconInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.arbolado;
-
-      break;
-
-    case "superficierincon":
-      capaSelecionada = "sup";
-      agregarIndice(capaSelecionada);
-
-      capaRinconInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.superficie;
-
-      break;
-    case "tiporincon":
-      capaSelecionada = "tipos";
-      agregarIndice(capaSelecionada);
-      capaRinconInfraVerde.setStyle(style);
-
-      colors.selecionado = colors.tipos;
-
+    case "radios-cobertura-huecu":
+      if (map.hasLayer(capaHuecuBufferInfraVerde)) {
+        capaHuecuBufferInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "El Huecú") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaHuecuBufferInfraVerde.addTo(map);
+      }
       break;
 
     default:
       break;
   }
 };
+const agregarCapasManzanoAmargo = (e) => {
+  let target = e.target.id;
+  const path = e.composedPath();
+  switch (target) {
+    case "infra-verde-manzano":
+      if (map.hasLayer(capaManzanoInfraVerde)) {
+        capaManzanoInfraVerde.remove();
+        leyenda.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Manzano Amargo") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        leyenda.addTo(map);
+        cargarDetalle("Manzano Amargo");
+        capaManzanoInfraVerde.addTo(map);
+      }
+      break;
+    case "infra-azul-manzano":
+      if (map.hasLayer(capaManzanoInfraAzul)) {
+        capaManzanoInfraAzul.remove();
+        leyenda.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Manzano Amargo") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        cargarDetalle("Manzano Amargo");
+        capaManzanoInfraAzul.addTo(map);
+      }
+      break;
 
+    case "mancha-urbana-manzano":
+      if (map.hasLayer(capaManzanoManchaUrbana)) {
+        capaManzanoManchaUrbana.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Manzano Amargo") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaManzanoManchaUrbana.addTo(map);
+      }
+      break;
+    case "radios-cobertura-manzano":
+      if (map.hasLayer(capaManzanoBufferInfraVerde)) {
+        capaManzanoBufferInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Manzano Amargo") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaManzanoBufferInfraVerde.addTo(map);
+      }
+      break;
+
+    default:
+      break;
+  }
+};
 const agregarCapasAlumine = (e) => {
   let target = e.target.id;
   const path = e.composedPath();
@@ -1329,6 +1896,10 @@ const agregarCapasRincon = (e) => {
       break;
   }
 };
+let infVerdeLayers = L.geoJSON(verdeData, {
+  style: style,
+  onEachFeature: onEachFeature,
+});
 
 const cambiarCapaGeneral = (e) => {
   let target = e.target.id;
@@ -1458,24 +2029,89 @@ mapaNegro.addEventListener("click", handleSeleccionarMapaBase);
 mapaGris.addEventListener("click", handleSeleccionarMapaBase);
 sinMapa.addEventListener("click", handleSeleccionarMapaBase);
 mapaSatelite.addEventListener("click", handleSeleccionarMapaBase);
-absorcionTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-arboladoTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-superficieTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-tiposTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-tiposTagAlumine.addEventListener("click", cambiarCapaEspaciosVerdes);
-absorcionAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-arboladoAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-superficieAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-tiposTagrincon.addEventListener("click", cambiarCapaEspaciosVerdes);
-absorcionRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-arboladoRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
-superficieRinconTag.addEventListener("click", cambiarCapaEspaciosVerdes);
+absorcionTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "neuquen")
+);
+arboladoTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "neuquen")
+);
+superficieTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "neuquen")
+);
+tiposTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "neuquen")
+);
+infraVerdeAlumineBtn.addEventListener("click", (e) =>
+  toggleCapasVerdesOtras("alumine")
+);
+tiposTagAlumine.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "alumine")
+);
+absorcionAlumineTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "alumine")
+);
+arboladoAlumineTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "alumine")
+);
+superficieAlumineTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "alumine")
+);
+infraVerdeRinconBtn.addEventListener("click", (e) =>
+  toggleCapasVerdesOtras("rincon")
+);
+
+tiposTagrincon.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "rincon")
+);
+absorcionRinconTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "rincon")
+);
+arboladoRinconTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "rincon")
+);
+superficieRinconTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "rincon")
+);
+
 //tiposAlumineTag.addEventListener("click", cambiarCapaEspaciosVerdes);
 infraVerdeBtn.addEventListener("click", cambiarCapaGeneral);
 infraAzulBtn.addEventListener("click", cambiarCapaGeneral);
 areasNatBtn.addEventListener("click", cambiarCapaGeneral);
 manchaUrbanaBtn.addEventListener("click", cambiarCapaGeneral);
 radiosCoberturaVerdeNqnBtn.addEventListener("click", cambiarCapaGeneral);
+
+infraVerdeManzanoBtn.addEventListener("click", (e) =>
+  toggleCapasVerdesOtras("manzano")
+);
+
+absorcionManzanoTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "manzano")
+);
+arboladoManzanoTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "manzano")
+);
+superficieManzanoTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "manzano")
+);
+tiposManzanoTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "manzano")
+);
+infraVerdeHuecuBtn.addEventListener("click", (e) =>
+  toggleCapasVerdesOtras("huecu")
+);
+
+absorcionHuecuTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "huecu")
+);
+arboladoHuecuTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "huecu")
+);
+superficieHuecuTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "huecu")
+);
+tiposHuecuTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "huecu")
+);
 
 //END EVENT LISTENERS
 
@@ -1487,6 +2123,8 @@ modalAdvertencia.addEventListener("click", handleCerrarModal);
  */
 
 const agregarRadiosOtrasCapas = (esAreasNat) => {
+  console.log(localidadCapaSeleccionada);
+
   if (esAreasNat) {
     radiosInfVerde = L.geoJSON(alumineBufferAreasNaturales, {
       style: {
@@ -1572,6 +2210,90 @@ const agregarRadiosOtrasCapas = (esAreasNat) => {
         break;
       case "Aluminé":
         radiosInfVerde = L.geoJSON(alumineBufferInfraverdeSinDisolver, {
+          style: {
+            weight: 2,
+            opacity: 1,
+
+            color: "#B7990D",
+            dashArray: "6",
+            fillOpacity: 0.45,
+          },
+          filter: filtrarRadiosNotNqn,
+          onEachFeature: (feature, layer) => {
+            layer.on({
+              click: (e) => {
+                map.removeLayer(layer);
+              },
+            });
+          },
+        })
+          .bindTooltip(
+            (layer) => {
+              console.log(layer.feature.properties.supm2);
+              if (layer.feature.properties.supm2 <= 30000) {
+                return "5' a pie de la plaza";
+              } else if (
+                layer.feature.properties.supm2 > 30000 &&
+                layer.feature.properties.supm2 < 100000
+              ) {
+                return "10' a pie de la plaza";
+              } else {
+                return "15' a pie de la plaza";
+              }
+            },
+            {
+              sticky: false,
+              opacity: 1,
+              offset: L.point(50, 14),
+            }
+          )
+          .addTo(map);
+        map.fitBounds(radiosInfVerde.getBounds());
+        break;
+      case "Manzano Amargo":
+        radiosInfVerde = L.geoJSON(manzanoBufferInfraVerdeSinDisolver, {
+          style: {
+            weight: 2,
+            opacity: 1,
+
+            color: "#B7990D",
+            dashArray: "6",
+            fillOpacity: 0.45,
+          },
+          filter: filtrarRadiosNotNqn,
+          onEachFeature: (feature, layer) => {
+            layer.on({
+              click: (e) => {
+                map.removeLayer(layer);
+              },
+            });
+          },
+        })
+          .bindTooltip(
+            (layer) => {
+              console.log(layer.feature.properties.supm2);
+              if (layer.feature.properties.supm2 <= 30000) {
+                return "5' a pie de la plaza";
+              } else if (
+                layer.feature.properties.supm2 > 30000 &&
+                layer.feature.properties.supm2 < 100000
+              ) {
+                return "10' a pie de la plaza";
+              } else {
+                return "15' a pie de la plaza";
+              }
+            },
+            {
+              sticky: false,
+              opacity: 1,
+              offset: L.point(50, 14),
+            }
+          )
+          .addTo(map);
+        map.fitBounds(radiosInfVerde.getBounds());
+        break;
+      case "El Huecú":
+        radiosInfVerde = L.geoJSON(elHuecuBufferInfraVerdeSinDisolver, {
           style: {
             weight: 2,
             opacity: 1,
@@ -1919,7 +2641,7 @@ function getColor(d, tipo) {
 function onHoverNotEspaciosVerdes(e) {
   let layer = e.target;
 
-  info.update(layer.feature.properties, true);
+  info.update(layer.feature.properties, false);
 }
 
 function highlightFeature(e) {
@@ -2112,6 +2834,13 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props, espaciosVerdes) {
+  if (!props) {
+    this._div.innerHTML = `<h4>${
+      props ? props.name : "Datos del elemento"
+    }</h4>`;
+    return;
+  }
+
   if (espaciosVerdes) {
     this._div.innerHTML =
       `<h4>${
@@ -2130,20 +2859,26 @@ info.update = function (props, espaciosVerdes) {
             props.arbolado
           )} en relacion a m<sup>2</sup>` +
           "<br />" +
-          `<i class="fa-solid fa-ruler-combined"></i> Superficie: <br/> ${props.supm2.toFixed(
-            2
+          `<i class="fa-solid fa-ruler-combined"></i> Superficie: <br/> ${Math.round(
+            props.supm2
           )} m<sup>2</sup>`
         : "Seleccione una capa");
   } else {
     this._div.innerHTML =
-      `<h4>${props ? props.name : "Datos del elemento"}</h4>` + "";
+      `<h4>${
+        props ? (props.name ? props.name : props.nombre) : "Datos del elemento"
+      }</h4>` +
+      "<br />" +
+      ` <h3><i class="fa-solid fa-ruler-combined"></i><b>Superficie: </b>  ${
+        props.supm2
+          ? Math.round(props.supm2)
+          : Math.round(props.supkm2 * 1000000)
+      } m<sup>2</sup></h3>`;
   }
 };
-
 info.addTo(map);
 
 // INDICE DE RANGOS
-const leyenda = L.control({ position: "bottomright" });
 
 leyenda.onAdd = function (map) {
   let grados;
@@ -2177,10 +2912,6 @@ leyenda.onAdd = function (map) {
 
   return div;
 };
-let infVerdeLayers = L.geoJSON(verdeData, {
-  style: style,
-  onEachFeature: onEachFeature,
-});
 
 /* leyenda.addTo(map); */
 

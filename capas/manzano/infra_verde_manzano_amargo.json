@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "infra_verde_manzano_amargo",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 0, "tipo": "Plazoleta", "dominio": "Público", "suel_absor": "4", "expre_cult": "no", "mobiliario": "Superior", "arbolado": "4", "agua_super": "no", "supm2": 5511.677, "localidad": "Manzano Amargo" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -70.763718565897875, -36.753341552972934 ], [ -70.763661016540723, -36.752718604881586 ], [ -70.76356836687512, -36.752624983338023 ], [ -70.76295784447592, -36.752599201357889 ], [ -70.762848932071705, -36.752654645983057 ], [ -70.762880916283478, -36.753192477796262 ], [ -70.76291805870315, -36.753267923465465 ], [ -70.763718565897875, -36.753341552972934 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": 1, "tipo": "Plazoleta", "dominio": "Público", "suel_absor": "4", "expre_cult": "no", "mobiliario": "Superior", "arbolado": "2", "agua_super": "no", "supm2": 2213.969, "localidad": "Manzano Amargo" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -70.769499847538228, -36.753369689672098 ], [ -70.769452663925776, -36.752857418304664 ], [ -70.769021700356802, -36.752939824049015 ], [ -70.769060722895802, -36.753439550977092 ], [ -70.769499847538228, -36.753369689672098 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": 2, "tipo": "Plazoleta", "dominio": "Público", "suel_absor": "3", "expre_cult": "no", "mobiliario": "Superior", "arbolado": "3", "agua_super": "no", "supm2": 1699.879, "localidad": "Manzano Amargo" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -70.760241551188315, -36.760786186184681 ], [ -70.759908657675822, -36.76060744945169 ], [ -70.759587127864378, -36.760925963195554 ], [ -70.759950328403605, -36.761122837294963 ], [ -70.760241551188315, -36.760786186184681 ] ] ] ] } }
+]
+}
