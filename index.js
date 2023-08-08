@@ -4,7 +4,7 @@
 
                 //   Desarrollado por Francisco Sepulveda para COPADE - 2022    \\
 // Pueden contactarme en https://fsepulveda.vercel.app/ o por mail fsepulvedadev@gmail.com \\
-radiosAreasNat
+
 
 -------------------------------------------------------------------------------------------------
 
@@ -60,6 +60,35 @@ const tituloManzano = document.getElementById("tituloManzano");
 const collapseHuecu = document.getElementById("collapseHuecu");
 const capasHuecu = document.getElementById("capasHuecu");
 const tituloHuecu = document.getElementById("tituloHuecu");
+const collapseZapala = document.getElementById("collapseZapala");
+const capasZapala = document.getElementById("capasZapala");
+const tituloZapala = document.getElementById("tituloZapala");
+const selectoresMenuEspaciosVerdes = document.querySelectorAll(
+  "div.flex.items-end.collapse-content > ul"
+);
+
+const selectoresMenues = document.querySelectorAll(
+  "input[type='checkbox']:not(.peer)"
+);
+console.log(selectoresMenues);
+
+for (const node of selectoresMenues) {
+  console.log(node.id);
+  /* node.addEventListener('click', ()=>{
+
+  }) */
+}
+
+console.log(selectoresMenuEspaciosVerdes);
+collapseZapala.addEventListener("click", () => {
+  if (capasZapala.checked) {
+    tituloZapala.classList.remove("activado");
+    capasZapala.checked = false;
+  } else {
+    tituloZapala.classList.add("activado");
+    capasZapala.checked = true;
+  }
+});
 
 collapseHuecu.addEventListener("click", () => {
   if (capasHuecu.checked) {
@@ -213,6 +242,26 @@ radiosCoberturaHuecu.addEventListener("click", (e) => {
   agregarCapasElHuecu(e);
 });
 
+const espaciosVerdesZapala = document.getElementById("espaciosVerdesZapala");
+const manchaUrbanaZapala = document.getElementById("manchaUrbanaZapala");
+const radiosCoberturaZapala = document.getElementById("radiosCoberturaZapala");
+
+const listaClasificacionesZapala = document.getElementById(
+  "lista-capas-espacios-verdes-zapala"
+);
+
+espaciosVerdesZapala.addEventListener("click", (e) => {
+  agregarCapasZapala(e);
+});
+
+manchaUrbanaZapala.addEventListener("click", (e) => {
+  agregarCapasZapala(e);
+});
+
+radiosCoberturaZapala.addEventListener("click", (e) => {
+  agregarCapasZapala(e);
+});
+
 // IMPORTACIONES
 // ------------ NEUQUEN CAPITAL ------------ //
 import datosNeuquen from "./capas/datos_neuquen.json" assert { type: "json" };
@@ -254,6 +303,12 @@ import elHuecuInfraAzul from "./capas/huecu/infra_azul_el_huecu.json" assert { t
 import elHuecuBufferInfraVerdeDisuelto from "./capas/huecu/area_influencia_disuelto_infra_verde_el_huecu.json" assert { type: "json" };
 import elHuecuBufferInfraVerdeSinDisolver from "./capas/huecu/area_influencia_infra_verde_el_huecu.json" assert { type: "json" };
 import elHuecuManchaUrbana from "./capas/huecu/mancha_urbana_el_huecu.json" assert { type: "json" };
+
+// -------------- ZAPALA -------------- //
+
+import zapalaInfraVerde from "./capas/zapala/infra_verde_zapala.json" assert { type: "json" };
+import zapalaManchaUrbana from "./capas/zapala/mancha_urbana_zapala.json" assert { type: "json" };
+import zapalaBufferVerdeDisuelto from "./capas/zapala/buffer_infra_verde_zapala_disuelto.json" assert { type: "json" };
 
 // END IMPORTACIONES
 
@@ -552,6 +607,76 @@ elHuecuInfraVerde.features.map((elemento) => {
   }
 });
 
+let contadoresZapala = {
+  mobiliario: {
+    basico: 0,
+    superior: 0,
+  },
+  arbolado: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+  absorcion: {
+    "0a25": 0,
+    "25a50": 0,
+    "50a75": 0,
+    "75a100": 0,
+  },
+};
+
+zapalaInfraVerde.features.map((elemento) => {
+  switch (elemento.properties.suel_absor) {
+    case "1":
+      contadoresZapala.absorcion["0a25"]++;
+      break;
+    case "2":
+      contadoresZapala.absorcion["25a50"]++;
+      break;
+    case "3":
+      contadoresZapala.absorcion["50a75"]++;
+      break;
+    case "4":
+      contadoresZapala.absorcion["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.arbolado) {
+    case "1":
+      contadoresZapala.arbolado["0a25"]++;
+      break;
+    case "2":
+      contadoresZapala.arbolado["25a50"]++;
+      break;
+    case "3":
+      contadoresZapala.arbolado["50a75"]++;
+      break;
+    case "4":
+      contadoresZapala.arbolado["75a100"]++;
+      break;
+
+    default:
+      break;
+  }
+  switch (elemento.properties.mobiliario) {
+    case "Basico":
+      contadoresZapala.mobiliario.basico++;
+      break;
+    case "Superior":
+      contadoresZapala.mobiliario.superior++;
+      break;
+    case "No posee":
+      contadoresZapala.mobiliario.noPosee++;
+      break;
+
+    default:
+      break;
+  }
+});
+
 // CAPAS RINCON DE LOS SAUCES
 
 const capaRinconAreaInfluenciaDisuelta = L.geoJSON(
@@ -756,6 +881,35 @@ const capaHuecuBufferInfraVerde = L.geoJSON(elHuecuBufferInfraVerdeDisuelto, {
   onEachFeature: onEachFeatureOtrasCapas,
 });
 
+// CAPAS ZAPALA
+
+const capaZapalaInfraVerde = L.geoJSON(zapalaInfraVerde, {
+  style: style,
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaZapalaManchaUrbana = L.geoJSON(zapalaManchaUrbana, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#937D64",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
+const capaZapalaBufferInfraVerde = L.geoJSON(zapalaBufferVerdeDisuelto, {
+  style: {
+    weight: 2,
+    opacity: 1,
+    color: "#4D8B31",
+    dashArray: "3",
+    fillOpacity: 0.25,
+  },
+  onEachFeature: onEachFeatureOtrasCapas,
+});
+
 // FIN CAPAS
 
 const filtrarRadios = (feature) => {
@@ -775,6 +929,11 @@ const capasEspaciosVerdes = document.getElementById(
 );
 const ModalDetalle = document.getElementById("detalle-modal");
 
+const infraVerdeZapalaBtn = document.getElementById("infra-verde-zapala");
+const absorcionZapalaTag = document.getElementById("absorcionZapala");
+const arboladoZapalaTag = document.getElementById("arboladoZapala");
+const superficieZapalaTag = document.getElementById("superficieZapala");
+const tiposZapalaTag = document.getElementById("tipoZapala");
 const infraVerdeHuecuBtn = document.getElementById("infra-verde-huecu");
 const absorcionHuecuTag = document.getElementById("absorcionHuecu");
 const arboladoHuecuTag = document.getElementById("arboladoHuecu");
@@ -847,6 +1006,7 @@ const localidadesActivas = [
   "Neuquén Capital",
   "Manzano Amargo",
   "El Huecú",
+  "Zapala",
 ];
 const localidades = [
   {
@@ -854,6 +1014,7 @@ const localidades = [
     loc: [-38.9040134, -70.0799899],
     id: "zapala",
     zoom: 13,
+    poblacion: 45.156,
   },
   {
     nombre: "Loncopué",
@@ -894,9 +1055,9 @@ const localidades = [
   },
   {
     nombre: "Rincón de los Sauces",
-    loc: [-37.3965221, -69.0771707],
+    loc: [-37.3967144, -68.9501162],
     id: "rincon",
-    zoom: 12,
+    zoom: 14,
     poblacion: 29910,
   },
   {
@@ -1059,6 +1220,18 @@ const calcularEspaciosTotalesIndividuales = (localidad) => {
         nat: areasNatTotal,
       };
 
+    case "Zapala":
+      zapalaInfraVerde.features.map((espacio) => {
+        espacioVerdeTotal =
+          Number(espacio.properties.supm2) + espacioVerdeTotal;
+      });
+
+      return {
+        verde: espacioVerdeTotal,
+        azul: espacioAzulTotal,
+        nat: areasNatTotal,
+      };
+
     default:
       break;
   }
@@ -1190,6 +1363,26 @@ const calcularEspaciosVerdesPorHab = (localidad, soloVerde) => {
         });
         return verdePorHab;
       }
+    case "Zapala":
+      zapalaInfraVerde.features.map((espacio) => {
+        superficieVerdeTotal =
+          Number(espacio.properties.supm2) + superficieVerdeTotal;
+      });
+      if (soloVerde) {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      } else {
+        localidades.map((local) => {
+          if (localidad == local.nombre) {
+            verdePorHab = superficieVerdeTotal / local.poblacion;
+          }
+        });
+        return verdePorHab;
+      }
 
     default:
       break;
@@ -1260,8 +1453,6 @@ const toggleCapasVerdes = () => {
   }
 };
 const toggleCapasVerdesOtras = (localidad) => {
-  console.log(localidad);
-  console.log(listaClasificacionesManzano);
   switch (localidad) {
     case "manzano":
       if (listaClasificacionesManzano.classList.contains("hidden")) {
@@ -1290,6 +1481,25 @@ const toggleCapasVerdesOtras = (localidad) => {
         listaClasificacionesRincon.classList.add("hidden");
         listaClasificacionesRincon.classList.remove("grid");
         console.log(listaClasificacionesRincon.classList.contains("hidden"));
+      }
+      break;
+    case "huecu":
+      if (listaClasificacionesHuecu.classList.contains("hidden")) {
+        listaClasificacionesHuecu.classList.add("grid");
+        listaClasificacionesHuecu.classList.remove("hidden");
+      } else {
+        listaClasificacionesHuecu.classList.add("hidden");
+        listaClasificacionesHuecu.classList.remove("grid");
+        console.log(listaClasificacionesHuecu.classList.contains("hidden"));
+      }
+      break;
+    case "zapala":
+      if (listaClasificacionesZapala.classList.contains("hidden")) {
+        listaClasificacionesZapala.classList.add("grid");
+        listaClasificacionesZapala.classList.remove("hidden");
+      } else {
+        listaClasificacionesZapala.classList.add("hidden");
+        listaClasificacionesZapala.classList.remove("grid");
       }
       break;
 
@@ -1495,6 +1705,34 @@ const cargarDetalle = (targetId) => {
 
       break;
 
+    case "Zapala":
+      chartMobiliario.data.datasets[0].data = [
+        contadoresZapala.mobiliario.basico,
+        contadoresZapala.mobiliario.superior,
+      ];
+
+      chartMobiliario.data.labels = ["Basico", "Superior"];
+
+      chartMobiliario.update();
+
+      chartAbsorcion.data.datasets[0].data = [
+        contadoresZapala.absorcion["0a25"],
+        contadoresZapala.absorcion["25a50"],
+        contadoresZapala.absorcion["50a75"],
+        contadoresZapala.absorcion["75a100"],
+      ];
+      chartAbsorcion.update();
+
+      chartArbolado.data.datasets[0].data = [
+        contadoresZapala.arbolado["0a25"],
+        contadoresZapala.arbolado["25a50"],
+        contadoresZapala.arbolado["50a75"],
+        contadoresZapala.arbolado["75a100"],
+      ];
+      chartArbolado.update();
+
+      break;
+
     case "Rincón de los Sauces":
       chartMobiliario.data.datasets[0].data = [
         contadoresRincon.mobiliario.noPosee,
@@ -1543,6 +1781,7 @@ const cerrarSidebar = () => {
 };
 const cambiarCapaEspaciosVerdes = (e) => {
   let target = e.target;
+  console.log(target);
 
   let abs = document.querySelectorAll("#absorcion");
   let arb = document.querySelectorAll("#arbolado");
@@ -1564,6 +1803,10 @@ const cambiarCapaEspaciosVerdes = (e) => {
   let arbHuecu = document.querySelectorAll("#arboladoHuecu");
   let supHuecu = document.querySelectorAll("#superficieHuecu");
   let tipoHuecu = document.querySelectorAll("#tipoHuecu");
+  let absZapala = document.querySelectorAll("#absorcionZapala");
+  let arbZapala = document.querySelectorAll("#arboladoZapala");
+  let supZapala = document.querySelectorAll("#superficieZapala");
+  let tipoZapala = document.querySelectorAll("#tipoZapala");
 
   let locs = {
     rincon: {
@@ -1595,6 +1838,12 @@ const cambiarCapaEspaciosVerdes = (e) => {
       arbolado: arbHuecu,
       superficie: supHuecu,
       tipo: tipoHuecu,
+    },
+    zapala: {
+      absorcion: absZapala,
+      arbolado: arbZapala,
+      superficie: supZapala,
+      tipo: tipoZapala,
     },
   };
 
@@ -1659,8 +1908,61 @@ const cambiarCapaEspaciosVerdes = (e) => {
     capaManzanoInfraVerde.setStyle(style);
   } else if (target.id.includes("Huecu")) {
     capaHuecuInfraVerde.setStyle(style);
+  } else if (target.id.includes("Zapala")) {
+    capaZapalaInfraVerde.setStyle(style);
   } else {
     infVerdeLayers.setStyle(style);
+  }
+};
+
+const agregarCapasZapala = (e) => {
+  let target = e.target.id;
+  console.log(target);
+  const path = e.composedPath();
+  switch (target) {
+    case "infra-verde-zapala":
+      if (map.hasLayer(capaZapalaInfraVerde)) {
+        capaZapalaInfraVerde.remove();
+        leyenda.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Zapala") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        leyenda.addTo(map);
+        cargarDetalle("Zapala");
+        capaZapalaInfraVerde.addTo(map);
+      }
+      break;
+
+    case "mancha-urbana-zapala":
+      if (map.hasLayer(capaZapalaManchaUrbana)) {
+        capaZapalaManchaUrbana.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Zapala") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaZapalaManchaUrbana.addTo(map);
+      }
+      break;
+    case "radios-cobertura-zapala":
+      if (map.hasLayer(capaZapalaBufferInfraVerde)) {
+        capaZapalaBufferInfraVerde.remove();
+      } else {
+        localidades.map((e) => {
+          if (e.nombre === "Zapala") {
+            map.flyTo(e.loc, e.zoom);
+          }
+        });
+        capaZapalaBufferInfraVerde.addTo(map);
+      }
+      break;
+
+    default:
+      break;
   }
 };
 
@@ -2100,7 +2402,7 @@ superficieManzanoTag.addEventListener("click", (e) =>
 tiposManzanoTag.addEventListener("click", (e) =>
   cambiarCapaEspaciosVerdes(e, "manzano")
 );
-infraVerdeHuecuBtn.addEventListener("click", (e) =>
+infraVerdeHuecuBtn.addEventListener("click", () =>
   toggleCapasVerdesOtras("huecu")
 );
 
@@ -2115,6 +2417,22 @@ superficieHuecuTag.addEventListener("click", (e) =>
 );
 tiposHuecuTag.addEventListener("click", (e) =>
   cambiarCapaEspaciosVerdes(e, "huecu")
+);
+
+infraVerdeZapalaBtn.addEventListener("click", (e) =>
+  toggleCapasVerdesOtras("zapala")
+);
+absorcionZapalaTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "zapala")
+);
+arboladoZapalaTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "zapala")
+);
+superficieZapalaTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "zapala")
+);
+tiposZapalaTag.addEventListener("click", (e) =>
+  cambiarCapaEspaciosVerdes(e, "zapala")
 );
 
 //END EVENT LISTENERS
