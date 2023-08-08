@@ -266,7 +266,7 @@
              -->
 
             <div id="collapseNeuquen" class="collapse">
-              <input id="capasNeuquen" type="checkbox" class="peer" />
+              <input id="capasNeuquen" type="checkbox" />
               <div
                 id="tituloNeuquen"
                 class="flex items-center justify-center p-1 mt-2 text-xl font-medium text-center text-white bg-green-700 border border-green-700 collapse-title"
@@ -1763,6 +1763,307 @@
                     >
                       <input
                         id="mancha-urbana-huecu"
+                        type="checkbox"
+                        value=""
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
+                      ></div>
+
+                      <p class="pr-5 font-bold text-center">Mancha Urbana</p>
+                      <div></div>
+                    </label>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            <div id="collapseZapala" class="mt-2 collapse">
+              <input id="capasZapala" type="checkbox" />
+              <div
+                id="tituloZapala"
+                class="flex items-center justify-center p-1 mt-2 text-xl font-medium text-center text-white bg-green-700 border border-green-700 collapse-title"
+              >
+                Zapala <i class="ml-2 fa-solid fa-layer-group"></i>
+              </div>
+              <div class="flex items-end collapse-content">
+                <ul id="" class="grid w-full gap-4 mt-4">
+                  <div
+                    id="espaciosVerdesZapala"
+                    class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
+                  >
+                    <label
+                      class="relative inline-flex items-center justify-between w-full cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        id="infra-verde-zapala"
+                        value=""
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
+                      ></div>
+                      <p class="pr-5 font-bold text-center text-white">
+                        Espacios Verdes
+                      </p>
+                      <div></div>
+                    </label>
+                  </div>
+                  <ul
+                    id="lista-capas-espacios-verdes-zapala"
+                    class="hidden w-full grid-rows-3 gap-4 p-2 m-0 bg-slate-300 rounded-xl"
+                  >
+                    <div
+                      class="w-full p-1 rounded cursor-pointer ring-blue-400"
+                      id="absorcionZapala"
+                    >
+                      <h3
+                        id="absorcionZapala"
+                        class="font-bold text-center text-blue-400"
+                      >
+                        Absorción
+                      </h3>
+
+                      <div
+                        id="absorcionZapala"
+                        class="flex h-12 border-2 border-blue-400 rounded"
+                      >
+                        <label
+                          id="absorcionZapala"
+                          class="flex items-center justify-center w-1/4 h-full bg-blue-400"
+                        >
+                          <i
+                            id="absorcionZapala"
+                            class="text-sm text-white rounded fa-solid fa-droplet"
+                          ></i>
+                        </label>
+
+                        <div
+                          id="absorcionZapala"
+                          class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
+                        >
+                          <p
+                            id="absorcionZapala"
+                            class="col-span-3 text-[0.7rem]"
+                          >
+                            Porcentaje de Absorción de Agua en funcion de los
+                            m<sup>2</sup>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-full p-1 rounded cursor-pointer ring-green-600"
+                      id="arboladoZapala"
+                    >
+                      <h3
+                        id="arboladoZapala"
+                        class="font-bold text-center text-green-600"
+                      >
+                        Arbolado
+                      </h3>
+
+                      <div
+                        id="arboladoZapala"
+                        class="flex h-12 border-2 border-green-600 rounded"
+                      >
+                        <label
+                          id="arboladoZapala"
+                          class="flex items-center justify-center w-1/4 h-full bg-green-600"
+                        >
+                          <i
+                            id="arboladoZapala"
+                            class="text-sm text-white rounded fa-solid fa-tree"
+                          ></i>
+                        </label>
+
+                        <div
+                          id="arboladoZapala"
+                          class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
+                        >
+                          <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                          <p
+                            id="arboladoZapala"
+                            class="col-span-3 text-[0.7rem]"
+                          >
+                            Porcentaje de Arbolado en funcion de los m<sup
+                              >2</sup
+                            >
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-full p-1 rounded cursor-pointer ring-orange-400"
+                      id="superficieZapala"
+                    >
+                      <h3
+                        id="superficieZapala"
+                        class="font-bold text-center text-orange-400"
+                      >
+                        Superficie
+                      </h3>
+
+                      <div
+                        id="superficieZapala"
+                        class="flex h-12 border-2 border-orange-400 rounded"
+                      >
+                        <label
+                          id="superficieZapala"
+                          class="flex items-center justify-center w-1/4 h-full bg-orange-400"
+                        >
+                          <i
+                            id="superficieZapala"
+                            class="text-sm text-white rounded fa-solid fa-ruler-combined"
+                          ></i>
+                        </label>
+
+                        <div
+                          id="superficieZapala"
+                          class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
+                        >
+                          <!--  <input type="checkbox" name="absorcion" id="absorcion" /> -->
+                          <p
+                            id="superficieZapala"
+                            class="col-span-3 text-[0.7rem]"
+                          >
+                            Superficie en m<sup>2</sup>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="w-full p-1 rounded cursor-pointer ring-2 ring-emerald-600"
+                      id="tipoZapala"
+                    >
+                      <h3
+                        id="tipoZapala"
+                        class="font-bold text-center text-emerald-600"
+                      >
+                        Tipo de Espacios
+                      </h3>
+
+                      <div
+                        id="tipoZapala"
+                        class="flex h-12 border-2 rounded border-emerald-600"
+                      >
+                        <label
+                          id="tipoZapala"
+                          class="flex items-center justify-center w-1/4 h-full bg-emerald-600"
+                        >
+                          <i
+                            id="tipoZapala"
+                            class="text-sm text-white rounded fa-solid fa-leaf"
+                          ></i>
+                        </label>
+
+                        <div
+                          id="tipoZapala"
+                          class="grid w-full grid-cols-1 grid-rows-1 p-2 text-black rounded place-items-center"
+                        >
+                          <p id="tipoZapala" class="col-span-3 text-[0.7rem]">
+                            Clasificacion segun el tipo de espacio verde
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+
+                  <div
+                    id="radiosCoberturaZapala"
+                    class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
+                  >
+                    <label
+                      class="relative inline-flex items-center justify-between w-full cursor-pointer"
+                    >
+                      <input
+                        id="radios-cobertura-zapala"
+                        type="checkbox"
+                        value=""
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
+                      ></div>
+
+                      <p class="pr-5 font-bold text-center text-white">
+                        Radios de cobertura
+                        <i
+                          data-tooltip-target="tooltip-top-capas-radios4"
+                          data-tooltip-placement="top"
+                          type="button"
+                          class="ml-2 text-xl text-center text-white rounded-lg fa-solid fa-circle-question hover:text-green-700 focus:ring-blue-300"
+                        ></i>
+                      </p>
+
+                      <div
+                        id="tooltip-top-capas-radios4"
+                        role="tooltip"
+                        class="absolute invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                      >
+                        <ul class="ml-2 text-left z-[90000]">
+                          <li class="mb-2 text-xs">
+                            Para cada tipo de espacio verde se determinó un
+                            radio de cobertura, es decir la distancia máxima
+                            óptima que tiene que recorrer a pie un habitante
+                            para acceder a un espacio verde, los radios de
+                            cobertura por tipo de espacio verde se detallan a
+                            continuación:
+                            <ul class="pl-4 mt-4 list-disc">
+                              <li>
+                                Espacios verdes hasta 3 Ha: 300 metros (5 min)
+                              </li>
+                              <li class="mt-2">
+                                Espacios verdes entre 3 Ha a 10 Ha: 500 metros
+                                (10 min)
+                              </li>
+                              <li class="mt-2">
+                                Espacios verdes mayores a 10 Ha: 900 m. (15 min)
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div>
+                      <div></div>
+                    </label>
+                  </div>
+
+                  <!--   <div
+                    id="infraAzulZapala"
+                    class="flex items-center justify-between w-full p-2 text-center text-black bg-green-600 shadow-2xl rounded-xl row-span-8"
+                  >
+                    <label
+                      class="relative inline-flex items-center justify-between w-full cursor-pointer"
+                    >
+                      <input
+                        id="infra-azul-zapala"
+                        type="checkbox"
+                        value=""
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-11 h-6 outline-none bg-white rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-green-600 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
+                      ></div>
+
+                      <p class="pr-5 font-bold text-center text-white">
+                        Espacios Azules
+                      </p>
+                      <div></div>
+                    </label>
+                  </div> -->
+
+                  <div
+                    id="manchaUrbanaZapala"
+                    class="flex items-center justify-between w-full p-2 text-center text-white bg-green-600 shadow-2xl rounded-xl row-span-8"
+                  >
+                    <label
+                      class="relative inline-flex items-center justify-between w-full cursor-pointer"
+                    >
+                      <input
+                        id="mancha-urbana-zapala"
                         type="checkbox"
                         value=""
                         class="sr-only peer"
