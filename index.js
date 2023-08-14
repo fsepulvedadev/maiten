@@ -309,7 +309,7 @@ import elHuecuManchaUrbana from "./capas/huecu/mancha_urbana_el_huecu.json" asse
 import zapalaInfraVerde from "./capas/zapala/infra_verde_zapala.json" assert { type: "json" };
 import zapalaManchaUrbana from "./capas/zapala/mancha_urbana_zapala.json" assert { type: "json" };
 import zapalaBufferVerdeDisuelto from "./capas/zapala/buffer_infra_verde_zapala_disuelto.json" assert { type: "json" };
-
+import zapalaBufferVerdeSinDisolver from "./capas/zapala/buffer_sin_disolver_zapala.json" assert { type: "json" };
 // END IMPORTACIONES
 
 // DEFINICIONES
@@ -749,7 +749,7 @@ const capaAlumineBufferInfraverdeDisuelto = L.geoJSON(
 
 const capaAlumineInfraVerde = L.geoJSON(alumineInfraVerde, {
   style: style,
-  onEachFeature: onEachFeature,
+  onEachFeature: onEachFeatureOtrasCapas,
 });
 
 const capaAlumineMarchaUrbana = L.geoJSON(alumineMarchaUrbana, {
@@ -1014,7 +1014,7 @@ const localidades = [
     loc: [-38.9040134, -70.0799899],
     id: "zapala",
     zoom: 13,
-    poblacion: 45.156,
+    poblacion: 33951,
   },
   {
     nombre: "Loncopué",
@@ -2616,6 +2616,48 @@ const agregarRadiosOtrasCapas = (esAreasNat) => {
         break;
       case "El Huecú":
         radiosInfVerde = L.geoJSON(elHuecuBufferInfraVerdeSinDisolver, {
+          style: {
+            weight: 2,
+            opacity: 1,
+
+            color: "#B7990D",
+            dashArray: "6",
+            fillOpacity: 0.45,
+          },
+          filter: filtrarRadiosNotNqn,
+          onEachFeature: (feature, layer) => {
+            layer.on({
+              click: (e) => {
+                map.removeLayer(layer);
+              },
+            });
+          },
+        })
+          .bindTooltip(
+            (layer) => {
+              console.log(layer.feature.properties.supm2);
+              if (layer.feature.properties.supm2 <= 30000) {
+                return "5' a pie de la plaza";
+              } else if (
+                layer.feature.properties.supm2 > 30000 &&
+                layer.feature.properties.supm2 < 100000
+              ) {
+                return "10' a pie de la plaza";
+              } else {
+                return "15' a pie de la plaza";
+              }
+            },
+            {
+              sticky: false,
+              opacity: 1,
+              offset: L.point(50, 14),
+            }
+          )
+          .addTo(map);
+        map.fitBounds(radiosInfVerde.getBounds());
+        break;
+      case "Zapala":
+        radiosInfVerde = L.geoJSON(zapalaBufferVerdeSinDisolver, {
           style: {
             weight: 2,
             opacity: 1,
