@@ -2212,6 +2212,12 @@ const cambiarCapaGeneral = (e) => {
   const path = e.composedPath();
   console.log(path[2].classList);
 
+  localidades.map((e) => {
+    if (e.nombre === "Neuquén Capital") {
+      map.flyTo(e.loc, e.zoom);
+    }
+  });
+
   switch (target) {
     case "infra-verde":
       if (activas.infVerde) {
